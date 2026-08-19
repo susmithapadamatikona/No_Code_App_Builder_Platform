@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billing — Stackly | No-Code App Builder</title>
+  <meta name="description" content="Manage your Stackly subscription — current plan, usage, payment method, and billing history.">
+  <meta property="og:title" content="Billing — Stackly">
+  <meta property="og:description" content="Plans, payment methods, and invoices for your workspace.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script src="assets/js/darkmode.js"></script>
+</head>
+<body data-dash="billing">
+  <div class="dash-layout">
+    <aside id="dash-sidebar" aria-label="Dashboard navigation"></aside>
+    <div class="dash-main">
+      <header id="dash-topbar"></header>
+      <main id="main" class="dash-content dash-section-gap">
+
+        <!-- Current plan + payment method -->
+        <section class="dash-cols-main" aria-label="Current plan and payment method">
+          <article class="card plan-hero">
+            <div class="card-head">
+              <h3>Current plan</h3>
+              <span class="badge badge-gradient" id="plan-badge">Pro</span>
+            </div>
+            <div class="plan-price-lg"><span id="plan-price">$19</span><small> /month · renews <span id="plan-renews">Sep 18, 2026</span></small></div>
+            <p class="text-sm text-secondary-c mt-2" id="plan-blurb">Unlimited projects, premium templates, analytics, and priority support.</p>
+            <div class="usage-row">
+              <div class="storage-meta"><b>Projects</b><span class="text-muted-c" id="usage-projects">5 used · unlimited</span></div>
+              <div class="progress"><div class="progress-bar" data-value="24"></div></div>
+            </div>
+            <div class="usage-row">
+              <div class="storage-meta"><b>Storage</b><span class="text-muted-c">6.8 GB of 10 GB</span></div>
+              <div class="progress"><div class="progress-bar is-warning" data-value="68"></div></div>
+            </div>
+            <div class="d-flex gap-3 mt-5 flex-wrap">
+              <a class="btn btn-secondary btn-sm" href="pricing.html"><i data-icon="external"></i> Compare plans</a>
+              <button class="btn btn-ghost btn-sm" type="button" id="cancel-sub">Cancel subscription</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <h3>Payment method</h3>
+              <button class="btn btn-secondary btn-sm" type="button" id="update-card"><i data-icon="edit"></i> Update</button>
+            </div>
+            <div class="cc-visual" aria-label="Saved card ending 4242">
+              <div class="cc-top"><span class="cc-brand">Stackly</span><i data-icon="zap" style="width:20px;display:inline-flex"></i></div>
+              <div class="cc-chip"></div>
+              <div class="cc-number">•••• &nbsp;•••• &nbsp;•••• &nbsp;4242</div>
+              <div class="cc-bottom">
+                <div><span>Card holder</span><b id="cc-holder">Alex Morgan</b></div>
+                <div><span>Expires</span><b>08 / 29</b></div>
+                <div><span>Type</span><b>VISA</b></div>
+              </div>
+            </div>
+            <p class="text-xs text-muted-c mt-4">Your next invoice of <b>$19.00</b> will be charged to this card on <b>Sep 18, 2026</b>.</p>
+          </article>
+        </section>
+
+        <!-- Change plan -->
+        <section aria-label="Change plan">
+          <div class="dash-head-row">
+            <div><h2>Change plan</h2><p class="sub">Switch any time — changes are prorated instantly (demo).</p></div>
+          </div>
+          <div class="dash-row-3" id="mini-plans"></div>
+        </section>
+
+        <!-- Billing history -->
+        <section aria-label="Billing history">
+          <article class="card">
+            <div class="card-head"><h3>Billing history</h3><span class="badge badge-neutral">Last 6 invoices</span></div>
+            <div class="table-wrap" style="border:none;box-shadow:none">
+              <table class="table">
+                <thead><tr><th>Invoice</th><th>Date</th><th>Description</th><th>Amount</th><th>Status</th><th></th></tr></thead>
+                <tbody id="invoice-rows"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/validation.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    if (!window.AppStore || !AppStore.auth.isLoggedIn()) return;
+
+    var D = null;
+    var LS_PREFIX = 'appflow_';
+
+    var PLANS = {
+      Free: { price: 0, blurb: '3 projects, basic templates and components, community support.', features: ['3 projects', 'Basic templates', 'Basic components', 'Community support'] },
+      Pro: { price: 19, blurb: 'Unlimited projects, premium templates, analytics, and priority support.', features: ['Unlimited projects', 'Premium templates', 'Analytics & custom branding', 'Priority support'] },
+      Business: { price: 49, blurb: 'Team collaboration, advanced analytics, custom domains, unlimited storage.', features: ['Team collaboration', 'Advanced analytics & API', 'Custom domains', 'Unlimited storage'] }
+    };
+
+    var INVOICES = [
+      { id: 'INV-2026-0818', date: '2026-08-18', desc: 'Pro plan — monthly', amount: 19 },
+      { id: 'INV-2026-0718', date: '2026-07-18', desc: 'Pro plan — monthly', amount: 19 },
+      { id: 'INV-2026-0618', date: '2026-06-18', desc: 'Pro plan — monthly', amount: 19 },
+      { id: 'INV-2026-0518', date: '2026-05-18', desc: 'Pro plan — monthly', amount: 19 },
+      { id: 'INV-2026-0421', date: '2026-04-21', desc: 'Template — NovaCRM Pro', amount: 49 },
+      { id: 'INV-2026-0418', date: '2026-04-18', desc: 'Pro plan — monthly', amount: 19 }
+    ];
+
+    function currentPlan() {
+      return (AppStore.auth.current() || {}).plan || 'Free';
+    }
+
+    function setPlan(name) {
+      var session = AppStore.auth.current();
+      var users = AppStore.getUsers().map(function (u) {
+        return u.id === session.id ? Object.assign({}, u, { plan: name }) : u;
+      });
+      AppStore.saveUsers(users);
+      var patched = Object.assign({}, session, { plan: name });
+      sessionStorage.setItem(LS_PREFIX + 'session', JSON.stringify(patched));
+      if (AppStore.read('remember_session', null)) AppStore.write('remember_session', patched);
+    }
+
+    function renderPlanHero() {
+      var name = currentPlan();
+      var plan = PLANS[name] || PLANS.Free;
+      document.getElementById('plan-badge').textContent = name;
+      document.getElementById('plan-price').textContent = '$' + plan.price;
+      document.getElementById('plan-blurb').textContent = plan.blurb;
+      var count = AppStore.getProjects().length;
+      document.getElementById('usage-projects').textContent = count + ' used · ' + (name === 'Free' ? '3 max' : 'unlimited');
+    }
+
+    function renderMiniPlans() {
+      var host = document.getElementById('mini-plans');
+      var current = currentPlan();
+      host.innerHTML = Object.keys(PLANS).map(function (name) {
+        var plan = PLANS[name];
+        var isCurrent = name === current;
+        return '<article class="card mini-plan' + (isCurrent ? ' is-current' : '') + '">' +
+          (isCurrent ? '<span class="badge badge-primary mp-badge">Current</span>' : '') +
+          (name === 'Pro' && !isCurrent ? '<span class="badge badge-gradient mp-badge">Popular</span>' : '') +
+          '<h3>' + name + '</h3>' +
+          '<div class="mp-price">$' + plan.price + '<small> /month</small></div>' +
+          '<ul>' + plan.features.map(function (f) { return '<li><i data-icon="check"></i> ' + f + '</li>'; }).join('') + '</ul>' +
+          (isCurrent
+            ? '<button class="btn btn-secondary btn-block" type="button" disabled>Current plan</button>'
+            : '<button class="btn ' + (name === 'Pro' ? 'btn-primary' : 'btn-secondary') + ' btn-block" type="button" data-choose-plan="' + name + '">' +
+              (PLANS[name].price > PLANS[current].price ? 'Upgrade to ' : 'Switch to ') + name + '</button>') +
+          '</article>';
+      }).join('');
+      window.Icons.inject(host);
+    }
+
+    function renderInvoices() {
+      var host = document.getElementById('invoice-rows');
+      host.innerHTML = INVOICES.map(function (inv) {
+        return '<tr><td class="cell-strong">' + inv.id + '</td>' +
+          '<td>' + D.fmtDate(inv.date) + '</td>' +
+          '<td>' + inv.desc + '</td>' +
+          '<td class="cell-strong">$' + inv.amount.toFixed(2) + '</td>' +
+          '<td><span class="badge badge-success"><span class="badge-dot"></span>Paid</span></td>' +
+          '<td><button class="btn btn-ghost btn-sm" type="button" data-invoice="' + inv.id + '"><i data-icon="download"></i> PDF</button></td></tr>';
+      }).join('');
+      window.Icons.inject(host);
+    }
+
+    document.addEventListener('click', function (e) {
+      var choose = e.target.closest('[data-choose-plan]');
+      if (choose) {
+        var name = choose.dataset.choosePlan;
+        var upgrading = PLANS[name].price > PLANS[currentPlan()].price;
+        window.Modal.confirm({
+          title: (upgrading ? 'Upgrade' : 'Switch') + ' to ' + name + '?',
+          message: name === 'Free'
+            ? 'You will keep access to Pro features until the end of the current billing period.'
+            : 'Your card ending 4242 will be charged a prorated amount today. You can change back any time.',
+          okText: 'Confirm ' + (upgrading ? 'upgrade' : 'change'),
+          onConfirm: function () {
+            setPlan(name);
+            AppStore.logActivity({ type: 'milestone', text: 'Changed subscription to the ' + name + ' plan', icon: 'credit-card' });
+            window.Toast.success('You are now on the ' + name + ' plan.', 'Plan updated');
+            renderPlanHero();
+            renderMiniPlans();
+            /* update the sidebar plan label in place (re-running init would duplicate listeners) */
+            var planLabel = document.querySelector('.dash-user-meta span');
+            if (planLabel) planLabel.textContent = name + ' plan';
+          }
+        });
+        return;
+      }
+
+      var inv = e.target.closest('[data-invoice]');
+      if (inv) {
+        window.Toast.success('Invoice ' + inv.dataset.invoice + ' downloaded (demo).', 'Download');
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      D = window.DashShell;
+      if (!D) return;
+
+      document.getElementById('cc-holder').textContent = (AppStore.auth.current() || {}).name || 'Card holder';
+      renderPlanHero();
+      renderMiniPlans();
+      renderInvoices();
+      D.animateBars(document);
+
+      document.getElementById('update-card').addEventListener('click', function () {
+        var backdrop = window.Modal.custom({
+          title: 'Update payment method',
+          bodyHTML:
+            '<div class="form-group"><label class="form-label" for="pm-name">Name on card <span class="req">*</span></label>' +
+            '<input class="form-control" id="pm-name" data-validate="required|minlen:2" autocomplete="cc-name">' +
+            '<span class="form-error" data-error-for="pm-name"></span></div>' +
+            '<div class="form-group"><label class="form-label" for="pm-number">Card number <span class="req">*</span></label>' +
+            '<input class="form-control" id="pm-number" inputmode="numeric" placeholder="4242 4242 4242 4242" data-validate="required|minlen:12" autocomplete="cc-number">' +
+            '<span class="form-error" data-error-for="pm-number"></span></div>' +
+            '<div class="form-row">' +
+            '<div class="form-group"><label class="form-label" for="pm-exp">Expiry <span class="req">*</span></label>' +
+            '<input class="form-control" id="pm-exp" placeholder="MM / YY" data-validate="required|minlen:4" autocomplete="cc-exp">' +
+            '<span class="form-error" data-error-for="pm-exp"></span></div>' +
+            '<div class="form-group"><label class="form-label" for="pm-cvc">CVC <span class="req">*</span></label>' +
+            '<input class="form-control" id="pm-cvc" inputmode="numeric" placeholder="123" data-validate="required|minlen:3" autocomplete="cc-csc">' +
+            '<span class="form-error" data-error-for="pm-cvc"></span></div></div>' +
+            '<p class="text-xs text-muted-c">This is a demo — card details are validated locally and never stored.</p>',
+          footHTML:
+            '<button class="btn btn-secondary" type="button" data-modal-close>Cancel</button>' +
+            '<button class="btn btn-primary" type="button" data-pm-save><i data-icon="lock"></i> Save card</button>'
+        });
+        window.Icons.inject(backdrop);
+        backdrop.querySelector('[data-pm-save]').addEventListener('click', function () {
+          var ok = true;
+          backdrop.querySelectorAll('[data-validate]').forEach(function (input) {
+            if (!window.Validate.field(input)) ok = false;
+          });
+          if (!ok) return;
+          window.Modal.close(backdrop);
+          window.Toast.success('Payment method updated (demo — nothing was stored).', 'Card saved');
+        });
+      });
+
+      document.getElementById('cancel-sub').addEventListener('click', function () {
+        window.Modal.confirm({
+          title: 'Cancel your subscription?',
+          message: 'Your plan stays active until the end of the billing period, then your workspace moves to Free.',
+          okText: 'Cancel subscription',
+          danger: true,
+          onConfirm: function () {
+            window.Toast.info('Demo mode: your subscription was kept active.', 'No changes made');
+          }
+        });
+      });
+    });
+  })();
+  </script>
+</body>
+</html>

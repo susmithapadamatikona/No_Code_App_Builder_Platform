@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin · Subscriptions — Stackly | No-Code App Builder</title>
+  <meta name="description" content="Track Stackly recurring revenue — MRR growth, plan distribution, trials and churn, plus per-customer subscription management.">
+  <meta property="og:title" content="Admin · Subscriptions — Stackly">
+  <meta property="og:description" content="Subscription and MRR management for Stackly administrators.">
+  <meta property="og:type" content="website">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/admin.css">
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script src="assets/js/darkmode.js"></script>
+</head>
+<body data-admin="subscriptions">
+
+  <div class="admin-layout">
+    <aside id="admin-sidebar" aria-label="Admin navigation"></aside>
+    <div class="admin-main">
+      <header id="admin-topbar"></header>
+      <main id="main" class="admin-content">
+
+        <section class="admin-stats" id="subs-stats" aria-label="Subscription metrics"></section>
+
+        <section class="admin-grid-2" aria-label="Subscription charts">
+          <article class="a-card">
+            <div class="a-card-head">
+              <div>
+                <h2 class="a-card-title">Plan distribution</h2>
+                <p class="a-card-sub">All accounts by plan</p>
+              </div>
+              <button type="button" class="a-kebab" aria-label="Chart options" data-demo-toast="Chart options (export, compare, annotate) are a demo interaction."><i data-icon="menu"></i></button>
+            </div>
+            <div class="a-card-body"><div id="chart-plans"></div></div>
+          </article>
+          <article class="a-card">
+            <div class="a-card-head">
+              <div>
+                <h2 class="a-card-title">MRR growth</h2>
+                <p class="a-card-sub">Monthly recurring revenue · last 12 months</p>
+              </div>
+              <button type="button" class="a-kebab" aria-label="Chart options" data-demo-toast="Chart options (export, compare, annotate) are a demo interaction."><i data-icon="menu"></i></button>
+            </div>
+            <div class="a-card-body"><div id="chart-mrr"></div></div>
+          </article>
+        </section>
+
+        <section aria-label="Subscription list">
+          <div class="admin-toolbar">
+            <div class="search-bar">
+              <i data-icon="search"></i>
+              <input type="search" id="subs-search" placeholder="Search customers…" aria-label="Search subscriptions">
+            </div>
+            <select class="form-control" id="subs-status" aria-label="Filter by status">
+              <option value="all">All statuses</option>
+              <option value="active">Active</option>
+              <option value="past_due">Past due</option>
+              <option value="canceled">Canceled</option>
+            </select>
+          </div>
+
+          <div class="table-wrap" id="subs-table" aria-live="polite"></div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/validation.js"></script>
+  <script src="assets/js/charts.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

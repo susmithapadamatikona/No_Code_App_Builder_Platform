@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Your Free Account — Stackly | No-Code App Builder</title>
+  <meta name="description" content="Create a free Stackly account and join 48,000+ makers building web apps without code. Start from 120+ templates, publish in minutes, no credit card required.">
+  <meta property="og:title" content="Create Your Free Account — Stackly">
+  <meta property="og:description" content="Join 48,000+ makers building without code. Free forever plan, 120+ templates, publish in minutes.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <style>
+    /* Auth-page glue: injected icons render as <i><svg></i>, so size/align the wrappers */
+    .auth-main { align-content: center; }
+    .auth-topbar { width: 100%; max-width: 460px; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: var(--sp-5); }
+    .back-link { display: inline-flex; align-items: center; gap: 7px; font-size: var(--fs-sm); font-weight: 600; color: var(--text-secondary); transition: color var(--t-fast); }
+    .back-link:hover { color: var(--primary); }
+    .back-link i, .back-link svg { display: inline-flex; width: 15px; height: 15px; }
+    .brand-mark i, .btn i, .btn-social i, .checkbox-box i, .empty-icon i { display: inline-flex; }
+    .input-icon-wrap > i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); width: 17px; height: 17px; display: inline-flex; color: var(--text-muted); pointer-events: none; }
+    .input-icon-wrap > i svg { width: 17px; height: 17px; }
+    .password-toggle .icon-eye, .password-toggle .icon-eye i { display: inline-flex; }
+    .password-toggle.is-visible .icon-eye { display: none; }
+    .password-toggle.is-visible .icon-eye-off, .password-toggle.is-visible .icon-eye-off i { display: inline-flex; }
+    .auth-quote-who { display: flex; align-items: center; gap: 12px; }
+    .auth-quote-who .who b { color: #fff; font-size: var(--fs-sm); display: block; }
+    .auth-quote-who .who span { font-size: var(--fs-xs); color: rgba(203, 213, 225, 0.78); }
+    .auth-side-foot { font-size: var(--fs-xs); color: rgba(203, 213, 225, 0.6); }
+    .auth-benefits { list-style: none; display: grid; gap: 13px; margin: 0 0 var(--sp-6); padding: 0; max-width: 410px; }
+    .auth-benefits li { display: flex; align-items: flex-start; gap: 11px; color: rgba(226, 232, 240, 0.92); font-size: var(--fs-sm); line-height: 1.6; }
+    .auth-benefits li i { display: inline-flex; width: 18px; height: 18px; flex-shrink: 0; color: #4ADE80; margin-top: 2px; }
+    .auth-benefits li svg { width: 18px; height: 18px; }
+    .photo-picker { display: flex; align-items: center; gap: var(--sp-4); }
+    .photo-picker [data-photo-preview] { border-radius: 50%; overflow: hidden; }
+  </style>
+  <script src="assets/js/darkmode.js"></script>
+</head>
+<body data-page="register">
+
+  <main class="auth-page" id="main">
+    <div class="auth-shell">
+
+    <aside class="auth-side">
+      <a class="brand" href="index.html" aria-label="Stackly home">
+        <img class="brand-logo" src="assets/images/logo-stackly.webp" alt="Stackly">
+      </a>
+
+      <div class="auth-side-content">
+        <h2>Join 48,000+ makers building without code</h2>
+        <p>Everything you need to design, launch, and grow a real web application — no engineers, no waiting, no credit card.</p>
+
+        <ul class="auth-benefits">
+          <li><i data-icon="check-circle"></i> Free forever plan with 3 projects, hosting and SSL included out of the box.</li>
+          <li><i data-icon="check-circle"></i> Start from 120+ professionally designed templates for every industry.</li>
+          <li><i data-icon="check-circle"></i> Publish to a live URL in one click — custom domains on any paid plan.</li>
+        </ul>
+
+        <figure class="auth-quote">
+          <p>&ldquo;We validated our marketplace idea with an Stackly MVP before hiring a single developer. Two months later it was doing $12k MRR — still on Stackly.&rdquo;</p>
+          <figcaption class="auth-quote-who">
+            <span class="avatar avatar-img avatar-photo" aria-hidden="true"><span class="pic-art" data-artwork="person:David Kim"></span><img src="https://randomuser.me/api/portraits/men/34.jpg" alt="" loading="lazy" onerror="this.remove()"></span>
+            <div class="who">
+              <b>Daniel Kim</b>
+              <span>Co-founder, Craftline Market</span>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+
+      <p class="auth-side-foot">No credit card required &middot; Cancel anytime &middot; GDPR compliant</p>
+    </aside>
+
+    <section class="auth-main">
+      <div class="auth-topbar">
+        <a class="back-link" href="index.html"><i data-icon="arrow-left"></i> Back to website</a>
+      </div>
+
+      <div class="auth-card">
+        <h1>Create your account</h1>
+        <p>Already have one? <a href="login.html">Sign in instead</a>.</p>
+
+        <div class="auth-social-icons" role="group" aria-label="Sign up with a social account">
+          <a class="social-icon-btn" href="404.html" data-network="Google" aria-label="Continue with Google">
+            <i data-icon="google"></i>
+          </a>
+          <a class="social-icon-btn" href="404.html" data-network="Instagram" aria-label="Continue with Instagram">
+            <i data-icon="instagram"></i>
+          </a>
+          <a class="social-icon-btn" href="404.html" data-network="LinkedIn" aria-label="Continue with LinkedIn">
+            <i data-icon="linkedin"></i>
+          </a>
+        </div>
+
+        <div class="auth-divider" role="separator" aria-label="or sign up with email">or sign up with email</div>
+
+        <form id="register-form" novalidate>
+          <div class="form-group">
+            <span class="form-label">Profile photo</span>
+            <div class="photo-picker">
+              <div class="avatar avatar-xl" data-photo-preview aria-hidden="true">You</div>
+              <div>
+                <input type="file" id="reg-photo" accept="image/*" class="d-none">
+                <label for="reg-photo" class="btn btn-secondary btn-sm"><i data-icon="upload"></i> Upload photo (optional)</label>
+                <p class="form-hint">PNG or JPG. A square image works best.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="reg-name">Full name <span class="req">*</span></label>
+              <input type="text" class="form-control" id="reg-name" name="name" placeholder="Jordan Smith" autocomplete="name" data-validate="required|minlen:2">
+              <span class="form-error" data-error-for="reg-name"></span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-email">Email address <span class="req">*</span></label>
+              <input type="email" class="form-control" id="reg-email" name="email" placeholder="you@example.com" autocomplete="email" data-validate="required|email">
+              <span class="form-error" data-error-for="reg-email"></span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="reg-phone">Phone</label>
+              <input type="tel" class="form-control" id="reg-phone" name="phone" placeholder="+91 98765 43210" autocomplete="tel" data-validate="phone">
+              <span class="form-error" data-error-for="reg-phone"></span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-company">Company</label>
+              <input type="text" class="form-control" id="reg-company" name="company" placeholder="Acme Inc. (optional)" autocomplete="organization">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-password">Password <span class="req">*</span></label>
+            <div class="password-wrap">
+              <input type="password" class="form-control" id="reg-password" name="new-password" placeholder="Create a strong password" autocomplete="new-password" data-validate="required|password">
+              <button type="button" class="password-toggle" data-password-toggle="reg-password" aria-label="Show password">
+                <span class="icon-eye"><i data-icon="eye"></i></span>
+                <span class="icon-eye-off"><i data-icon="eye-off"></i></span>
+              </button>
+            </div>
+            <div class="strength-meter" data-level="0">
+              <div class="strength-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <span class="strength-label">Use 8+ characters with a mix of letters, numbers &amp; symbols</span>
+            </div>
+            <span class="form-error" data-error-for="reg-password"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-confirm">Confirm password <span class="req">*</span></label>
+            <div class="password-wrap">
+              <input type="password" class="form-control" id="reg-confirm" name="confirm-password" placeholder="Repeat your password" autocomplete="new-password" data-validate="required|match:reg-password">
+              <button type="button" class="password-toggle" data-password-toggle="reg-confirm" aria-label="Show password">
+                <span class="icon-eye"><i data-icon="eye"></i></span>
+                <span class="icon-eye-off"><i data-icon="eye-off"></i></span>
+              </button>
+            </div>
+            <span class="form-error" data-error-for="reg-confirm"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox" for="reg-terms">
+              <input type="checkbox" id="reg-terms" name="terms" data-validate="checked">
+              <span class="checkbox-box"><i data-icon="check"></i></span>
+              <span>I agree to the <a href="faq.html">Terms &amp; Conditions</a> and Privacy Policy</span>
+            </label>
+            <span class="form-error" data-error-for="reg-terms"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+        </form>
+
+        <div class="empty-state d-none" data-register-success>
+          <div class="empty-icon"><i data-icon="check-circle"></i></div>
+          <h3>Account created!</h3>
+          <p>Welcome to Stackly. We are signing you in and redirecting you to your dashboard&hellip;</p>
+          <a class="btn btn-primary" href="dashboard.html">Go to dashboard now</a>
+        </div>
+
+        <p class="auth-foot">Already have an account? <a href="login.html">Sign in</a></p>
+      </div>
+    </section>
+
+  </div>
+  </main>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/validation.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.AppStore && window.AppStore.auth.isLoggedIn()) {
+        window.location.replace('dashboard.html');
+        return;
+      }
+      window.Icons.inject();
+      document.querySelectorAll('[data-social-demo]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var net = b.getAttribute('data-network') || 'Social';
+          window.Toast.info(net + ' sign-in is disabled in this demo');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

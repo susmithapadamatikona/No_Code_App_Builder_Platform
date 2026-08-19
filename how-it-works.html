@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How It Works — Stackly | No-Code App Builder</title>
+  <meta name="description" content="From template to live app in 7 guided steps: choose, customize, add components, connect data, preview, test, and publish — all without writing code.">
+  <meta property="og:title" content="How Stackly Works — From Idea to Live App in 7 Steps">
+  <meta property="og:description" content="Follow the guided Stackly workflow: pick a template, customize visually, connect your data, and publish to the edge in one click.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <style>
+    /* ---- Vertical timeline ---- */
+    .hiw-tl { position: relative; max-width: 1020px; margin: 0 auto; }
+    .hiw-tl::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      bottom: 8px;
+      left: 50%;
+      width: 2px;
+      transform: translateX(-50%);
+      background: linear-gradient(180deg, var(--primary), var(--secondary), var(--accent-blue));
+      opacity: 0.5;
+      border-radius: 2px;
+    }
+    .tl-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 72px 1fr;
+      align-items: center;
+      margin-bottom: var(--sp-6);
+    }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-marker {
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--gradient-primary);
+      color: #fff;
+      box-shadow: 0 0 0 6px var(--surface-page), var(--shadow-primary);
+      z-index: 1;
+    }
+    .tl-marker svg { width: 20px; height: 20px; }
+    .tl-card { grid-row: 1; }
+    .tl-item:nth-child(odd) .tl-card { grid-column: 1; }
+    .tl-item:nth-child(even) .tl-card { grid-column: 3; }
+    .tl-card .step-num { font-size: 2.1rem; margin-bottom: var(--sp-2); }
+    .tl-card h3 { font-size: var(--fs-lg); margin-bottom: 8px; }
+    .tl-card > p { font-size: var(--fs-sm); color: var(--text-secondary); margin-bottom: var(--sp-4); }
+    .tl-mini {
+      border: 1px dashed var(--border);
+      border-radius: var(--radius-md);
+      padding: var(--sp-4);
+      background: var(--surface-sunken);
+    }
+    .tl-thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .tl-thumb {
+      height: 56px;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    .tl-thumb::after {
+      content: "";
+      position: absolute;
+      inset: auto 8px 8px 8px;
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.55);
+    }
+    .tl-swatches { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .tl-swatch { width: 26px; height: 26px; border-radius: 8px; box-shadow: var(--shadow-xs); }
+    .tl-swatch.is-active { outline: 2px solid var(--primary); outline-offset: 2px; }
+    .tl-slider { flex: 1; min-width: 90px; height: 6px; border-radius: 3px; background: var(--border); position: relative; }
+    .tl-slider i { position: absolute; left: 0; top: 0; bottom: 0; width: 62%; border-radius: 3px; background: var(--gradient-primary); }
+    .tl-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tl-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 12px;
+      border-radius: var(--radius-full);
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    .tl-chip svg { width: 13px; height: 13px; color: var(--primary); }
+    .tl-check { display: grid; gap: 9px; }
+    .tl-check li { display: flex; align-items: center; gap: 9px; font-size: var(--fs-xs); font-weight: 600; color: var(--text-secondary); }
+    .tl-check svg { width: 15px; height: 15px; color: var(--success); flex-shrink: 0; }
+    .tl-url {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      padding: 8px 12px;
+      border-radius: var(--radius-full);
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    .tl-url svg { width: 13px; height: 13px; color: var(--success); }
+    .tl-devices { display: flex; align-items: center; justify-content: center; gap: var(--sp-4); color: var(--text-muted); }
+    .tl-devices span { display: grid; place-items: center; gap: 6px; font-size: var(--fs-xs); font-weight: 600; }
+    .tl-devices svg { width: 26px; height: 26px; }
+    .tl-devices .is-on { color: var(--primary); }
+    @media (max-width: 860px) {
+      .hiw-tl::before { left: 22px; transform: none; }
+      .tl-item { grid-template-columns: 56px 1fr; margin-bottom: var(--sp-5); }
+      .tl-marker { grid-column: 1; width: 40px; height: 40px; justify-self: start; margin-left: 3px; }
+      .tl-item:nth-child(odd) .tl-card,
+      .tl-item:nth-child(even) .tl-card { grid-column: 2; }
+    }
+    /* ---- Fake video player ---- */
+    .video-card {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: var(--gradient-hero);
+      min-height: 380px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-xl);
+    }
+    .video-card::before {
+      content: "";
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: rgba(154, 40, 156, 0.4);
+      filter: blur(80px);
+      top: -100px;
+      right: -60px;
+    }
+    .video-play {
+      position: relative;
+      z-index: 1;
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      border: none;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      cursor: pointer;
+      transition: transform var(--t-med), background var(--t-med);
+    }
+    .video-play::after {
+      content: "";
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      animation: vp-pulse 2.2s infinite;
+    }
+    @keyframes vp-pulse {
+      0% { transform: scale(0.85); opacity: 1; }
+      100% { transform: scale(1.25); opacity: 0; }
+    }
+    .video-card:hover .video-play { transform: scale(1.08); background: rgba(255, 255, 255, 0.24); }
+    .video-play svg { width: 30px; height: 30px; margin-left: 4px; }
+    .video-meta {
+      position: absolute;
+      left: 20px;
+      bottom: 18px;
+      right: 20px;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: #E2E8F0;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+    }
+  </style>
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script src="assets/js/darkmode.js"></script>
+</head>
+<body data-page="how-it-works">
+  <div id="header-root"></div>
+
+  <main id="main">
+
+    <!-- ================= PAGE HEADER ================= -->
+    <header class="page-header" style="--ph-photo:url('https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1920&h=640&q=80')">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="crumb-sep">/</span>
+          <span aria-current="page">How It Works</span>
+        </nav>
+        <h1>From idea to live app in <span class="text-gradient">seven guided steps</span></h1>
+        <p>No tutorials to binge, no docs to memorize. Stackly walks you from a blank workspace to a published application — most makers ship their first app in under an hour.</p>
+      </div>
+    </header>
+
+    <!-- ================= TIMELINE ================= -->
+    <section class="section" aria-labelledby="tl-title">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <span class="section-tag"><i data-icon="workflow" style="width:14px;display:inline-flex"></i> The Process</span>
+          <h2 class="section-title" id="tl-title">Your path to launch</h2>
+          <p class="section-sub">Each step happens in the same visual workspace — no exports, no handoffs, no context switching.</p>
+        </div>
+
+        <div class="hiw-tl">
+          <!-- 01 -->
+          <div class="tl-item" data-aos="fade-right">
+            <div class="tl-card card card-hover">
+              <div class="step-num">01</div>
+              <h3>Choose a Template</h3>
+              <p>Browse 120+ industry templates — CRMs, storefronts, portals, dashboards — or start from a blank canvas. Every template ships with pages, components, and a ready-made data model.</p>
+              <div class="tl-mini" aria-hidden="true">
+                <div class="tl-thumbs">
+                  <span class="tl-thumb" style="background:linear-gradient(135deg,#7928AB,#9A289C)"></span>
+                  <span class="tl-thumb" style="background:linear-gradient(135deg,#47C1D1,#5595E4)"></span>
+                  <span class="tl-thumb" style="background:linear-gradient(135deg,#F59E0B,#F97316)"></span>
+                </div>
+              </div>
+            </div>
+            <div class="tl-marker" aria-hidden="true"><i data-icon="layers"></i></div>
+          </div>
+
+          <!-- 02 -->
+          <div class="tl-item" data-aos="fade-left">
+            <div class="tl-card card card-hover">
+              <div class="step-num">02</div>
+              <h3>Customize Your Design</h3>
+              <p>Apply your brand in minutes: colors, typography, logos, and spacing flow through every component automatically. Fine-tune anything with the visual properties panel.</p>
+              <div class="tl-mini" aria-hidden="true">
+                <div class="tl-swatches">
+                  <span class="tl-swatch is-active" style="background:#7928AB"></span>
+                  <span class="tl-swatch" style="background:#47C1D1"></span>
+                  <span class="tl-swatch" style="background:#22C55E"></span>
+                  <span class="tl-swatch" style="background:#F59E0B"></span>
+                  <span class="tl-slider"><i></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="tl-marker" aria-hidden="true"><i data-icon="palette"></i></div>
+          </div>
+
+          <!-- 03 -->
+          <div class="tl-item" data-aos="fade-right">
+            <div class="tl-card card card-hover">
+              <div class="step-num">03</div>
+              <h3>Add Components</h3>
+              <p>Drag from a library of 120+ production-grade components: tables, charts, forms, galleries, checkouts, maps. Snap them into place and configure behavior without code.</p>
+              <div class="tl-mini" aria-hidden="true">
+                <div class="tl-chips">
+                  <span class="tl-chip"><i data-icon="table"></i> Table</span>
+                  <span class="tl-chip"><i data-icon="chart"></i> Chart</span>
+                  <span class="tl-chip"><i data-icon="form-el"></i> Form</span>
+                  <span class="tl-chip"><i data-icon="image"></i> Gallery</span>
+                  <span class="tl-chip"><i data-icon="button-el"></i> Button</span>
+                </div>
+              </div>
+            </div>
+            <div class="tl-marker" aria-hidden="true"><i data-icon="grid"></i></div>
+          </div>
+
+          <!-- 04 -->
+          <div class="tl-item" data-aos="fade-left">
+            <div class="tl-card card card-hover">
+              <div class="step-num">04</div>
+              <h3>Connect Your Data</h3>
+              <p>Bind components to the built-in database, a Google Sheet, or any REST API. Data flows live: edit a record and every bound table, chart, and card updates instantly.</p>
+              <div class="tl-mini" aria-hidden="true">
+                <ul class="tl-check">
+                  <li><i data-icon="check-circle"></i> customers collection · 1,284 records</li>
+                  <li><i data-icon="check-circle"></i> orders → customers relation linked</li>
+                  <li><i data-icon="check-circle"></i> Stripe API · payments synced</li>
+                </ul>
+              </div>
+            </div>
+            <div class="tl-marker" aria-hidden="true"><i data-icon="database"></i></div>
+          </div>
+
+          <!-- 05 -->
+          <div class="tl-item" data-aos="fade-right">
+            <div class="tl-card card card-hover">
+              <div class="step-num">05</div>
+              <h3>Preview Your Application</h3>
+              <p>Flip between desktop, tablet, and mobile frames without leaving the builder. Share a private preview link so clients and teammates can click through the real thing.</p>
+              <div class="tl-mini" aria-hidden="true">
+                <div class="tl-devices">
+                  <span class="is-on"><i data-icon="monitor"></i>Desktop</span>
+                  <span><i data-icon="tablet"></i>Tablet</span>
+                  <span><i data-icon="smartphone"></i>Mobile</span>
+                </div>
+              </div>
+            </div>
+            <div class="tl-marker" aria-hidden="true"><i data-icon="eye"></i></div>
+          </div>
+
+          <!-- 06 -->
+          <div class="tl-item" data-aos="fade-left">
+            <div class="tl-card card card-hover">
+              <div class="step-num">06</div>
+              <h3>Test Your Application</h3>
+              <p>Run through flows with test users and sample data before anyone real sees it. The pre-flight checklist catches broken links, empty states, and missing permissions.</p>
+              <div class="tl-mini" aria-hidden="true">
+                <ul class="tl-check">
+                  <li><i data-icon="check-circle"></i> All 14 pages pass link check</li>
+                  <li><i data-icon="check-circle"></i> Forms validated · 0 errors</li>
+                  <li><i data-icon="check-circle"></i> Roles &amp; permissions verified</li>
+                </ul>
+              </div>
+            </div>
+            <div class="tl-marker" aria-hidden="true"><i data-icon="check-circle"></i></div>
+          </div>
+
+          <!-- 07 -->
+          <div class="tl-item" data-aos="fade-right">
+            <div class="tl-card card card-hover">
+              <div class="step-num">07</div>
+              <h3>Publish Your App</h3>
+              <p>Go live on a global edge network with automatic SSL — on a free appflow.site subdomain or your own custom domain. Every publish is a named version you can roll back to.</p>
+              <div class="tl-mini" aria-hidden="true">
+                <div class="progress" style="height:8px"><div class="progress-bar" data-value="100" style="width:100%"></div></div>
+                <div class="tl-url"><i data-icon="lock"></i> https://aurora-crm.appflow.site <span class="badge badge-success" style="margin-left:auto">Live</span></div>
+              </div>
+            </div>
+            <div class="tl-marker" aria-hidden="true"><i data-icon="rocket"></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= WATCH IT IN ACTION ================= -->
+    <section class="section section-alt" aria-labelledby="video-title">
+      <div class="container" style="max-width:920px">
+        <div class="section-head" data-aos="fade-up">
+          <span class="section-tag"><i data-icon="play" style="width:14px;display:inline-flex"></i> Watch It In Action</span>
+          <h2 class="section-title" id="video-title">Zero to published in 4 minutes</h2>
+          <p class="section-sub">Watch a founder build and launch a customer portal — template to custom domain — in one uncut take.</p>
+        </div>
+        <div class="video-card" id="demo-video" data-aos="zoom-in" role="button" tabindex="0" aria-label="Play demo video: Zero to published in 4 minutes">
+          <span class="pic-art" style="position:absolute;inset:0" data-artwork="cover:device" data-colors="#0F172A,#7928AB"></span>
+          <img class="pic-photo" src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1400&h=920&q=80" alt="" loading="lazy" onerror="this.remove()" style="opacity:0.5">
+          <button class="video-play" type="button" aria-hidden="true" tabindex="-1"><i data-icon="play"></i></button>
+          <div class="video-meta">
+            <span class="d-flex items-center gap-2"><i data-icon="video" style="width:18px;display:inline-flex"></i> Building "Aurora CRM" from scratch</span>
+            <span class="badge badge-dark">4:12</span>
+          </div>
+        </div>
+        <p class="text-center mt-5 text-sm text-muted-c" data-aos="fade-up">Prefer reading? The step-by-step guide lives in the <a href="documentation.html" class="text-primary-c fw-600">documentation</a>.</p>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="section-sm" aria-label="Call to action">
+      <div class="container">
+        <div class="cta-band" data-aos="zoom-in">
+          <h2>Your first app is one template away</h2>
+          <p>Create a free account, pick a starting point, and follow the seven steps. You'll be sharing a live link before your coffee goes cold.</p>
+          <div class="hero-cta">
+            <a class="btn btn-white btn-lg" href="register.html">Start Building Free <i data-icon="arrow-right"></i></a>
+            <a class="btn btn-outline-white btn-lg" href="templates.html"><i data-icon="layers"></i> Browse Templates</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    /* ---- How It Works: fake video player ---- */
+    document.addEventListener('DOMContentLoaded', function () {
+      var video = document.getElementById('demo-video');
+      if (!video) return;
+      function playDemo() {
+        Toast.info('The full product tour video is coming soon. Meanwhile, try the builder yourself — it\'s free!', 'Demo video');
+      }
+      video.addEventListener('click', playDemo);
+      video.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); playDemo(); }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template Marketplace — Stackly | No-Code App Builder</title>
+  <meta name="description" content="Browse hand-crafted app templates for CRM, e-commerce, healthcare, education, and more. Filter by category, industry, and price — start building in minutes.">
+  <meta property="og:title" content="Template Marketplace — Stackly">
+  <meta property="og:description" content="Hand-crafted no-code app templates with pages, components, and data models included. Filter, preview, and launch your app today.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/templates.css">
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script src="assets/js/darkmode.js"></script>
+</head>
+<body data-page="templates">
+  <div id="header-root"></div>
+
+  <main id="main">
+
+    <!-- ================= PAGE HEADER ================= -->
+    <header class="page-header" style="--ph-photo:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1920&h=640&q=80')">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="crumb-sep">/</span>
+          <span aria-current="page">Templates</span>
+        </nav>
+        <h1>Template Marketplace</h1>
+        <p>Start from one of <b id="market-header-count">16</b> hand-crafted templates — every one ships with pages, components, and a ready-made data model.</p>
+      </div>
+    </header>
+
+    <!-- ================= MARKETPLACE ================= -->
+    <section class="section" aria-label="Browse templates">
+      <div class="container container-wide">
+
+        <!-- Quick category pills -->
+        <div class="cat-pills mb-6" id="market-pills" data-aos="fade-up" role="group" aria-label="Quick category filter">
+          <!-- built by templates.js -->
+        </div>
+
+        <div class="market-layout">
+
+          <!-- ============ FILTER SIDEBAR ============ -->
+          <aside class="market-filters" aria-label="Template filters">
+            <div class="card d-grid gap-5">
+              <div class="filter-group">
+                <h4>Category</h4>
+                <div id="filter-categories"><!-- built by templates.js --></div>
+              </div>
+
+              <hr class="divider" style="margin:0">
+
+              <div class="filter-group">
+                <h4>Industry</h4>
+                <div id="filter-industries"><!-- built by templates.js --></div>
+              </div>
+
+              <hr class="divider" style="margin:0">
+
+              <div class="filter-group">
+                <h4>Price</h4>
+                <label class="radio">
+                  <input type="radio" name="price-filter" value="all" checked>
+                  <span class="radio-dot"></span>
+                  <span>All templates</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="price-filter" value="free">
+                  <span class="radio-dot"></span>
+                  <span>Free</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="price-filter" value="premium">
+                  <span class="radio-dot"></span>
+                  <span>Premium</span>
+                </label>
+              </div>
+
+              <hr class="divider" style="margin:0">
+
+              <div class="filter-group">
+                <h4>Favorites</h4>
+                <label class="switch">
+                  <input type="checkbox" id="filter-favs">
+                  <span class="switch-track"></span>
+                  <span class="switch-label">Favorites only</span>
+                </label>
+              </div>
+
+              <button class="btn btn-secondary btn-sm btn-block" type="button" id="filter-clear">
+                <i data-icon="undo"></i> Clear all filters
+              </button>
+            </div>
+          </aside>
+
+          <!-- ============ RESULTS ============ -->
+          <div>
+            <div class="market-toolbar" id="market-toolbar">
+              <div class="search-bar">
+                <i data-icon="search"></i>
+                <label class="sr-only" for="market-search">Search templates</label>
+                <input type="search" id="market-search" placeholder="Search by name, description, or tag…" autocomplete="off">
+              </div>
+              <label class="sr-only" for="market-sort">Sort templates</label>
+              <select class="form-control" id="market-sort" aria-label="Sort templates">
+                <option value="popular">Most Popular</option>
+                <option value="rated">Highest Rated</option>
+                <option value="newest">Newest</option>
+                <option value="price-asc">Price: Low → High</option>
+                <option value="price-desc">Price: High → Low</option>
+              </select>
+              <span class="market-count" id="market-count" aria-live="polite"></span>
+            </div>
+
+            <div class="market-grid" id="market-grid" data-aos-stagger>
+              <!-- rendered by templates.js (skeletons, then TemplateCards) -->
+            </div>
+
+            <nav class="pagination mt-6" id="market-pagination" aria-label="Template pages" hidden>
+              <!-- rendered by templates.js -->
+            </nav>
+
+            <!-- ============ BELOW-GRID CONTENT ============ -->
+            <div class="mt-7 d-grid gap-5" id="market-extras">
+
+              <!-- Curated collections banner -->
+              <div class="cta-band" data-aos="fade-up" style="text-align:left;padding:clamp(1.6rem,3vw,2.4rem)">
+                <h2 style="font-size:var(--fs-xl);margin-bottom:8px">Curated collections</h2>
+                <p style="margin:0 0 18px;max-width:none;font-size:var(--fs-sm)">Jump straight to a hand-picked set of starting points for your kind of project.</p>
+                <div class="d-flex gap-2 flex-wrap" style="position:relative;z-index:1">
+                  <a class="btn btn-glass btn-sm" href="templates.html?category=CRM"><i data-icon="users"></i> Sales &amp; CRM</a>
+                  <a class="btn btn-glass btn-sm" href="templates.html?category=E-Commerce"><i data-icon="cart"></i> Online stores</a>
+                  <a class="btn btn-glass btn-sm" href="templates.html?category=Dashboard"><i data-icon="chart"></i> Dashboards</a>
+                  <a class="btn btn-glass btn-sm" href="templates.html?category=Booking"><i data-icon="calendar"></i> Booking &amp; scheduling</a>
+                  <a class="btn btn-glass btn-sm" href="templates.html?category=SaaS"><i data-icon="rocket"></i> SaaS starters</a>
+                  <a class="btn btn-glass btn-sm" href="templates.html?category=Portfolio"><i data-icon="layers"></i> Portfolios</a>
+                </div>
+              </div>
+
+              <!-- Top rated + mini FAQ -->
+              <div class="grid grid-2" data-aos-stagger>
+                <article class="card">
+                  <div class="card-head">
+                    <h3>Top rated this week</h3>
+                    <span class="badge badge-gradient"><i data-icon="star"></i> Editor's picks</span>
+                  </div>
+                  <div id="top-rated-list"></div>
+                </article>
+                <article class="card">
+                  <div class="card-head"><h3>Template questions</h3><a class="card-link" href="faq.html">Full FAQ <i data-icon="arrow-right"></i></a></div>
+                  <div class="accordion" data-single="true">
+                    <div class="accordion-item is-open">
+                      <button class="accordion-trigger" aria-expanded="true">Can I customize everything in a template?
+                        <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                      <div class="accordion-panel"><div><div class="accordion-body">Yes — every page, component, color, and data field is fully editable in the builder. Templates are starting points, not locked themes.</div></div></div>
+                    </div>
+                    <div class="accordion-item">
+                      <button class="accordion-trigger" aria-expanded="false">What's the difference between Free and Premium?
+                        <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                      <div class="accordion-panel"><div><div class="accordion-body">Free templates cover the essentials. Premium templates add more pages, advanced components, richer data models, and 6 months of dedicated support — a one-time purchase, yours forever.</div></div></div>
+                    </div>
+                    <div class="accordion-item">
+                      <button class="accordion-trigger" aria-expanded="false">Do template updates reach my existing app?
+                        <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                      <div class="accordion-panel"><div><div class="accordion-body">Your app is an independent copy, so updates never overwrite your work. You'll be notified of new template versions and can pull in improvements selectively.</div></div></div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= WHY TEMPLATES ================= -->
+    <section class="section section-alt" aria-labelledby="why-tpl-title">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <span class="section-tag"><i data-icon="zap" style="width:14px;display:inline-flex"></i> Why Templates</span>
+          <h2 class="section-title" id="why-tpl-title">Start at 70% done, not from zero</h2>
+          <p class="section-sub">Every Stackly template is a complete, working application — not a pretty mockup. Here's what you actually get when you click "Use Template".</p>
+        </div>
+        <div class="grid grid-3" data-aos-stagger>
+          <article class="card card-hover" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+            <span class="pic-frame" style="display:block;aspect-ratio:16/9;flex-shrink:0" aria-hidden="true">
+              <span class="pic-art" data-artwork="cover:launch" data-colors="#7928AB,#47C1D1"></span>
+              <img class="pic-photo" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&h=450&q=80" alt="Maker launching a project from a template" loading="lazy" onerror="this.remove()">
+            </span>
+            <div style="padding:20px 22px 22px;flex:1">
+              <div class="d-flex items-center gap-3 mb-2"><div class="feature-icon" style="width:40px;height:40px;margin:0;border-radius:11px"><i data-icon="clock"></i></div><h3 class="text-md m-0">Ship in days, not months</h3></div>
+              <p class="text-sm text-secondary-c">Pages, navigation, and sample content are already assembled. Most makers customize a template and publish their first version in under a week.</p>
+            </div>
+          </article>
+          <article class="card card-hover" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+            <span class="pic-frame" style="display:block;aspect-ratio:16/9;flex-shrink:0" aria-hidden="true">
+              <span class="pic-art" data-artwork="appShot:dashboard" data-colors="#22C55E,#47C1D1"></span>
+              <img class="pic-photo" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&h=450&q=80" alt="A production dashboard built from a template" loading="lazy" onerror="this.remove()">
+            </span>
+            <div style="padding:20px 22px 22px;flex:1">
+              <div class="d-flex items-center gap-3 mb-2"><div class="feature-icon" style="width:40px;height:40px;margin:0;border-radius:11px"><i data-icon="database"></i></div><h3 class="text-md m-0">Data model included</h3></div>
+              <p class="text-sm text-secondary-c">Collections, relations, and permissions come pre-wired to every table, chart, and form — connect your own data or start with the realistic sample set.</p>
+            </div>
+          </article>
+          <article class="card card-hover" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+            <span class="pic-frame" style="display:block;aspect-ratio:16/9;flex-shrink:0" aria-hidden="true">
+              <span class="pic-art" data-artwork="cover:design" data-colors="#F59E0B,#EC4899"></span>
+              <img class="pic-photo" src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&h=450&q=80" alt="Designer rebranding a template to their own style" loading="lazy" onerror="this.remove()">
+            </span>
+            <div style="padding:20px 22px 22px;flex:1">
+              <div class="d-flex items-center gap-3 mb-2"><div class="feature-icon" style="width:40px;height:40px;margin:0;border-radius:11px"><i data-icon="palette"></i></div><h3 class="text-md m-0">100% yours to restyle</h3></div>
+              <p class="text-sm text-secondary-c">Swap colors, fonts, logos, and layouts freely — nothing is locked. Apply your brand once and every component on every page inherits it.</p>
+            </div>
+          </article>
+        </div>
+        <div class="stats-band mt-7" data-aos="fade-up">
+          <div class="stat-item">
+            <div class="stat-num"><span data-counter="120" data-suffix="+">0</span></div>
+            <p>Templates in the gallery</p>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num"><span data-counter="16">0</span></div>
+            <p>Industries covered</p>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num"><span data-counter="4.8">0</span></div>
+            <p>Average template rating</p>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num"><span data-counter="230000" data-suffix="+">0</span></div>
+            <p>Apps started from templates</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="section-sm" aria-label="Call to action">
+      <div class="container">
+        <div class="cta-band" data-aos="zoom-in">
+          <h2>Can't find the perfect starting point?</h2>
+          <p>Start from a blank canvas and build exactly what you need with 120+ drag-and-drop components — or tell us which template we should craft next.</p>
+          <div class="hero-cta">
+            <a class="btn btn-white btn-lg" href="register.html">Start From Scratch <i data-icon="arrow-right"></i></a>
+            <a class="btn btn-outline-white btn-lg" href="contact.html">Request a Template</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/wishlist.js"></script>
+  <script src="assets/js/search.js"></script>
+  <script src="assets/js/filter.js"></script>
+  <script src="assets/js/templates.js"></script>
+  <script>
+    /* ---- Top rated this week (below-grid content) ---- */
+    document.addEventListener('DOMContentLoaded', function () {
+      var host = document.getElementById('top-rated-list');
+      if (!host || !window.AppStore) return;
+      var top = AppStore.getTemplates().slice()
+        .sort(function (a, b) { return b.rating - a.rating || b.uses - a.uses; })
+        .slice(0, 4);
+      host.innerHTML = top.map(function (t, i) {
+        var photo = window.TemplateCards.categoryPhoto(t.category);
+        var thumb = photo
+          ? '<img src="https://images.unsplash.com/' + photo + '?auto=format&fit=crop&w=200&h=140&q=80" alt="" loading="lazy" ' +
+            'style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.remove()">'
+          : (window.Artwork ? Artwork.forCategory(t.category, t.gradient) : '');
+        return '<div class="d-flex items-center gap-4" style="padding:13px 0;' +
+          (i < 3 ? 'border-bottom:1px dashed var(--border)' : '') + '">' +
+          '<a href="template-details.html?id=' + t.id + '" aria-label="' + t.name + '" ' +
+            'style="width:72px;height:50px;border-radius:10px;overflow:hidden;flex-shrink:0;position:relative;display:block;' +
+            'background:linear-gradient(135deg,' + t.gradient[0] + ',' + t.gradient[1] + ');box-shadow:var(--shadow-sm)">' + thumb + '</a>' +
+          '<div class="flex-1" style="min-width:0">' +
+            '<a class="fw-700 text-sm truncate" href="template-details.html?id=' + t.id + '" style="display:block;color:var(--text-primary)">' + t.name + '</a>' +
+            '<span class="text-xs text-muted-c">' + t.category + ' · ' + t.rating.toFixed(1) + ' ★ · ' +
+              window.TemplateCards.formatUses(t.uses) + ' uses</span>' +
+          '</div>' +
+          '<button class="btn btn-secondary btn-sm" type="button" data-use-template="' + t.id + '">Use</button>' +
+        '</div>';
+      }).join('');
+      Icons.inject(host);
+    });
+  </script>
+</body>
+</html>

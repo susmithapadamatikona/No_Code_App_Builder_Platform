@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Details — Stackly | No-Code App Builder</title>
+  <meta name="description" content="Detailed view of your Stackly project — performance charts, traffic sources, publishing controls, and settings.">
+  <meta property="og:title" content="Project Details — Stackly">
+  <meta property="og:description" content="Performance, publishing, and settings for your no-code app.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script src="assets/js/darkmode.js"></script>
+</head>
+<body data-dash="projects" data-dash-title="Project Details">
+  <div class="dash-layout">
+    <aside id="dash-sidebar" aria-label="Dashboard navigation"></aside>
+    <div class="dash-main">
+      <header id="dash-topbar"></header>
+      <main id="main" class="dash-content dash-section-gap">
+        <div id="pd-root"></div>
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/charts.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    if (!window.AppStore || !AppStore.auth.isLoggedIn()) return;
+
+    var D, projectId;
+
+    function getId() {
+      var m = window.location.search.match(/[?&]id=([^&]+)/);
+      return m ? decodeURIComponent(m[1]) : null;
+    }
+
+    function render() {
+      var root = document.getElementById('pd-root');
+      var p = AppStore.getProject(projectId);
+
+      if (!p) {
+        root.innerHTML = '<div class="card"><div class="empty-state">' +
+          '<div class="empty-icon"><i data-icon="alert-circle"></i></div>' +
+          '<h3>Project not found</h3><p>This app may have been deleted, or the link is out of date.</p>' +
+          '<a class="btn btn-primary" href="projects.html"><i data-icon="arrow-left"></i> Back to My Projects</a></div></div>';
+        window.Icons.inject(root);
+        return;
+      }
+
+      document.title = p.name + ' — Stackly | No-Code App Builder';
+      var isLive = p.status === 'published';
+      var domain = p.domain || p.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '.appflow.site';
+
+      root.innerHTML =
+        /* ---- Header ---- */
+        '<section class="pd-head" aria-label="Project overview">' +
+          '<span class="pd-thumb" style="' + D.gradientCSS(p.gradient) + '">' + D.artFor(p) + '</span>' +
+          '<div class="pd-meta">' +
+            '<div class="pd-title-row"><h1 id="pd-name"></h1>' +
+              '<button class="pd-edit-name" type="button" data-rename aria-label="Rename app" data-tooltip="Rename"><i data-icon="edit"></i></button></div>' +
+            '<div class="pd-badges">' + D.statusBadge(p.status) +
+              '<span class="badge badge-neutral">From ' + D.esc(p.template) + '</span>' +
+              '<span class="badge badge-primary">' + p.pages + ' pages</span></div>' +
+            '<span class="pd-domain"><i data-icon="globe"></i> ' +
+              (isLive ? '<a href="#" data-demo-toast="This demo domain does not resolve — publish from Stackly to go live.">' + D.esc(domain) + '</a>' : 'Not published yet') +
+            '</span>' +
+          '</div>' +
+          '<div class="pd-actions">' +
+            '<a class="btn btn-primary" href="app-builder.html?project=' + p.id + '"><i data-icon="edit"></i> Open in Builder</a>' +
+            '<label class="pd-publish switch"><input type="checkbox" data-publish-toggle' + (isLive ? ' checked' : '') + '>' +
+              '<span class="switch-track"></span><span class="switch-label">' + (isLive ? 'Live' : 'Draft') + '</span></label>' +
+            '<button class="btn btn-secondary" type="button" data-share><i data-icon="share"></i> Share</button>' +
+          '</div>' +
+        '</section>' +
+
+        /* ---- Stats ---- */
+        '<section class="dash-row-4" aria-label="Project statistics">' +
+          statCard('eye', 'tint-blue', p.views, 'Total Views') +
+          statCard('users', 'tint-purple', p.visitors, 'Unique Visitors') +
+          statCard('check-circle', 'tint-green', p.conversions, 'Conversions') +
+          statCard('layers', 'tint-orange', p.components, 'Components') +
+        '</section>' +
+
+        /* ---- Charts ---- */
+        '<section class="dash-cols-main" aria-label="Performance charts">' +
+          '<article class="card"><div class="card-head"><h3>Views — last 14 days</h3>' +
+            '<span class="badge badge-neutral">Daily</span></div><div id="pd-views-chart"></div></article>' +
+          '<article class="card"><div class="card-head"><h3>Traffic sources</h3></div><div id="pd-sources-chart"></div></article>' +
+        '</section>' +
+
+        /* ---- Info + timeline ---- */
+        '<section class="dash-cols-main" aria-label="Details and history">' +
+          '<article class="card"><div class="card-head"><h3>App information</h3></div>' +
+            '<dl class="spec-list">' +
+              spec('Template', p.template) +
+              spec('Status', isLive ? 'Published' : 'Draft') +
+              spec('Domain', isLive ? domain : '—') +
+              spec('Pages', p.pages) +
+              spec('Components', p.components) +
+              spec('Created', D.fmtDate(p.created)) +
+              spec('Last modified', D.fmtDate(p.modified)) +
+            '</dl></article>' +
+          '<article class="card"><div class="card-head"><h3>Recent history</h3></div>' +
+            '<div class="timeline">' +
+              tl('Layout updated', 'Edited ' + Math.max(2, Math.round(p.components / 8)) + ' components in the builder', D.fmtDate(p.modified)) +
+              (isLive ? tl('Published', 'Deployed to ' + domain + ' with SSL', D.fmtDate(p.modified)) : tl('Draft saved', 'Autosave captured your latest changes', D.fmtDate(p.modified))) +
+              tl('Data connected', 'Collections bound to tables and charts', D.fmtDate(p.created)) +
+              tl('Project created', 'Started from the ' + p.template + ' template', D.fmtDate(p.created)) +
+            '</div></article>' +
+        '</section>' +
+
+        /* ---- Danger zone ---- */
+        '<section aria-label="Danger zone"><article class="card danger-zone">' +
+          '<h3><i data-icon="alert-triangle"></i> Danger zone</h3>' +
+          '<div class="danger-zone-row">' +
+            '<p>Deleting this app permanently removes its pages, builder layout, and analytics. There is no undo.</p>' +
+            '<button class="btn btn-danger" type="button" data-delete><i data-icon="trash"></i> Delete project</button>' +
+          '</div></article></section>';
+
+      root.querySelector('#pd-name').textContent = p.name;
+      window.Icons.inject(root);
+
+      /* charts */
+      var rnd = D.seededRand(p.views + 7);
+      var days = [], data = [];
+      for (var i = 13; i >= 0; i--) {
+        var d = new Date();
+        d.setDate(d.getDate() - i);
+        days.push(d.toLocaleDateString('en-US', { day: 'numeric' }));
+        var base = Math.max(12, Math.round(p.views / 40));
+        data.push(Math.round(base * (0.6 + rnd() * 0.9)));
+      }
+      window.Charts.line('#pd-views-chart', {
+        labels: days,
+        series: [{ name: 'Views', data: data, color: '#7928AB' }],
+        height: 240,
+        ariaLabel: 'Daily views for the last 14 days'
+      });
+      window.Charts.donut('#pd-sources-chart', {
+        segments: [
+          { label: 'Direct', value: 42, color: '#7928AB' },
+          { label: 'Search', value: 28, color: '#47C1D1' },
+          { label: 'Social', value: 18, color: '#9A289C' },
+          { label: 'Referral', value: 12, color: '#22C55E' }
+        ],
+        size: 190, thickness: 24,
+        centerLabel: D.fmtNum(p.visitors), centerSub: 'visitors',
+        ariaLabel: 'Traffic sources'
+      });
+
+      /* counters (animate stat values) */
+      if (window.AppAnimations) window.AppAnimations.counters();
+
+      bind(p);
+    }
+
+    function statCard(icon, tint, value, label) {
+      return '<article class="card dash-stat"><div class="dash-stat-top">' +
+        '<span class="stat-icon ' + tint + '"><i data-icon="' + icon + '"></i></span></div>' +
+        '<div class="stat-value" data-counter="' + (value || 0) + '">0</div>' +
+        '<div class="stat-label">' + label + '</div></article>';
+    }
+    function spec(label, value) {
+      return '<div><dt>' + label + '</dt><dd>' + D.esc(String(value)) + '</dd></div>';
+    }
+    function tl(title, sub, date) {
+      return '<div class="timeline-item"><p><b>' + title + '</b> — ' + sub + '</p><time>' + date + '</time></div>';
+    }
+
+    function bind(p) {
+      var root = document.getElementById('pd-root');
+
+      root.querySelector('[data-rename]').addEventListener('click', function () {
+        var backdrop = window.Modal.custom({
+          title: 'Rename app',
+          size: 'sm',
+          bodyHTML: '<div class="form-group"><label class="form-label" for="rn-name">App name</label>' +
+            '<input class="form-control" id="rn-name" maxlength="60"></div>',
+          footHTML: '<button class="btn btn-secondary" type="button" data-modal-close>Cancel</button>' +
+            '<button class="btn btn-primary" type="button" data-rn-save>Save name</button>'
+        });
+        var input = backdrop.querySelector('#rn-name');
+        input.value = p.name;
+        setTimeout(function () { input.select(); }, 100);
+        backdrop.querySelector('[data-rn-save]').addEventListener('click', function () {
+          var name = input.value.trim();
+          if (!name) { input.classList.add('is-invalid'); input.focus(); return; }
+          AppStore.updateProject(p.id, { name: name });
+          window.Modal.close(backdrop);
+          window.Toast.success('App renamed to "' + name + '".', 'Saved');
+          render();
+        });
+      });
+
+      root.querySelector('[data-publish-toggle]').addEventListener('change', function () {
+        var publishing = this.checked;
+        AppStore.updateProject(p.id, {
+          status: publishing ? 'published' : 'draft',
+          domain: publishing ? (p.domain || p.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '.appflow.site') : p.domain
+        });
+        AppStore.logActivity({ type: publishing ? 'publish' : 'edit', text: (publishing ? 'Published ' : 'Unpublished ') + '"' + p.name + '"', icon: publishing ? 'rocket' : 'lock' });
+        window.Toast[publishing ? 'success' : 'info'](publishing ? '"' + p.name + '" is now live.' : '"' + p.name + '" moved back to drafts.', publishing ? 'Published' : 'Unpublished');
+        render();
+      });
+
+      root.querySelector('[data-share]').addEventListener('click', function () {
+        var domain = p.domain || p.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '.appflow.site';
+        var backdrop = window.Modal.custom({
+          title: 'Share "' + p.name + '"',
+          bodyHTML: '<p class="text-sm mb-4">Anyone with the link can view the app.</p>' +
+            '<div class="d-flex gap-2"><input class="form-control" id="pd-share-url" readonly value="https://' + domain + '">' +
+            '<button class="btn btn-secondary" type="button" data-copy style="flex-shrink:0"><i data-icon="copy"></i> Copy</button></div>',
+          footHTML: '<button class="btn btn-primary" type="button" data-modal-close>Done</button>'
+        });
+        window.Icons.inject(backdrop);
+        backdrop.querySelector('[data-copy]').addEventListener('click', function () {
+          var input = backdrop.querySelector('#pd-share-url');
+          input.select();
+          if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(input.value);
+          else { try { document.execCommand('copy'); } catch (e) { /* noop */ } }
+          window.Toast.success('Link copied to clipboard.', 'Share');
+        });
+      });
+
+      root.querySelector('[data-delete]').addEventListener('click', function () {
+        window.Modal.confirm({
+          title: 'Delete "' + p.name + '"?',
+          message: 'This permanently removes the app, its pages, and its builder layout. This cannot be undone.',
+          okText: 'Delete app',
+          danger: true,
+          onConfirm: function () {
+            AppStore.deleteProject(p.id);
+            AppStore.remove('builder_' + p.id);
+            AppStore.logActivity({ type: 'delete', text: 'Deleted "' + p.name + '"', icon: 'trash' });
+            window.Toast.success('"' + p.name + '" was deleted.', 'Deleted');
+            setTimeout(function () { window.location.href = 'projects.html'; }, 800);
+          }
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      D = window.DashShell;
+      if (!D) return;
+      projectId = getId() || (AppStore.getProjects()[0] || {}).id;
+      render();
+    });
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template Details — Stackly | No-Code App Builder</title>
+  <meta name="description" content="Explore this Stackly template in detail — screenshots, device previews, included pages and components, customer reviews, and one-click project creation.">
+  <meta property="og:title" content="Template Details — Stackly">
+  <meta property="og:description" content="Preview screenshots, pages, components, and reviews — then launch your app from this template with one click.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/templates.css">
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <style>
+    /* Page-local styles: review-modal star picker + rating summary */
+    .rate-stars { display: flex; gap: 8px; margin-bottom: 14px; }
+    .rate-star {
+      width: 40px; height: 40px; display: grid; place-items: center;
+      border-radius: 11px; background: var(--surface-sunken);
+      color: var(--text-muted); transition: all var(--t-fast);
+    }
+    .rate-star svg { width: 20px; height: 20px; }
+    .rate-star:hover { transform: translateY(-2px); color: var(--warning); }
+    .rate-star.is-on { background: var(--warning-bg); color: var(--warning); }
+    .rate-star.is-on svg { fill: currentColor; }
+    .rating-summary { display: flex; gap: var(--sp-6); align-items: center; flex-wrap: wrap; }
+    .rating-big {
+      font-family: var(--font-display); font-size: 3.2rem; font-weight: 800;
+      line-height: 1; letter-spacing: -0.02em;
+    }
+    .rating-dist { flex: 1; min-width: 240px; display: grid; gap: 8px; }
+    .rating-dist-row { display: flex; align-items: center; gap: 12px; font-size: var(--fs-xs); color: var(--text-muted); }
+    .rating-dist-row .progress { flex: 1; }
+    .rating-dist-row .dist-label { width: 26px; font-weight: 600; color: var(--text-secondary); }
+    .rating-dist-row .dist-pct { width: 36px; text-align: right; font-weight: 600; }
+  </style>
+  <script src="assets/js/darkmode.js"></script>
+</head>
+<body data-page="templates">
+  <div id="header-root"></div>
+
+  <main id="main">
+
+    <!-- ================= PAGE HEADER ================= -->
+    <header class="page-header">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="crumb-sep">/</span>
+          <a href="templates.html">Templates</a>
+          <span class="crumb-sep">/</span>
+          <span aria-current="page" id="crumb-name">Template</span>
+        </nav>
+        <h1 id="tpl-page-title">Template Details</h1>
+        <p id="tpl-page-sub">Loading template…</p>
+      </div>
+    </header>
+
+    <!-- ================= DETAILS ================= -->
+    <section class="section" aria-label="Template details">
+      <div class="container container-wide" id="tpl-root">
+        <!-- rendered by the details controller below -->
+      </div>
+    </section>
+
+    <!-- ================= RELATED ================= -->
+    <section class="section section-alt" aria-labelledby="related-title" id="related-section">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <span class="section-tag"><i data-icon="layers" style="width:14px;display:inline-flex"></i> Keep Exploring</span>
+          <h2 class="section-title" id="related-title">Related templates</h2>
+          <p class="section-sub">More starting points our makers pair with this one.</p>
+        </div>
+        <div class="grid grid-3" id="related-grid" data-aos-stagger>
+          <!-- rendered by the details controller -->
+        </div>
+        <div class="text-center mt-6" data-aos="fade-up">
+          <a class="btn btn-secondary" href="templates.html">Browse the full marketplace <i data-icon="arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/wishlist.js"></script>
+  <script>
+    /* ======================================================================
+       Template details controller
+       Reads ?id=, renders hero art + screenshots + device preview + specs
+       + reviews + sidebar, and a related-templates row.
+       ====================================================================== */
+    document.addEventListener('DOMContentLoaded', function () {
+      'use strict';
+
+      var root = document.getElementById('tpl-root');
+      if (!root || !window.AppStore) return;
+
+      var templates = AppStore.getTemplates();
+      var params = new URLSearchParams(window.location.search);
+      var id = params.get('id');
+      var tpl = id ? AppStore.getTemplate(id) : (templates[0] || null);
+
+      /* ---------- Unknown id → styled empty state ---------- */
+      if (!tpl) {
+        document.title = 'Template Not Found — Stackly | No-Code App Builder';
+        document.getElementById('crumb-name').textContent = 'Not found';
+        document.getElementById('tpl-page-title').textContent = 'Template not found';
+        document.getElementById('tpl-page-sub').textContent = 'The template you are looking for is no longer in the marketplace.';
+        root.innerHTML =
+          '<div class="empty-state">' +
+            '<span class="empty-icon"><i data-icon="layers"></i></span>' +
+            '<h3>We couldn’t find that template</h3>' +
+            '<p>It may have been renamed or retired. Browse the marketplace to find a fresh starting point for your app.</p>' +
+            '<a class="btn btn-primary" href="templates.html"><i data-icon="arrow-left"></i> Back to all templates</a>' +
+          '</div>';
+        document.getElementById('related-section').hidden = true;
+        Icons.inject(root);
+        return;
+      }
+
+      var grad = 'linear-gradient(135deg,' + tpl.gradient[0] + ',' + tpl.gradient[1] + ')';
+      var priceLabel = tpl.tier === 'premium' ? '$' + tpl.price : 'Free';
+      var stars = window.TemplateCards.starRow;
+      var fmtUses = window.TemplateCards.formatUses;
+
+      /* ---------- Head / header ---------- */
+      document.title = tpl.name + ' Template — Stackly | No-Code App Builder';
+      document.getElementById('crumb-name').textContent = tpl.name;
+      document.getElementById('tpl-page-title').textContent = tpl.name;
+      document.getElementById('tpl-page-sub').textContent =
+        tpl.category + ' template for ' + tpl.industry + ' · ' + tpl.pages.length +
+        ' pages · Used by ' + fmtUses(tpl.uses) + ' makers';
+
+      /* ---------- Rich screenshot artwork (Artwork engine, 4 views) ---------- */
+      var SHOT_KINDS = (function () {
+        var main = ['dashboard'];
+        if (window.Artwork) {
+          var map = { 'CRM': 'kanban', 'Sales': 'kanban', 'Business': 'landing', 'E-Commerce': 'commerce',
+            'Healthcare': 'chat', 'Education': 'list', 'Finance': 'finance', 'Real Estate': 'portfolio',
+            'Restaurant': 'commerce', 'Booking': 'calendar', 'Events': 'calendar', 'Portfolio': 'portfolio',
+            'Productivity': 'list', 'HR': 'people', 'Marketing': 'dashboard', 'SaaS': 'landing', 'Dashboard': 'dashboard' };
+          main = [map[tpl.category] || 'dashboard'];
+        }
+        var extras = ['dashboard', 'list', 'commerce', 'landing', 'kanban', 'finance'];
+        for (var i = 0; i < extras.length && main.length < 4; i++) {
+          if (main.indexOf(extras[i]) === -1) main.push(extras[i]);
+        }
+        return main;
+      })();
+
+      function bigArt(variant) {
+        if (!window.Artwork) return '';
+        var kind = SHOT_KINDS[variant % SHOT_KINDS.length];
+        var html = '<span class="tpl-thumb-art" aria-hidden="true">' +
+          window.Artwork.appShot(kind, tpl.gradient[0], tpl.gradient[1]) + '</span>';
+        /* the primary view carries the real category photo; other views stay
+           as UI screenshots so the shot strip shows different app screens */
+        if (variant === 0 && window.TemplateCards.categoryPhoto(tpl.category)) {
+          html += '<img class="pic-photo" src="https://images.unsplash.com/' +
+            window.TemplateCards.categoryPhoto(tpl.category) +
+            '?auto=format&fit=crop&w=1400&h=744&q=80" alt="" loading="lazy" onerror="this.remove()">';
+        }
+        return html;
+      }
+
+      var KIND_LABELS = { dashboard: 'Analytics dashboard', kanban: 'Pipeline board', commerce: 'Storefront', calendar: 'Booking calendar', finance: 'Accounts view', list: 'Task workspace', portfolio: 'Gallery', landing: 'Landing page', people: 'Team directory', chat: 'Messaging' };
+      var SHOT_NAMES = SHOT_KINDS.map(function (k) { return KIND_LABELS[k] || k; });
+
+      /* ---------- Reviews (deterministic, realistic) ---------- */
+      function distribution(rating) {
+        var five = Math.round(76 - (5 - rating) * 40);
+        var four = Math.round(18 + (5 - rating) * 20);
+        var three = Math.round((5 - rating) * 15 + 3);
+        var two = 2;
+        var one = Math.max(0, 100 - five - four - three - two);
+        return [five, four, three, two, one];
+      }
+
+      var REVIEWS = [
+        { name: 'Priya Nair', initials: 'PN', tone: '', when: 'Jul 2026', stars: 5,
+          text: 'We launched our ' + tpl.industry.toLowerCase() + ' app on ' + tpl.name + ' in under a week. The ' + tpl.pages[0] + ' page needed almost no changes, and the data model saved us days of setup.' },
+        { name: 'Marcus Webb', initials: 'MW', tone: ' tone-2', when: 'Jun 2026', stars: 5,
+          text: 'Cleanest ' + tpl.category.toLowerCase() + ' template in the marketplace. Every component is genuinely wired up — the ' + tpl.components[0].toLowerCase() + ' worked with our live data on the first try.' },
+        { name: 'Elena Sorokina', initials: 'ES', tone: ' tone-3', when: 'May 2026', stars: 4,
+          text: 'Great structure and beautiful defaults. I swapped the brand colors and typography in an afternoon. Would love one more layout option for the ' + tpl.pages[Math.min(1, tpl.pages.length - 1)] + ' page, hence four stars.' },
+        { name: 'Tom Okafor', initials: 'TO', tone: ' tone-4', when: 'Apr 2026', stars: 5,
+          text: 'As an agency we reuse this for client work constantly. Clients love the polish, and the responsive layouts mean zero extra mobile passes. Easily pays for itself.' }
+      ];
+
+      function reviewItem(r) {
+        return '<div class="review-item">' +
+          (window.Artwork
+            ? '<span class="avatar avatar-img">' + window.Artwork.person(r.name) + '</span>'
+            : '<span class="avatar' + r.tone + '">' + r.initials + '</span>') +
+          '<div style="flex:1">' +
+            '<div class="review-head">' +
+              '<b>' + r.name + '</b>' +
+              '<span class="stars" aria-label="Rated ' + r.stars + ' out of 5">' + stars(r.stars) + '</span>' +
+              '<time>' + r.when + '</time>' +
+              '<span class="badge badge-success">Verified purchase</span>' +
+            '</div>' +
+            '<p>' + r.text + '</p>' +
+          '</div>' +
+        '</div>';
+      }
+
+      var dist = distribution(tpl.rating);
+      var distRows = dist.map(function (pct, i) {
+        return '<div class="rating-dist-row">' +
+          '<span class="dist-label">' + (5 - i) + '★</span>' +
+          '<div class="progress"><div class="progress-bar" style="width:' + pct + '%"></div></div>' +
+          '<span class="dist-pct">' + pct + '%</span>' +
+        '</div>';
+      }).join('');
+
+      /* ---------- Main layout ---------- */
+      var isFav = AppStore.isFavorite(tpl.id);
+      var featureList = tpl.components.map(function (c) {
+        return '<li class="d-flex items-center gap-3">' +
+          '<span class="feature-icon" style="width:38px;height:38px;margin:0;border-radius:10px;flex-shrink:0"><i data-icon="check" style="width:16px;display:inline-flex"></i></span>' +
+          '<span><b class="text-sm">' + c + '</b><br><span class="text-xs text-muted-c">Pre-built, data-bound &amp; fully customizable</span></span>' +
+        '</li>';
+      }).join('');
+
+      var pageChips = tpl.pages.map(function (p) {
+        return '<span class="badge badge-neutral" style="padding:8px 14px"><i data-icon="columns" style="width:13px;display:inline-flex;margin-right:5px"></i>' + p + '</span>';
+      }).join(' ');
+
+      var shotBtns = SHOT_NAMES.map(function (label, i) {
+        return '<button class="shot' + (i === 0 ? ' is-active' : '') + '" type="button" data-shot="' + i + '" ' +
+          'style="background:' + grad + '" aria-label="View screenshot: ' + label + '" title="' + label + '">' + bigArt(i) + '</button>';
+      }).join('');
+
+      root.innerHTML =
+      '<div class="tpl-detail-layout">' +
+
+        /* ============ MAIN COLUMN ============ */
+        '<div class="d-grid gap-6">' +
+
+          '<div data-aos="fade-up">' +
+            '<div class="tpl-hero-preview" id="hero-preview" style="background:' + grad + '">' + bigArt(0) + '</div>' +
+            '<div class="shot-strip mt-4">' + shotBtns + '</div>' +
+          '</div>' +
+
+          '<div class="card" data-aos="fade-up">' +
+            '<div class="d-flex items-center justify-between gap-4 flex-wrap mb-4">' +
+              '<h2 class="text-lg">Preview on every device</h2>' +
+              '<div class="d-flex gap-2" role="group" aria-label="Device preview">' +
+                '<button class="btn btn-primary btn-sm" type="button" data-device="desktop"><i data-icon="monitor"></i> Desktop</button>' +
+                '<button class="btn btn-secondary btn-sm" type="button" data-device="tablet"><i data-icon="tablet"></i> Tablet</button>' +
+                '<button class="btn btn-secondary btn-sm" type="button" data-device="mobile"><i data-icon="smartphone"></i> Mobile</button>' +
+              '</div>' +
+            '</div>' +
+            '<div class="device-frame" id="device-frame">' +
+              '<div class="frame-inner" id="frame-inner" style="background:' + grad + '">' + bigArt(0) + '</div>' +
+            '</div>' +
+          '</div>' +
+
+          '<div data-aos="fade-up">' +
+            '<h2 class="text-lg mb-3">About this template</h2>' +
+            '<p class="text-secondary-c mb-3" style="line-height:1.75">' + tpl.desc + ' Built for ' + tpl.industry.toLowerCase() +
+              ' teams that want to launch fast without sacrificing polish, ' + tpl.name + ' ships as a complete, working application — not a static mockup.</p>' +
+            '<p class="text-secondary-c" style="line-height:1.75">Every one of its ' + tpl.pages.length + ' pages is fully responsive and wired to the built-in database, so tables, charts, and forms run on live data from the moment you click “Use Template”. Swap the brand colors, edit the copy, connect your own collections, and publish — most makers go live in under a week.</p>' +
+          '</div>' +
+
+          '<div data-aos="fade-up">' +
+            '<h2 class="text-lg mb-4">What’s inside</h2>' +
+            '<ul class="grid grid-2" style="gap:var(--sp-4)">' + featureList + '</ul>' +
+          '</div>' +
+
+          '<div data-aos="fade-up">' +
+            '<h2 class="text-lg mb-4">Pages included</h2>' +
+            '<div class="d-flex flex-wrap gap-2">' + pageChips + '</div>' +
+          '</div>' +
+
+          '<div class="card" data-aos="fade-up">' +
+            '<div class="d-flex items-center justify-between gap-4 flex-wrap mb-5">' +
+              '<h2 class="text-lg">Customer reviews</h2>' +
+              '<button class="btn btn-secondary btn-sm" type="button" id="btn-write-review"><i data-icon="edit"></i> Write a review</button>' +
+            '</div>' +
+            '<div class="rating-summary mb-5">' +
+              '<div class="text-center">' +
+                '<div class="rating-big">' + tpl.rating.toFixed(1) + '</div>' +
+                '<span class="stars" aria-label="Rated ' + tpl.rating + ' out of 5">' + stars(tpl.rating) + '</span>' +
+                '<p class="text-xs text-muted-c mt-2">' + tpl.reviews + ' reviews</p>' +
+              '</div>' +
+              '<div class="rating-dist">' + distRows + '</div>' +
+            '</div>' +
+            REVIEWS.map(reviewItem).join('') +
+          '</div>' +
+
+        '</div>' +
+
+        /* ============ SIDEBAR ============ */
+        '<aside class="tpl-sidebar">' +
+
+          '<div class="card" data-aos="fade-right">' +
+            '<div class="tpl-price-big mb-2">' + priceLabel +
+              ' <span>' + (tpl.tier === 'premium' ? 'one-time purchase' : 'forever — no card needed') + '</span></div>' +
+            '<div class="d-flex items-center gap-2 mb-4 text-sm">' +
+              '<span class="stars" aria-label="Rated ' + tpl.rating + ' out of 5">' + stars(tpl.rating) + '</span>' +
+              '<b>' + tpl.rating.toFixed(1) + '</b><span class="text-muted-c">(' + tpl.reviews + ')</span>' +
+              '<span class="tpl-uses text-muted-c"><i data-icon="download"></i> ' + fmtUses(tpl.uses) + ' uses</span>' +
+            '</div>' +
+            '<div class="d-grid gap-2">' +
+              '<button class="btn btn-primary btn-block" type="button" data-use-template="' + tpl.id + '"><i data-icon="zap"></i> Use This Template</button>' +
+              '<button class="btn btn-secondary btn-block" type="button" id="btn-live-preview"><i data-icon="eye"></i> Live Preview</button>' +
+              '<button class="btn btn-ghost btn-block' + (isFav ? ' is-active' : '') + '" type="button" data-fav="' + tpl.id + '" aria-pressed="' + isFav + '">' +
+                '<i data-icon="heart"></i> ' + (isFav ? 'Saved to Favorites' : 'Save to Favorites') + '</button>' +
+            '</div>' +
+            (tpl.tier === 'premium'
+              ? '<p class="text-xs text-muted-c text-center mt-3"><i data-icon="shield" style="width:12px;display:inline-flex;margin-right:4px"></i>30-day money-back guarantee</p>'
+              : '<p class="text-xs text-muted-c text-center mt-3"><i data-icon="gift" style="width:12px;display:inline-flex;margin-right:4px"></i>Included with every Stackly plan</p>') +
+          '</div>' +
+
+          '<div class="card" data-aos="fade-right">' +
+            '<h3 class="text-md mb-4">Template specs</h3>' +
+            '<ul class="tpl-spec-list">' +
+              '<li><span class="spec-label">Category</span><span class="spec-value">' + tpl.category + '</span></li>' +
+              '<li><span class="spec-label">Industry</span><span class="spec-value">' + tpl.industry + '</span></li>' +
+              '<li><span class="spec-label">Pages</span><span class="spec-value">' + tpl.pages.length + '</span></li>' +
+              '<li><span class="spec-label">Components</span><span class="spec-value">' + tpl.components.length + ' component kits</span></li>' +
+              '<li><span class="spec-label">Last updated</span><span class="spec-value">Aug 2026</span></li>' +
+              '<li><span class="spec-label">Version</span><span class="spec-value">2.4.1</span></li>' +
+              '<li><span class="spec-label">Support</span><span class="spec-value">6 months included</span></li>' +
+            '</ul>' +
+          '</div>' +
+
+          '<div class="card" data-aos="fade-right">' +
+            '<h3 class="text-md mb-4">Every template includes</h3>' +
+            '<ul class="d-grid gap-3 text-sm">' +
+              ['Lifetime template updates', 'Step-by-step documentation', 'Pre-configured data model', 'Responsive desktop, tablet &amp; mobile layouts'].map(function (item) {
+                return '<li class="d-flex items-center gap-3"><i data-icon="check-circle" style="width:18px;display:inline-flex;color:var(--success);flex-shrink:0"></i><span>' + item + '</span></li>';
+              }).join('') +
+            '</ul>' +
+          '</div>' +
+
+        '</aside>' +
+      '</div>';
+
+      Icons.inject(root);
+      if (window.AppAnimations) AppAnimations.refreshReveal();
+
+      /* ---------- Screenshot swapping ---------- */
+      var hero = document.getElementById('hero-preview');
+      var frameInner = document.getElementById('frame-inner');
+      root.querySelectorAll('[data-shot]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var v = parseInt(btn.getAttribute('data-shot'), 10);
+          hero.innerHTML = bigArt(v);
+          frameInner.innerHTML = bigArt(v);
+          root.querySelectorAll('[data-shot]').forEach(function (b) {
+            b.classList.toggle('is-active', b === btn);
+          });
+        });
+      });
+
+      /* ---------- Device preview tabs ---------- */
+      var frame = document.getElementById('device-frame');
+      root.querySelectorAll('[data-device]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var device = btn.getAttribute('data-device');
+          frame.classList.toggle('is-tablet', device === 'tablet');
+          frame.classList.toggle('is-mobile', device === 'mobile');
+          root.querySelectorAll('[data-device]').forEach(function (b) {
+            b.classList.toggle('btn-primary', b === btn);
+            b.classList.toggle('btn-secondary', b !== btn);
+          });
+        });
+      });
+
+      /* ---------- Live preview (demo) ---------- */
+      document.getElementById('btn-live-preview').addEventListener('click', function () {
+        Toast.info('The interactive preview of ' + tpl.name + ' opens inside the builder once you create a project from it.', 'Demo preview');
+      });
+
+      /* ---------- Favorite button label sync ---------- */
+      document.addEventListener('favoriteschange', function (e) {
+        if (!e.detail || e.detail.id !== tpl.id) return;
+        var btn = root.querySelector('[data-fav="' + tpl.id + '"]');
+        if (!btn) return;
+        btn.innerHTML = Icons.get('heart') + ' ' + (e.detail.fav ? 'Saved to Favorites' : 'Save to Favorites');
+      });
+
+      /* ---------- Write a review modal ---------- */
+      document.getElementById('btn-write-review').addEventListener('click', function () {
+        var rating = 5;
+        var starBtns = '';
+        for (var s = 1; s <= 5; s++) {
+          starBtns += '<button class="rate-star is-on" type="button" data-rate="' + s + '" aria-label="Rate ' + s + ' star' + (s > 1 ? 's' : '') + '">' + Icons.get('star') + '</button>';
+        }
+        var backdrop = Modal.custom({
+          title: 'Review ' + tpl.name,
+          bodyHTML:
+            '<p class="text-sm text-secondary-c mb-3">How was your experience building with this template?</p>' +
+            '<div class="rate-stars" id="rate-stars">' + starBtns + '</div>' +
+            '<div class="form-group">' +
+              '<label class="form-label" for="review-text">Your review</label>' +
+              '<textarea class="form-control" id="review-text" rows="4" placeholder="What did you build? What stood out?"></textarea>' +
+            '</div>',
+          footHTML:
+            '<button class="btn btn-secondary" type="button" data-modal-close>Cancel</button>' +
+            '<button class="btn btn-primary" type="button" id="review-submit"><i data-icon="check"></i> Submit review</button>'
+        });
+        Icons.inject(backdrop);
+        backdrop.querySelectorAll('[data-rate]').forEach(function (sBtn) {
+          sBtn.addEventListener('click', function () {
+            rating = parseInt(sBtn.getAttribute('data-rate'), 10);
+            backdrop.querySelectorAll('[data-rate]').forEach(function (b) {
+              b.classList.toggle('is-on', parseInt(b.getAttribute('data-rate'), 10) <= rating);
+            });
+          });
+        });
+        backdrop.querySelector('#review-submit').addEventListener('click', function () {
+          Modal.close(backdrop);
+          Toast.success('Thanks! Your ' + rating + '-star review of ' + tpl.name + ' was submitted for moderation.', 'Review received');
+        });
+      });
+
+      /* ---------- Related templates ---------- */
+      var related = templates.filter(function (t) {
+        return t.id !== tpl.id && t.category === tpl.category;
+      });
+      templates.forEach(function (t) {
+        if (related.length >= 3) return;
+        if (t.id !== tpl.id && t.industry === tpl.industry && related.indexOf(t) === -1) related.push(t);
+      });
+      templates.slice().sort(function (a, b) { return b.uses - a.uses; }).forEach(function (t) {
+        if (related.length >= 3) return;
+        if (t.id !== tpl.id && related.indexOf(t) === -1) related.push(t);
+      });
+      var relatedGrid = document.getElementById('related-grid');
+      relatedGrid.innerHTML = related.slice(0, 3).map(window.TemplateCards.render).join('');
+      Icons.inject(relatedGrid);
+      if (window.AppAnimations) AppAnimations.refreshReveal();
+    });
+  </script>
+</body>
+</html>

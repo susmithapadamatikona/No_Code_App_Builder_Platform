@@ -1,0 +1,162 @@
+/* ==========================================================================
+   STACKLY — Keyframes & AOS (Animate-On-Scroll) Engine Styles
+   Native implementation of the AOS API — no external library.
+   Usage:  <div data-aos="fade-up" data-aos-delay="150" data-aos-duration="900">
+   Legacy [data-reveal] / [data-reveal-stagger] attributes are converted to
+   AOS automatically by animations.js.
+   ========================================================================== */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(26px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-26px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -34px) scale(1.08); }
+  66% { transform: translate(-24px, 22px) scale(0.95); }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes shimmer {
+  to { transform: translateX(100%); }
+}
+@keyframes loaderPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(154, 40, 156, 0.5); }
+  50% { transform: scale(1.07); box-shadow: 0 0 0 18px rgba(154, 40, 156, 0); }
+}
+@keyframes loaderSlide {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(420%); }
+}
+@keyframes toastProgress {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.85); }
+}
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes bounceIn {
+  0% { opacity: 0; transform: scale(0.6); }
+  60% { opacity: 1; transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-4deg); }
+  75% { transform: rotate(4deg); }
+}
+
+/* --------------------------------------------------------------------------
+   AOS engine — initial states per effect, revealed via .aos-animate
+   Duration/delay/easing come from CSS vars set by animations.js
+   -------------------------------------------------------------------------- */
+/* While animating (until .aos-done releases the element back to its own
+   CSS so hover transforms/transitions work untouched) */
+[data-aos]:not(.aos-done) {
+  opacity: 0;
+  pointer-events: none;
+  transition-property: opacity, transform;
+  transition-duration: var(--aos-duration, 0.8s);
+  transition-delay: var(--aos-delay, 0s);
+  transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); /* AOS ease-out-cubic */
+  will-change: opacity, transform;
+}
+[data-aos].aos-animate:not(.aos-done) {
+  opacity: 1;
+  transform: none !important;
+  pointer-events: auto;
+}
+
+/* Fades */
+[data-aos="fade"]:not(.aos-animate) { transform: none; }
+[data-aos="fade-up"]:not(.aos-animate) { transform: translate3d(0, 44px, 0); }
+[data-aos="fade-down"]:not(.aos-animate) { transform: translate3d(0, -44px, 0); }
+[data-aos="fade-left"]:not(.aos-animate) { transform: translate3d(48px, 0, 0); }
+[data-aos="fade-right"]:not(.aos-animate) { transform: translate3d(-48px, 0, 0); }
+[data-aos="fade-up-right"]:not(.aos-animate) { transform: translate3d(-40px, 40px, 0); }
+[data-aos="fade-up-left"]:not(.aos-animate) { transform: translate3d(40px, 40px, 0); }
+[data-aos="fade-down-right"]:not(.aos-animate) { transform: translate3d(-40px, -40px, 0); }
+[data-aos="fade-down-left"]:not(.aos-animate) { transform: translate3d(40px, -40px, 0); }
+
+/* Zooms */
+[data-aos="zoom-in"]:not(.aos-animate) { transform: scale(0.88); }
+[data-aos="zoom-in-up"]:not(.aos-animate) { transform: translate3d(0, 40px, 0) scale(0.88); }
+[data-aos="zoom-in-down"]:not(.aos-animate) { transform: translate3d(0, -40px, 0) scale(0.88); }
+[data-aos="zoom-out"]:not(.aos-animate) { transform: scale(1.12); }
+[data-aos="zoom-out-up"]:not(.aos-animate) { transform: translate3d(0, 40px, 0) scale(1.12); }
+
+/* Slides (no fade) */
+[data-aos="slide-up"]:not(.aos-animate) { opacity: 1; transform: translate3d(0, 56px, 0); }
+[data-aos="slide-left"]:not(.aos-animate) { opacity: 1; transform: translate3d(56px, 0, 0); }
+[data-aos="slide-right"]:not(.aos-animate) { opacity: 1; transform: translate3d(-56px, 0, 0); }
+
+/* Flips */
+[data-aos="flip-up"]:not(.aos-animate) { transform: perspective(1200px) rotateX(-24deg) translate3d(0, 24px, 0); }
+[data-aos="flip-down"]:not(.aos-animate) { transform: perspective(1200px) rotateX(24deg) translate3d(0, -24px, 0); }
+[data-aos="flip-left"]:not(.aos-animate) { transform: perspective(1200px) rotateY(-24deg); }
+[data-aos="flip-right"]:not(.aos-animate) { transform: perspective(1200px) rotateY(24deg); }
+
+/* --------------------------------------------------------------------------
+   Stagger groups — parent [data-aos-stagger] (or legacy [data-reveal-stagger])
+   reveals its direct children in sequence
+   -------------------------------------------------------------------------- */
+[data-aos-stagger]:not(.aos-done) > * {
+  opacity: 0;
+  transform: translate3d(0, 40px, 0);
+  transition: opacity 0.75s cubic-bezier(0.165, 0.84, 0.44, 1),
+              transform 0.75s cubic-bezier(0.165, 0.84, 0.44, 1);
+  will-change: opacity, transform;
+}
+[data-aos-stagger].aos-animate:not(.aos-done) > * {
+  opacity: 1;
+  transform: none;
+}
+[data-aos-stagger].aos-animate:not(.aos-done) > *:nth-child(1) { transition-delay: 0.05s; }
+[data-aos-stagger].aos-animate:not(.aos-done) > *:nth-child(2) { transition-delay: 0.14s; }
+[data-aos-stagger].aos-animate:not(.aos-done) > *:nth-child(3) { transition-delay: 0.23s; }
+[data-aos-stagger].aos-animate:not(.aos-done) > *:nth-child(4) { transition-delay: 0.32s; }
+[data-aos-stagger].aos-animate:not(.aos-done) > *:nth-child(5) { transition-delay: 0.41s; }
+[data-aos-stagger].aos-animate:not(.aos-done) > *:nth-child(6) { transition-delay: 0.5s; }
+[data-aos-stagger].aos-animate:not(.aos-done) > *:nth-child(7) { transition-delay: 0.59s; }
+[data-aos-stagger].aos-animate:not(.aos-done) > *:nth-child(8) { transition-delay: 0.68s; }
+[data-aos-stagger].aos-animate:not(.aos-done) > *:nth-child(n+9) { transition-delay: 0.77s; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-aos],
+  [data-aos-stagger] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    pointer-events: auto !important;
+  }
+}

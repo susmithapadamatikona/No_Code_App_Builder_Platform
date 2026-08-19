@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found (404) — Stackly | No-Code App Builder</title>
+  <meta name="description" content="This page went no-code and disappeared. Head back to Stackly's home page, browse 120+ templates, or contact support — we'll get you building again.">
+  <meta property="og:title" content="404 — Page Not Found | Stackly">
+  <meta property="og:description" content="The page you're looking for doesn't exist. Let's get you back to building.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <style>
+    /* ---- 404 page ---- */
+    .nf-hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: var(--gradient-hero);
+      color: #E2E8F0;
+      overflow: hidden;
+      padding: calc(var(--navbar-h) + 40px) 20px 60px;
+    }
+    .nf-inner { position: relative; z-index: 2; max-width: 640px; margin-inline: auto; }
+    .nf-code {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(7rem, 22vw, 13rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      background: linear-gradient(120deg, #CF86C8 0%, #C084FC 45%, #38BDF8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      filter: drop-shadow(0 12px 40px rgba(154, 40, 156, 0.35));
+    }
+    .nf-hero h1 { color: #fff; font-size: clamp(1.4rem, 3vw, 2rem); letter-spacing: -0.02em; margin: var(--sp-3) 0; }
+    .nf-hero > .nf-inner p.nf-sub { color: #94A3B8; font-size: var(--fs-md); max-width: 46ch; margin: 0 auto var(--sp-5); }
+    .nf-search { max-width: 440px; margin: 0 auto var(--sp-5); }
+    .nf-search .search-bar {
+      height: 54px;
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.18);
+      backdrop-filter: blur(8px);
+    }
+    .nf-search .search-bar input { color: #fff; }
+    .nf-search .search-bar input::placeholder { color: rgba(226,232,240,.55); }
+    .nf-search .search-bar svg { color: rgba(226,232,240,.7); }
+    .nf-float {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 50px rgba(2,6,23,0.4);
+      color: #E2E8F0;
+      font-size: var(--fs-sm);
+      z-index: 1;
+      animation: nf-drift 7s ease-in-out infinite;
+    }
+    .nf-float .fc-icon {
+      width: 38px; height: 38px; border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--gradient-primary); color: #fff; flex-shrink: 0;
+    }
+    .nf-float .fc-icon svg { width: 18px; height: 18px; }
+    .nf-float b { display: block; font-size: var(--fs-sm); color: #fff; }
+    .nf-float span span { font-size: var(--fs-xs); color: #94A3B8; }
+    .nf-float--1 { top: 22%; left: 8%; animation-delay: 0s; }
+    .nf-float--2 { top: 58%; right: 7%; animation-delay: 1.4s; }
+    .nf-float--3 { bottom: 12%; left: 14%; animation-delay: 2.8s; }
+    .nf-float--2 .fc-icon { background: linear-gradient(135deg, #F59E0B, #EF4444); }
+    .nf-float--3 .fc-icon { background: linear-gradient(135deg, #10B981, #47C1D1); }
+    @keyframes nf-drift {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+    @media (max-width: 900px) {
+      .nf-float { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .nf-float { animation: none; }
+    }
+  </style>
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script src="assets/js/darkmode.js"></script>
+</head>
+<body>
+
+  <main id="main">
+    <section class="nf-hero" aria-labelledby="nf-title">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-orb hero-orb--1"></div>
+        <div class="hero-orb hero-orb--2"></div>
+        <div class="hero-orb hero-orb--3"></div>
+        <div class="hero-grid-lines"></div>
+      </div>
+
+      <!-- Floating glass cards -->
+      <div class="nf-float nf-float--1" aria-hidden="true">
+        <span class="fc-icon"><i data-icon="search"></i></span>
+        <span><b>Page lookup</b><span>0 results found</span></span>
+      </div>
+      <div class="nf-float nf-float--2" aria-hidden="true">
+        <span class="fc-icon"><i data-icon="alert-triangle"></i></span>
+        <span><b>Error 404</b><span>Route not published</span></span>
+      </div>
+      <div class="nf-float nf-float--3" aria-hidden="true">
+        <span class="fc-icon"><i data-icon="undo"></i></span>
+        <span><b>Suggestion</b><span>Roll back to home</span></span>
+      </div>
+
+      <div class="nf-inner">
+        <div class="nf-code" aria-hidden="true">404</div>
+        <h1 id="nf-title">This page went no-code and disappeared</h1>
+        <p class="nf-sub">Even our best workflow couldn't find the page you're looking for. It may have been moved, unpublished, or it never existed in the first place.</p>
+
+        <div class="hero-cta" style="justify-content:center">
+          <button class="btn btn-glass btn-lg" type="button" onclick="if(history.length>1){history.back();}else{window.location.href='index.html';}"><i data-icon="arrow-left"></i> Go Back</button>
+          <a class="btn btn-primary btn-lg" href="index.html"><i data-icon="home"></i> Back to Home</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

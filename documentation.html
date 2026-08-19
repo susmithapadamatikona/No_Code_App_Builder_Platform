@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation — Stackly | Guides & Platform Reference</title>
+  <meta name="description" content="The complete Stackly reference: getting started, builder basics, components, data collections, workflows, publishing, integrations, and billing.">
+  <meta property="og:title" content="Stackly Documentation">
+  <meta property="og:description" content="Everything about building with Stackly — from your first project to advanced workflows, integrations, and publishing.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <style>
+    /* ---- Documentation layout ---- */
+    .docs-layout {
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr);
+      gap: var(--sp-7);
+      align-items: start;
+    }
+    .docs-sidebar {
+      position: sticky;
+      top: calc(var(--navbar-h) + 24px);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: var(--sp-4);
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+    }
+    .docs-sidebar .docs-nav-label {
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      padding: 6px 12px 8px;
+    }
+    .docs-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: var(--fs-sm);
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all var(--t-fast);
+    }
+    .docs-nav-link svg { width: 16px; height: 16px; flex-shrink: 0; opacity: .75; }
+    .docs-nav-link:hover { background: var(--surface-hover); color: var(--text-primary); }
+    .docs-nav-link.is-active { background: var(--gradient-primary); color: #fff; box-shadow: var(--shadow-primary); }
+    .docs-nav-link.is-active svg { opacity: 1; }
+    .doc-section { scroll-margin-top: calc(var(--navbar-h) + 28px); padding-bottom: var(--sp-7); }
+    .doc-section + .doc-section { border-top: 1px solid var(--border); padding-top: var(--sp-6); }
+    .doc-section h2 { font-size: var(--fs-xl); margin-bottom: var(--sp-3); letter-spacing: -0.01em; }
+    .doc-section h2 .badge { vertical-align: middle; margin-left: 8px; }
+    .doc-article { margin-top: var(--sp-5); }
+    .doc-article h3 { font-size: var(--fs-md); margin-bottom: var(--sp-2); }
+    .doc-article p { font-size: var(--fs-sm); color: var(--text-secondary); line-height: 1.75; margin-bottom: var(--sp-3); }
+    .doc-article mark, .doc-section h2 mark { background: rgba(245, 158, 11, .35); color: inherit; border-radius: 3px; padding: 0 2px; }
+    .doc-callout {
+      display: flex;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      font-size: var(--fs-sm);
+      line-height: 1.65;
+      margin: var(--sp-4) 0;
+      border: 1px solid;
+    }
+    .doc-callout svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; }
+    .doc-callout b { display: block; margin-bottom: 2px; }
+    .doc-callout.is-tip { background: var(--info-bg); border-color: rgba(85,149,228,.25); color: var(--text-secondary); }
+    .doc-callout.is-tip svg, .doc-callout.is-tip b { color: var(--info); }
+    .doc-callout.is-warn { background: var(--warning-bg); border-color: rgba(245,158,11,.3); color: var(--text-secondary); }
+    .doc-callout.is-warn svg, .doc-callout.is-warn b { color: var(--warning); }
+    .doc-steps { counter-reset: step; list-style: none; padding: 0; margin: var(--sp-4) 0; display: grid; gap: 14px; }
+    .doc-steps li { position: relative; padding-left: 44px; font-size: var(--fs-sm); color: var(--text-secondary); line-height: 1.65; }
+    .doc-steps li::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute; left: 0; top: 0;
+      width: 28px; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: var(--gradient-primary);
+      color: #fff; font-weight: 700; font-size: var(--fs-xs);
+    }
+    .doc-steps li b { color: var(--text-primary); }
+    .doc-code {
+      border-radius: var(--radius-md);
+      background: #0F172A;
+      border: 1px solid #1E293B;
+      overflow: hidden;
+      margin: var(--sp-4) 0;
+    }
+    .doc-code-bar { display: flex; align-items: center; justify-content: space-between; padding: 8px 14px; border-bottom: 1px solid #1E293B; color: #64748B; font-size: var(--fs-xs); }
+    .doc-code pre { margin: 0; padding: 16px 18px; overflow-x: auto; color: #E2E8F0; font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-size: 13px; line-height: 1.7; }
+    .doc-code .tok-k { color: #CF86C8; } .doc-code .tok-s { color: #6EE7B7; } .doc-code .tok-c { color: #475569; } .doc-code .tok-n { color: #FBBF24; }
+    kbd {
+      display: inline-block;
+      min-width: 24px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      border-bottom-width: 2px;
+      background: var(--surface-sunken, var(--bg-secondary));
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 12px;
+      text-align: center;
+      color: var(--text-primary);
+    }
+    .docs-search-wrap { max-width: 560px; margin: var(--sp-5) auto 0; position: relative; z-index: 1; }
+    .docs-search-wrap .search-bar { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); height: 54px; }
+    .docs-search-wrap .search-bar input { color: #fff; font-size: var(--fs-md); }
+    .docs-search-wrap .search-bar input::placeholder { color: rgba(226,232,240,.6); }
+    .docs-search-wrap .search-bar svg { color: rgba(226,232,240,.7); }
+    @media (max-width: 960px) {
+      .docs-layout { grid-template-columns: 1fr; }
+      .docs-sidebar {
+        position: static;
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 8px;
+        padding: 10px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .docs-sidebar .docs-nav-label { display: none; }
+      .docs-nav-link { white-space: nowrap; flex-shrink: 0; }
+    }
+  </style>
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script src="assets/js/darkmode.js"></script>
+</head>
+<body data-page="documentation">
+  <div id="header-root"></div>
+
+  <main id="main">
+
+    <!-- ================= PAGE HEADER + SEARCH ================= -->
+    <section class="page-header" aria-labelledby="page-title" style="--ph-photo:url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1920&h=640&q=80')">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="crumb-sep">/</span>
+          <span aria-current="page">Documentation</span>
+        </nav>
+        <h1 id="page-title">Documentation</h1>
+        <p>Everything about building with Stackly — from your first project to advanced workflows and publishing.</p>
+        <div class="docs-search-wrap">
+          <div class="search-bar">
+            <i data-icon="search"></i>
+            <label class="sr-only" for="docs-search">Search the documentation</label>
+            <input type="search" id="docs-search" placeholder="Search the docs — try &quot;publish&quot;, &quot;collection&quot;, &quot;webhook&quot;…" autocomplete="off">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DOCS BODY ================= -->
+    <section class="section" aria-label="Documentation content">
+      <div class="container container-wide">
+        <div class="docs-layout">
+
+          <!-- Sidebar -->
+          <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation sections">
+            <span class="docs-nav-label">On this page</span>
+            <a class="docs-nav-link is-active" href="#getting-started"><i data-icon="rocket"></i> Getting Started</a>
+            <a class="docs-nav-link" href="#builder-basics"><i data-icon="grid"></i> Builder Basics</a>
+            <a class="docs-nav-link" href="#components"><i data-icon="layers"></i> Components</a>
+            <a class="docs-nav-link" href="#data-collections"><i data-icon="database"></i> Data &amp; Collections</a>
+            <a class="docs-nav-link" href="#workflows"><i data-icon="workflow"></i> Workflows</a>
+            <a class="docs-nav-link" href="#publishing"><i data-icon="globe"></i> Publishing</a>
+            <a class="docs-nav-link" href="#integrations-docs"><i data-icon="cloud"></i> Integrations</a>
+            <a class="docs-nav-link" href="#account-billing"><i data-icon="credit-card"></i> Account &amp; Billing</a>
+          </nav>
+
+          <!-- Content -->
+          <div id="docs-content">
+
+            <div class="empty-state d-none" id="docs-empty">
+              <div class="empty-icon"><i data-icon="search"></i></div>
+              <h3>No matching sections</h3>
+              <p>Try a different keyword, or ask us directly on the <a href="contact.html" class="text-primary-c fw-600">contact page</a>.</p>
+            </div>
+
+            <!-- 1. GETTING STARTED -->
+            <section class="doc-section" id="getting-started" aria-labelledby="h-getting-started">
+              <h2 id="h-getting-started">Getting Started <span class="badge badge-success">5 min</span></h2>
+              <p class="text-sm text-secondary-c">From a fresh account to your first published app. No installation, no setup — Stackly runs entirely in the browser.</p>
+
+              <article class="doc-article">
+                <h3>Create your first project</h3>
+                <p>After <a href="register.html" class="text-primary-c fw-600">creating an account</a>, you land on the dashboard. Every app you build is a <em>project</em>: it bundles pages, components, data collections, and workflows in one place.</p>
+                <ol class="doc-steps">
+                  <li><b>Click "New Project"</b> on the dashboard, or press <kbd>N</kbd> from anywhere.</li>
+                  <li><b>Pick a starting point</b> — one of 120+ templates, or a blank canvas if you prefer to compose from scratch.</li>
+                  <li><b>Name your project</b> and choose a workspace. Free plans include one workspace with up to 3 projects.</li>
+                  <li><b>Open the builder</b> — you're dropped straight onto the canvas with the template's pages ready to edit.</li>
+                </ol>
+                <div class="doc-callout is-tip">
+                  <i data-icon="info"></i>
+                  <span><b>Tip</b> Starting from a template that's roughly 70% right is almost always faster than a blank canvas — every template's pages, data model, and workflows are fully editable.</span>
+                </div>
+              </article>
+
+              <article class="doc-article">
+                <h3>Tour the workspace</h3>
+                <p>The builder has three zones: the <strong>component library</strong> on the left, the <strong>canvas</strong> in the center, and the <strong>property inspector</strong> on the right. The top bar holds device preview, undo/redo, version history, and the Publish button. Everything you do on the canvas autosaves within seconds.</p>
+              </article>
+            </section>
+
+            <!-- 2. BUILDER BASICS -->
+            <section class="doc-section" id="builder-basics" aria-labelledby="h-builder-basics">
+              <h2 id="h-builder-basics">Builder Basics</h2>
+              <p class="text-sm text-secondary-c">The canvas is a real, live version of your app — what you see is exactly what ships.</p>
+
+              <article class="doc-article">
+                <h3>Selecting, moving &amp; resizing</h3>
+                <p>Click any element to select it; drag to move, pull the handles to resize. Elements snap to a 8-pixel grid and to the edges of nearby components. Hold <kbd>Alt</kbd> while dragging to duplicate, and <kbd>Shift</kbd> to constrain movement to one axis.</p>
+              </article>
+
+              <article class="doc-article">
+                <h3>Keyboard shortcuts</h3>
+                <p>The fastest builders barely touch the toolbar. These shortcuts work everywhere on the canvas:</p>
+                <div class="table-wrap">
+                  <table class="table">
+                    <thead>
+                      <tr><th>Action</th><th>Windows / Linux</th><th>macOS</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td class="cell-strong">Undo / Redo</td><td><kbd>Ctrl</kbd> + <kbd>Z</kbd> / <kbd>Ctrl</kbd> + <kbd>Y</kbd></td><td><kbd>⌘</kbd> + <kbd>Z</kbd> / <kbd>⇧</kbd> + <kbd>⌘</kbd> + <kbd>Z</kbd></td></tr>
+                      <tr><td class="cell-strong">Duplicate element</td><td><kbd>Ctrl</kbd> + <kbd>D</kbd></td><td><kbd>⌘</kbd> + <kbd>D</kbd></td></tr>
+                      <tr><td class="cell-strong">Group selection</td><td><kbd>Ctrl</kbd> + <kbd>G</kbd></td><td><kbd>⌘</kbd> + <kbd>G</kbd></td></tr>
+                      <tr><td class="cell-strong">Preview mode</td><td><kbd>Ctrl</kbd> + <kbd>P</kbd></td><td><kbd>⌘</kbd> + <kbd>P</kbd></td></tr>
+                      <tr><td class="cell-strong">Publish</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd></td><td><kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>P</kbd></td></tr>
+                      <tr><td class="cell-strong">Command palette</td><td><kbd>Ctrl</kbd> + <kbd>K</kbd></td><td><kbd>⌘</kbd> + <kbd>K</kbd></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </article>
+
+              <article class="doc-article">
+                <h3>Versions &amp; history</h3>
+                <p>Every change is recorded. Open <strong>History</strong> in the top bar to scrub through past states, name important versions ("pre-launch", "v2 pricing"), and restore any of them in one click. Restoring never destroys newer work — it simply creates a new version at the top of the stack.</p>
+                <div class="doc-callout is-warn">
+                  <i data-icon="alert-triangle"></i>
+                  <span><b>Heads up</b> History is kept for 30 days on Free, 6 months on Pro, and forever on Business. Named versions are never pruned on any plan.</span>
+                </div>
+              </article>
+            </section>
+
+            <!-- 3. COMPONENTS -->
+            <section class="doc-section" id="components" aria-labelledby="h-components">
+              <h2 id="h-components">Components</h2>
+              <p class="text-sm text-secondary-c">120+ building blocks, from buttons to full data tables. Drag them from the library; configure them in the inspector.</p>
+
+              <article class="doc-article">
+                <h3>Layout components</h3>
+                <p><strong>Containers, columns, and sections</strong> control structure. Containers stack their children with configurable gap and padding; columns split space by ratio and collapse gracefully on mobile. Use sections for full-width bands with their own background.</p>
+              </article>
+
+              <article class="doc-article">
+                <h3>Data components</h3>
+                <p><strong>Tables, lists, cards, and charts</strong> bind directly to collections. Point a table at your <em>Orders</em> collection and pick the columns — sorting, pagination, and empty states are handled for you. Charts (line, bar, donut) accept the same bindings plus an aggregation: count, sum, or average per period.</p>
+                <div class="doc-callout is-tip">
+                  <i data-icon="info"></i>
+                  <span><b>Tip</b> Any data component can be filtered by the logged-in user — set the filter to <em>created_by = Current User</em> to build "my items" views with zero logic.</span>
+                </div>
+              </article>
+
+              <article class="doc-article">
+                <h3>Form components</h3>
+                <p>Inputs, dropdowns, checkboxes, file uploads, and date pickers combine into forms that write to collections. Validation rules (required, email, min/max, regex) are set per field in the inspector, and every form gets a configurable success action: show a message, redirect, or trigger a workflow.</p>
+              </article>
+            </section>
+
+            <!-- 4. DATA & COLLECTIONS -->
+            <section class="doc-section" id="data-collections" aria-labelledby="h-data-collections">
+              <h2 id="h-data-collections">Data &amp; Collections</h2>
+              <p class="text-sm text-secondary-c">Every project ships with a built-in database. Collections are tables; fields are columns; relations connect them — all managed visually.</p>
+
+              <article class="doc-article">
+                <h3>Creating collections</h3>
+                <p>Open the <strong>Data</strong> tab and click "New Collection". Add fields with types: text, number, date, boolean, select, file, or <em>relation</em>. A relation field links records across collections — for example, each <em>Order</em> belongs to one <em>Customer</em>, and a customer has many orders.</p>
+                <div class="doc-code">
+                  <div class="doc-code-bar"><span>collection: orders — schema</span><span>read-only</span></div>
+                  <pre><span class="tok-n">Orders</span>
+├─ number      <span class="tok-k">auto-increment</span>   <span class="tok-c">// ORD-1042</span>
+├─ customer    <span class="tok-k">relation</span> → Customers
+├─ items       <span class="tok-k">relation</span> → Products (many)
+├─ status      <span class="tok-k">select</span> [<span class="tok-s">"pending"</span>, <span class="tok-s">"paid"</span>, <span class="tok-s">"shipped"</span>]
+├─ total       <span class="tok-k">number</span> (currency)
+└─ created_at  <span class="tok-k">date</span> <span class="tok-k">auto</span></pre>
+                </div>
+              </article>
+
+              <article class="doc-article">
+                <h3>Permissions</h3>
+                <p>Each collection has row-level rules per role: who can create, read, update, and delete. Rules can reference the current user, so "users edit only their own records" is a single dropdown, not a policy engine.</p>
+                <div class="doc-callout is-warn">
+                  <i data-icon="alert-triangle"></i>
+                  <span><b>Important</b> New collections default to <em>workspace members only</em>. Before publishing a public app, review the read rule on every collection the public pages bind to.</span>
+                </div>
+              </article>
+
+              <article class="doc-article">
+                <h3>Importing data</h3>
+                <p>Import CSV or Google Sheets from the collection menu. Stackly maps columns to fields automatically, flags type mismatches before anything is written, and imports up to 50,000 rows per file on Pro plans.</p>
+              </article>
+            </section>
+
+            <!-- 5. WORKFLOWS -->
+            <section class="doc-section" id="workflows" aria-labelledby="h-workflows">
+              <h2 id="h-workflows">Workflows</h2>
+              <p class="text-sm text-secondary-c">Automate what happens around your data: send emails, call webhooks, update records — visually, on a logic canvas.</p>
+
+              <article class="doc-article">
+                <h3>Triggers</h3>
+                <p>Every workflow starts with a trigger: a record is created/updated/deleted, a form is submitted, a schedule fires (hourly to monthly), or an incoming webhook is received. One workflow can have many steps but exactly one trigger.</p>
+              </article>
+
+              <article class="doc-article">
+                <h3>Steps &amp; conditions</h3>
+                <p>Chain steps with drag-and-drop: <strong>send email</strong>, <strong>update record</strong>, <strong>create record</strong>, <strong>call webhook</strong>, <strong>delay</strong>, and <strong>branch</strong>. Branches evaluate conditions on trigger data — "if total &gt; 500, notify the account manager; otherwise send the standard receipt."</p>
+                <ol class="doc-steps">
+                  <li><b>Add a trigger</b> — e.g. <em>Record created in Orders</em>.</li>
+                  <li><b>Add a branch</b> — condition: <em>total &gt; 500</em>.</li>
+                  <li><b>On the "yes" path</b>, add <em>Send email → template "vip-order"</em> to the sales team.</li>
+                  <li><b>Test with sample data</b> using the Run panel, then toggle the workflow to <em>Live</em>.</li>
+                </ol>
+                <div class="doc-callout is-tip">
+                  <i data-icon="info"></i>
+                  <span><b>Tip</b> Every run is logged with its full step-by-step output under <em>Workflows → Runs</em> — the first place to look when an automation misbehaves.</span>
+                </div>
+              </article>
+            </section>
+
+            <!-- 6. PUBLISHING -->
+            <section class="doc-section" id="publishing" aria-labelledby="h-publishing">
+              <h2 id="h-publishing">Publishing</h2>
+              <p class="text-sm text-secondary-c">One click deploys your app to a global edge network with SSL. Custom domains, rollbacks, and staging included.</p>
+
+              <article class="doc-article">
+                <h3>Your first publish</h3>
+                <ol class="doc-steps">
+                  <li><b>Press Publish</b> (or <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>). Stackly validates broken links, missing permissions, and unbound components first.</li>
+                  <li><b>Review the checklist</b> — warnings are advisory, errors block the deploy until fixed.</li>
+                  <li><b>Go live</b> at <em>yourapp.appflow.site</em>. Deploys typically complete in under 30 seconds worldwide.</li>
+                </ol>
+              </article>
+
+              <article class="doc-article">
+                <h3>Custom domains</h3>
+                <p>On Business plans, open <strong>Settings → Domains</strong>, add your domain, and point a CNAME record at <em>edge.appflow.io</em>. Certificates are provisioned and renewed automatically; most domains verify within minutes.</p>
+                <div class="doc-callout is-warn">
+                  <i data-icon="alert-triangle"></i>
+                  <span><b>DNS note</b> If your registrar proxies traffic (orange-cloud style), disable the proxy for the verification record until the certificate is issued, then re-enable it.</span>
+                </div>
+              </article>
+
+              <article class="doc-article">
+                <h3>Rollbacks</h3>
+                <p>Every publish creates an immutable deployment. From <strong>Settings → Deployments</strong> you can preview any past deployment on a temporary URL and promote it back to production instantly — no rebuild required.</p>
+              </article>
+            </section>
+
+            <!-- 7. INTEGRATIONS -->
+            <section class="doc-section" id="integrations-docs" aria-labelledby="h-integrations">
+              <h2 id="h-integrations">Integrations</h2>
+              <p class="text-sm text-secondary-c">Native connections to the tools you already use, plus a REST API and webhooks for everything else. See the full catalog on the <a href="integrations.html" class="text-primary-c fw-600">integrations page</a>.</p>
+
+              <article class="doc-article">
+                <h3>Connecting a native integration</h3>
+                <p>Go to <strong>Settings → Integrations</strong>, pick a provider (Stripe, Slack, Mailchimp, Google Sheets, Shopify, Zapier…), and authorize with OAuth. Once connected, the provider's actions appear as workflow steps and its data sources appear in the binding picker.</p>
+              </article>
+
+              <article class="doc-article">
+                <h3>REST API</h3>
+                <p>Every collection is addressable over HTTPS with an API key scoped to your project. Keys are managed under <strong>Settings → API</strong>; requests are rate-limited to 120/min on Pro and 600/min on Business.</p>
+                <div class="doc-code">
+                  <div class="doc-code-bar"><span>GET /v1/collections/orders/records</span><span>curl</span></div>
+                  <pre>curl https://api.appflow.io/v1/collections/orders/records \
+  -H <span class="tok-s">"Authorization: Bearer af_live_xxxxxxxxxxxx"</span> \
+  -G -d <span class="tok-s">"filter[status]=paid"</span> -d <span class="tok-s">"sort=-created_at"</span> -d <span class="tok-s">"limit=25"</span>
+
+<span class="tok-c"># → 200 OK</span>
+{ <span class="tok-n">"data"</span>: [ { <span class="tok-n">"id"</span>: <span class="tok-s">"rec_9f2c"</span>, <span class="tok-n">"number"</span>: <span class="tok-s">"ORD-1042"</span>, <span class="tok-n">"total"</span>: 149.00, … } ],
+  <span class="tok-n">"meta"</span>: { <span class="tok-n">"total"</span>: 312, <span class="tok-n">"next_cursor"</span>: <span class="tok-s">"eyJvZmZzZXQi…"</span> } }</pre>
+                </div>
+                <div class="doc-callout is-warn">
+                  <i data-icon="alert-triangle"></i>
+                  <span><b>Keep keys secret</b> API keys grant the access level of the role they're scoped to. Never embed a live key in client-side code — use a workflow webhook as a proxy instead.</span>
+                </div>
+              </article>
+            </section>
+
+            <!-- 8. ACCOUNT & BILLING -->
+            <section class="doc-section" id="account-billing" aria-labelledby="h-account-billing">
+              <h2 id="h-account-billing">Account &amp; Billing</h2>
+              <p class="text-sm text-secondary-c">Plans, seats, invoices, and everything about managing your Stackly subscription.</p>
+
+              <article class="doc-article">
+                <h3>Plans &amp; upgrades</h3>
+                <p>Compare plans on the <a href="pricing.html" class="text-primary-c fw-600">pricing page</a>. Upgrades apply immediately and are prorated; downgrades take effect at the end of the billing period. Apps above a lower plan's limits are paused, never deleted, and resume the moment you upgrade again.</p>
+              </article>
+
+              <article class="doc-article">
+                <h3>Invoices &amp; payment methods</h3>
+                <p>Under <a href="billing.html" class="text-primary-c fw-600">Billing</a> you can update cards, switch between monthly and annual billing (annual saves 20%), download PDF invoices, and add a VAT/tax ID that appears on future invoices.</p>
+                <div class="doc-callout is-tip">
+                  <i data-icon="info"></i>
+                  <span><b>Tip</b> Nonprofits and accredited educators get 50% off Pro — <a href="contact.html" class="text-primary-c fw-600">contact us</a> with your documentation and we'll apply it within one business day.</span>
+                </div>
+              </article>
+
+              <article class="doc-article">
+                <h3>Team &amp; seats</h3>
+                <p>Business workspaces bill per editor seat; viewers are always free. Owners manage roles under <strong>Settings → Team</strong>: Owner, Editor, and Viewer. Transferring workspace ownership requires email confirmation from both parties.</p>
+              </article>
+            </section>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER CTA ================= -->
+    <section class="section-sm section-alt" aria-label="More help">
+      <div class="container">
+        <div class="cta-band" data-aos="zoom-in">
+          <h2>Didn't find what you need?</h2>
+          <p>The FAQ covers the most common questions, and our support team replies within a few hours on every plan.</p>
+          <div class="hero-cta">
+            <a class="btn btn-white btn-lg" href="faq.html"><i data-icon="help-circle"></i> Browse the FAQ</a>
+            <a class="btn btn-outline-white btn-lg" href="contact.html">Contact support</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    /* ---- Docs: scrollspy + live search ---- */
+    document.addEventListener('DOMContentLoaded', function () {
+      var links = Array.prototype.slice.call(document.querySelectorAll('.docs-nav-link'));
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.doc-section'));
+      var emptyState = document.getElementById('docs-empty');
+      var searchInput = document.getElementById('docs-search');
+
+      /* ---------- Scrollspy ---------- */
+      function activate(id) {
+        links.forEach(function (l) {
+          l.classList.toggle('is-active', l.getAttribute('href') === '#' + id);
+        });
+      }
+      var visible = {};
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { visible[en.target.id] = en.isIntersecting; });
+        for (var i = 0; i < sections.length; i++) {
+          if (visible[sections[i].id]) { activate(sections[i].id); break; }
+        }
+      }, { rootMargin: '-30% 0px -55% 0px', threshold: 0 });
+      sections.forEach(function (s) { spy.observe(s); });
+
+      /* ---------- Live search: filter sections, highlight headings ---------- */
+      var headings = [];
+      sections.forEach(function (s) {
+        s.querySelectorAll('h2, h3').forEach(function (h) {
+          headings.push({ el: h, section: s, original: h.innerHTML, text: h.textContent.toLowerCase() });
+        });
+      });
+
+      function escapeReg(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+      searchInput.addEventListener('input', function () {
+        var q = searchInput.value.trim().toLowerCase();
+
+        /* restore all headings first */
+        headings.forEach(function (h) { h.el.innerHTML = h.original; });
+
+        if (!q) {
+          sections.forEach(function (s) { s.style.display = ''; });
+          emptyState.classList.add('d-none');
+          return;
+        }
+
+        var matchedSections = new Set();
+        headings.forEach(function (h) {
+          if (h.text.indexOf(q) !== -1) {
+            matchedSections.add(h.section);
+            /* highlight the match inside text nodes only (headings may contain badges) */
+            var re = new RegExp('(' + escapeReg(q) + ')', 'ig');
+            var walker = document.createTreeWalker(h.el, NodeFilter.SHOW_TEXT);
+            var nodes = [];
+            while (walker.nextNode()) nodes.push(walker.currentNode);
+            nodes.forEach(function (node) {
+              re.lastIndex = 0;
+              if (!re.test(node.nodeValue)) return;
+              var span = document.createElement('span');
+              span.innerHTML = node.nodeValue.replace(re, '<mark>$1</mark>');
+              node.parentNode.replaceChild(span, node);
+            });
+          }
+        });
+
+        var any = false;
+        sections.forEach(function (s) {
+          var show = matchedSections.has(s);
+          s.style.display = show ? '' : 'none';
+          if (show) any = true;
+        });
+        emptyState.classList.toggle('d-none', any);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In — Stackly | No-Code App Builder</title>
+  <meta name="description" content="Sign in to your Stackly account to manage projects, edit apps in the visual builder, and track analytics. Demo accounts available — no signup needed.">
+  <meta property="og:title" content="Sign In — Stackly">
+  <meta property="og:description" content="Access your Stackly workspace: projects, templates, analytics and the visual no-code builder.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <style>
+    /* Auth-page glue: injected icons render as <i><svg></i>, so size/align the wrappers */
+    .auth-main { align-content: center; }
+    .auth-topbar { width: 100%; max-width: 460px; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: var(--sp-5); }
+    .back-link { display: inline-flex; align-items: center; gap: 7px; font-size: var(--fs-sm); font-weight: 600; color: var(--text-secondary); transition: color var(--t-fast); }
+    .back-link:hover { color: var(--primary); }
+    .back-link i, .back-link svg { display: inline-flex; width: 15px; height: 15px; }
+    .brand-mark i, .btn i, .btn-social i, .checkbox-box i, .empty-icon i { display: inline-flex; }
+    .input-icon-wrap > i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); width: 17px; height: 17px; display: inline-flex; color: var(--text-muted); pointer-events: none; }
+    .input-icon-wrap > i svg { width: 17px; height: 17px; }
+    .password-toggle .icon-eye, .password-toggle .icon-eye i { display: inline-flex; }
+    .password-toggle.is-visible .icon-eye { display: none; }
+    .password-toggle.is-visible .icon-eye-off, .password-toggle.is-visible .icon-eye-off i { display: inline-flex; }
+    .auth-quote-who { display: flex; align-items: center; gap: 12px; }
+    .auth-quote-who .who b { color: #fff; font-size: var(--fs-sm); display: block; }
+    .auth-quote-who .who span { font-size: var(--fs-xs); color: rgba(203, 213, 225, 0.78); }
+    .auth-side-foot { font-size: var(--fs-xs); color: rgba(203, 213, 225, 0.6); }
+    .demo-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+  </style>
+  <script src="assets/js/darkmode.js"></script>
+</head>
+<body data-page="login">
+
+  <main class="auth-page" id="main">
+    <div class="auth-shell">
+
+    <aside class="auth-side">
+      <a class="brand" href="index.html" aria-label="Stackly home">
+        <img class="brand-logo" src="assets/images/logo-stackly.webp" alt="Stackly">
+      </a>
+
+      <div class="auth-side-content">
+        <h2>Welcome back to the fastest way to ship software</h2>
+        <p>Pick up right where you left off — your projects, templates, and analytics are exactly as you left them. Drag, drop, publish.</p>
+
+        <figure class="auth-quote">
+          <p>&ldquo;I rebuilt our entire booking portal in Stackly over a weekend. What used to take our agency six weeks now takes me an afternoon — and I haven't written a single line of code.&rdquo;</p>
+          <figcaption class="auth-quote-who">
+            <span class="avatar avatar-img avatar-photo" aria-hidden="true"><span class="pic-art" data-artwork="person:Maya Rodriguez"></span><img src="https://randomuser.me/api/portraits/women/65.jpg" alt="" loading="lazy" onerror="this.remove()"></span>
+            <div class="who">
+              <b>Maya Rodriguez</b>
+              <span>Founder, Lumen Fitness</span>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+
+      <p class="auth-side-foot">Trusted by 48,000+ makers &middot; SOC 2 Type II &middot; 99.99% uptime</p>
+    </aside>
+
+    <section class="auth-main">
+      <div class="auth-topbar">
+        <a class="back-link" href="index.html"><i data-icon="arrow-left"></i> Back to website</a>
+      </div>
+
+      <div class="auth-card">
+        <h1>Sign in to Stackly</h1>
+        <p>New here? Just sign in with any email — we'll create your workspace instantly. Or <a href="register.html">register with full details</a>.</p>
+
+        <div class="auth-social-icons" role="group" aria-label="Sign in with a social account">
+          <a class="social-icon-btn" href="404.html" data-network="Google" aria-label="Continue with Google">
+            <i data-icon="google"></i>
+          </a>
+          <a class="social-icon-btn" href="404.html" data-network="Instagram" aria-label="Continue with Instagram">
+            <i data-icon="instagram"></i>
+          </a>
+          <a class="social-icon-btn" href="404.html" data-network="LinkedIn" aria-label="Continue with LinkedIn">
+            <i data-icon="linkedin"></i>
+          </a>
+        </div>
+
+        <div class="auth-divider" role="separator" aria-label="or continue with email">or continue with email</div>
+
+        <form id="login-form" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="login-role">Sign in as</label>
+            <select class="form-control" id="login-role" name="role" aria-describedby="login-role-hint">
+              <option value="user" selected>User — workspace &amp; builder</option>
+              <option value="admin">Admin — management console</option>
+            </select>
+            <span class="form-hint" id="login-role-hint">Choose the role that matches your account.</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="login-email">Email address</label>
+            <div class="input-icon-wrap">
+              <i data-icon="mail"></i>
+              <input type="email" class="form-control" id="login-email" name="email" placeholder="you@company.com" autocomplete="email" data-validate="required|email">
+            </div>
+            <span class="form-error" data-error-for="login-email"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="login-password">Password</label>
+            <div class="password-wrap">
+              <input type="password" class="form-control" id="login-password" name="password" placeholder="Enter your password" autocomplete="current-password" data-validate="required">
+              <button type="button" class="password-toggle" data-password-toggle="login-password" aria-label="Show password">
+                <span class="icon-eye"><i data-icon="eye"></i></span>
+                <span class="icon-eye-off"><i data-icon="eye-off"></i></span>
+              </button>
+            </div>
+            <span class="form-error" data-error-for="login-password"></span>
+          </div>
+
+          <div class="auth-row">
+            <label class="checkbox" for="remember-me">
+              <input type="checkbox" id="remember-me" name="remember">
+              <span class="checkbox-box"><i data-icon="check"></i></span>
+              Remember me
+            </label>
+            <a href="forgot-password.html">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+        </form>
+
+        <div class="demo-note">
+          <div class="demo-actions">
+            <button type="button" class="btn btn-secondary btn-sm" data-demo-login="user">Demo User</button>
+            <button type="button" class="btn btn-secondary btn-sm" data-demo-login="admin">Demo Admin</button>
+          </div>
+          Just exploring? One click signs you in with a demo account.
+          User: <b>demo@appflow.io</b> / <b>demo1234</b> &middot; Admin: <b>admin@appflow.io</b> / <b>admin1234</b>
+        </div>
+
+        <p class="auth-foot">New to Stackly? <a href="register.html">Create a free account</a></p>
+      </div>
+    </section>
+
+  </div>
+  </main>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/validation.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.AppStore && window.AppStore.auth.isLoggedIn()) {
+        window.location.replace('dashboard.html');
+        return;
+      }
+      window.Icons.inject();
+      document.querySelectorAll('[data-social-demo]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var net = b.getAttribute('data-network') || 'Social';
+          window.Toast.info(net + ' sign-in is disabled in this demo');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

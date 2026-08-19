@@ -1,0 +1,109 @@
+/* ==========================================================================
+   APPFLOW — Pricing Cards & Comparison
+   ========================================================================== */
+
+.pricing-grid {
+  align-items: stretch;
+}
+
+.pricing-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: var(--sp-6) var(--sp-5);
+  text-align: left;
+}
+.pricing-card h3 {
+  font-size: var(--fs-lg);
+  margin-bottom: 4px;
+}
+.plan-desc {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--sp-5);
+}
+.plan-badge {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.plan-price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: var(--sp-5);
+  font-family: var(--font-display);
+}
+.plan-price .currency {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+.plan-price .amount {
+  font-size: 3.1rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text-primary);
+}
+.plan-price .period {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.plan-features {
+  display: grid;
+  gap: 13px;
+  margin-bottom: var(--sp-6);
+  flex: 1;
+}
+.plan-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.plan-features li svg {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  color: var(--success);
+  margin-top: 1px;
+}
+.plan-features li.is-muted {
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+.plan-features li.is-muted svg { color: var(--border); }
+
+.pricing-card.is-featured {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--surface-card), var(--surface-card)) padding-box,
+    var(--gradient-primary) border-box;
+  box-shadow: var(--shadow-lg), 0 0 44px rgba(121, 40, 171, 0.16);
+  transform: scale(1.04);
+  z-index: 1;
+}
+.pricing-card.is-featured:hover { transform: scale(1.05) translateY(-4px); }
+
+/* Comparison table accents */
+.compare-table .table th:nth-child(3),
+.compare-table .table td:nth-child(3) {
+  background: var(--light-purple);
+}
+.compare-table .yes { color: var(--success); }
+.compare-table .no { color: var(--text-muted); }
+.compare-table .yes svg,
+.compare-table .no svg { width: 17px; height: 17px; }
+
+@media (max-width: 1024px) {
+  .pricing-card.is-featured { transform: none; }
+  .pricing-card.is-featured:hover { transform: translateY(-4px); }
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Stackly | No-Code App Builder</title>
+  <meta name="description" content="Your Stackly workspace overview — project stats, recent activity, storage usage, and quick actions for building and publishing no-code apps.">
+  <meta property="og:title" content="Dashboard — Stackly">
+  <meta property="og:description" content="Workspace overview: projects, views, activity, and quick actions.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script src="assets/js/darkmode.js"></script>
+</head>
+<body data-dash="dashboard">
+  <div class="dash-layout">
+    <aside id="dash-sidebar" aria-label="Dashboard navigation"></aside>
+    <div class="dash-main">
+      <header id="dash-topbar"></header>
+      <main id="main" class="dash-content dash-section-gap">
+
+        <!-- Welcome banner -->
+        <section class="dash-hero" aria-label="Welcome">
+          <div>
+            <span class="dash-hero-date"><i data-icon="calendar"></i> <span data-hero-date>Today</span></span>
+            <h1 data-greeting>Welcome back!</h1>
+            <p data-greeting-sub>Loading your workspace…</p>
+          </div>
+          <div>
+            <button class="btn btn-white btn-lg" type="button" data-new-project><i data-icon="plus"></i> Create New App</button>
+          </div>
+        </section>
+
+        <!-- Stat row -->
+        <section class="dash-row-4" id="stat-row" aria-label="Workspace statistics"></section>
+
+        <!-- Charts + storage -->
+        <section class="dash-cols-main" aria-label="Views overview and storage">
+          <article class="card">
+            <div class="card-head">
+              <h3>Views overview</h3>
+              <span class="badge badge-neutral">Last 8 months</span>
+            </div>
+            <div id="views-chart" role="img" aria-label="Views overview chart"></div>
+          </article>
+          <article class="card">
+            <div class="card-head">
+              <h3>Storage used</h3>
+              <a class="card-link" href="billing.html">Upgrade <i data-icon="arrow-right"></i></a>
+            </div>
+            <div class="storage-meta"><b>6.8 GB</b><span class="text-muted-c">of 10 GB</span></div>
+            <div class="progress progress-lg"><div class="progress-bar is-warning" data-value="68"></div></div>
+            <p class="text-xs text-muted-c mt-3">You are at 68% of your Pro plan storage. Published assets, media, and backups count toward this limit.</p>
+            <hr class="divider">
+            <div class="storage-meta"><b>5 / ∞</b><span class="text-muted-c">projects used</span></div>
+            <div class="progress"><div class="progress-bar" data-value="24"></div></div>
+            <p class="text-xs text-muted-c mt-3">Pro includes unlimited projects. Business adds team seats and unlimited storage.</p>
+          </article>
+        </section>
+
+        <!-- Recent projects + activity -->
+        <section class="dash-cols-main" aria-label="Recent projects and activity">
+          <article class="card">
+            <div class="card-head">
+              <h3>Recent projects</h3>
+              <a class="card-link" href="projects.html">View all <i data-icon="arrow-right"></i></a>
+            </div>
+            <div id="recent-projects"></div>
+          </article>
+          <article class="card">
+            <div class="card-head">
+              <h3>Recent activity</h3>
+              <span class="badge badge-neutral">Live</span>
+            </div>
+            <div id="activity-feed"></div>
+          </article>
+        </section>
+
+        <!-- Quick actions -->
+        <section aria-label="Quick actions">
+          <div class="dash-head-row">
+            <div>
+              <h2>Quick actions</h2>
+              <p class="sub">Jump straight into the most common workflows.</p>
+            </div>
+          </div>
+          <div class="dash-row-3">
+            <button class="qa-tile" type="button" data-new-project>
+              <span class="feature-icon"><i data-icon="plus"></i></span>
+              <span><b>Create New App</b><span>Start from a template or blank canvas</span></span>
+            </button>
+            <a class="qa-tile" href="templates.html">
+              <span class="feature-icon"><i data-icon="layers"></i></span>
+              <span><b>Browse Templates</b><span>120+ industry-ready starting points</span></span>
+            </a>
+            <button class="qa-tile" type="button" data-import-project>
+              <span class="feature-icon"><i data-icon="upload"></i></span>
+              <span><b>Import Project</b><span>Bring an app in from JSON or Figma</span></span>
+            </button>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/charts.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>

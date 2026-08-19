@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin · Settings — Stackly | No-Code App Builder</title>
+  <meta name="description" content="Configure the Stackly platform — site identity, feature flags, notification rules, payment configuration, testimonials, inbox, and demo data reset.">
+  <meta property="og:title" content="Admin · Settings — Stackly">
+  <meta property="og:description" content="Platform configuration for Stackly administrators.">
+  <meta property="og:type" content="website">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/admin.css">
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script src="assets/js/darkmode.js"></script>
+</head>
+<body data-admin="settings">
+
+  <div class="admin-layout">
+    <aside id="admin-sidebar" aria-label="Admin navigation"></aside>
+    <div class="admin-main">
+      <header id="admin-topbar"></header>
+      <main id="main" class="admin-content">
+
+        <div class="settings-grid">
+
+          <!-- General -->
+          <article class="a-card">
+            <div class="a-card-head">
+              <div><h2 class="a-card-title">General</h2><p class="a-card-sub">Site identity shown across the platform</p></div>
+            </div>
+            <div class="a-card-body">
+              <form id="form-general" novalidate>
+                <div class="form-group">
+                  <label class="form-label" for="set-site-name">Site name</label>
+                  <input class="form-control" id="set-site-name" data-validate="required">
+                  <span class="form-error" data-error-for="set-site-name"></span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="set-tagline">Tagline</label>
+                  <input class="form-control" id="set-tagline" data-validate="required">
+                  <span class="form-error" data-error-for="set-tagline"></span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="set-support-email">Support email</label>
+                  <input class="form-control" id="set-support-email" type="email" data-validate="required|email">
+                  <span class="form-error" data-error-for="set-support-email"></span>
+                  <span class="form-hint">Shown in the site footer and on invoices.</span>
+                </div>
+                <button type="submit" class="btn btn-primary"><i data-icon="save"></i>Save general settings</button>
+              </form>
+            </div>
+          </article>
+
+          <!-- Feature flags -->
+          <article class="a-card">
+            <div class="a-card-head">
+              <div><h2 class="a-card-title">Feature flags</h2><p class="a-card-sub">Toggle platform features instantly</p></div>
+            </div>
+            <div class="a-card-body" id="flags-list"></div>
+          </article>
+
+          <!-- Notifications -->
+          <article class="a-card">
+            <div class="a-card-head">
+              <div><h2 class="a-card-title">Email &amp; notifications</h2><p class="a-card-sub">What the platform sends, and to whom</p></div>
+            </div>
+            <div class="a-card-body" id="notify-list"></div>
+          </article>
+
+          <!-- Payment config -->
+          <article class="a-card">
+            <div class="a-card-head">
+              <div><h2 class="a-card-title">Payment configuration</h2><p class="a-card-sub">Billing currency, tax, and gateway keys</p></div>
+            </div>
+            <div class="a-card-body">
+              <form id="form-payment" novalidate>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="set-currency">Currency</label>
+                    <select class="form-control" id="set-currency">
+                      <option value="USD">USD — US Dollar</option>
+                      <option value="EUR">EUR — Euro</option>
+                      <option value="GBP">GBP — British Pound</option>
+                      <option value="INR">INR — Indian Rupee</option>
+                      <option value="AUD">AUD — Australian Dollar</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="set-tax">Tax rate (%)</label>
+                    <input class="form-control" id="set-tax" type="number" min="0" max="40" step="0.1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="set-stripe-key">Stripe secret key</label>
+                  <div class="key-wrap">
+                    <input class="form-control" id="set-stripe-key" type="password" autocomplete="off" spellcheck="false">
+                    <button type="button" class="key-reveal" id="key-reveal" aria-label="Reveal key"><i data-icon="eye"></i></button>
+                  </div>
+                  <span class="form-hint">Stored locally for this demo — never share live keys.</span>
+                </div>
+                <button type="submit" class="btn btn-primary"><i data-icon="save"></i>Save payment settings</button>
+              </form>
+            </div>
+          </article>
+
+          <!-- Testimonials -->
+          <article class="a-card">
+            <div class="a-card-head">
+              <div><h2 class="a-card-title">Testimonials</h2><p class="a-card-sub">Approve what appears on the marketing site</p></div>
+            </div>
+            <div class="a-card-body" id="testi-list"></div>
+          </article>
+
+          <!-- Contact inbox -->
+          <article class="a-card">
+            <div class="a-card-head">
+              <div><h2 class="a-card-title">Contact inbox</h2><p class="a-card-sub" id="inbox-count">Messages from the contact form</p></div>
+            </div>
+            <div class="a-card-body is-flush" id="inbox-list"></div>
+          </article>
+
+          <!-- Danger zone -->
+          <article class="a-card danger-card" style="grid-column:1/-1">
+            <div class="a-card-head">
+              <div><h2 class="a-card-title">Danger zone</h2><p class="a-card-sub">Irreversible actions — proceed with care</p></div>
+            </div>
+            <div class="a-card-body">
+              <div class="flag-row">
+                <div>
+                  <div class="flag-name">Reset all demo data</div>
+                  <div class="flag-desc">Removes every Stackly record from this browser (users, projects, templates, payments, settings) and re-seeds the workspace. Your theme preference is kept.</div>
+                </div>
+                <button type="button" class="btn btn-danger" id="danger-reset"><i data-icon="alert-triangle"></i>Reset all demo data</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/validation.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

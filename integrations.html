@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integrations — Stackly | No-Code App Builder</title>
+  <meta name="description" content="Connect Stackly to Stripe, Slack, Shopify, Google Sheets, Zapier, and more — or build your own integration with the REST API and webhooks.">
+  <meta property="og:title" content="Stackly Integrations — Connect Your Favorite Tools">
+  <meta property="og:description" content="Native integrations for payments, messaging, data, and automation. Plus a REST API and webhooks to build anything else.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/templates.css">
+  <style>
+    /* Integrations page: standalone integration cards + code card */
+    .int-card { display: flex; flex-direction: column; height: 100%; }
+    .int-top { display: flex; align-items: flex-start; gap: 14px; margin-bottom: var(--sp-4); }
+    .int-top .ic-logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .int-top .ic-logo svg { width: 22px; height: 22px; }
+    .int-top h3 { font-size: var(--fs-md); margin-bottom: 4px; }
+    .int-status { margin-left: auto; flex-shrink: 0; }
+    .int-card > p { flex: 1; margin-bottom: var(--sp-5); }
+    .int-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .code-card {
+      background: #0B1120;
+      border: 1px solid #24324D;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+    }
+    .code-card-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 18px;
+      border-bottom: 1px solid #24324D;
+      color: #94A3B8;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+    }
+    .code-card pre {
+      margin: 0;
+      padding: 20px 22px;
+      overflow-x: auto;
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: #CBD5E1;
+    }
+    .code-card .ck { color: #CF86C8; }
+    .code-card .cs { color: #6EE7B7; }
+    .code-card .cn { color: #FBBF24; }
+    .code-card .cc { color: #64748B; }
+  </style>
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script src="assets/js/darkmode.js"></script>
+</head>
+<body data-page="integrations">
+  <div id="header-root"></div>
+
+  <main id="main">
+
+    <!-- ================= PAGE HEADER ================= -->
+    <header class="page-header">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="crumb-sep">/</span>
+          <span aria-current="page">Integrations</span>
+        </nav>
+        <h1>Plays nicely with <span class="text-gradient">your entire stack</span></h1>
+        <p>Payments, messaging, spreadsheets, automation — connect them natively in two clicks, or reach 6,000+ more apps through Zapier and webhooks.</p>
+      </div>
+    </header>
+
+    <!-- ================= INTEGRATIONS DIRECTORY ================= -->
+    <section class="section" aria-labelledby="dir-title">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <span class="section-tag"><i data-icon="cloud" style="width:14px;display:inline-flex"></i> Directory</span>
+          <h2 class="section-title" id="dir-title">Native integrations</h2>
+          <p class="section-sub">Every connection is managed for you — OAuth, token refresh, retries, and logs included.</p>
+        </div>
+
+        <div class="market-toolbar" data-aos="fade-up">
+          <label class="search-bar" aria-label="Search integrations">
+            <i data-icon="search"></i>
+            <input type="search" id="int-search" placeholder="Search integrations…" autocomplete="off">
+          </label>
+          <span class="market-count" id="int-count"></span>
+        </div>
+        <div class="cat-pills mb-6" id="int-cats" role="tablist" aria-label="Filter by category" data-aos="fade-up"></div>
+
+        <div class="grid grid-3" id="int-grid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ================= BUILD YOUR OWN ================= -->
+    <section class="section section-alt" aria-labelledby="byo-title">
+      <div class="container">
+        <div class="grid grid-2 items-center gap-6">
+          <div data-aos="fade-right">
+            <span class="section-tag"><i data-icon="code" style="width:14px;display:inline-flex"></i> Build Your Own</span>
+            <h2 class="section-title" id="byo-title">Don't see your tool? <span class="text-gradient">Wire it up yourself.</span></h2>
+            <p class="section-sub" style="margin-inline:0;text-align:left">Every Stackly app exposes a REST API and outbound webhooks. Point any service at your data, or push events — form submits, record changes, publishes — to any endpoint the moment they happen.</p>
+            <ul class="d-grid gap-3 mt-5 mb-6">
+              <li class="d-flex items-center gap-3"><span class="feature-icon" style="width:38px;height:38px;margin:0;border-radius:10px"><i data-icon="check" style="width:16px;display:inline-flex"></i></span><span>REST API with API-key and OAuth 2.0 auth</span></li>
+              <li class="d-flex items-center gap-3"><span class="feature-icon" style="width:38px;height:38px;margin:0;border-radius:10px"><i data-icon="check" style="width:16px;display:inline-flex"></i></span><span>Signed webhooks with automatic retries</span></li>
+              <li class="d-flex items-center gap-3"><span class="feature-icon" style="width:38px;height:38px;margin:0;border-radius:10px"><i data-icon="check" style="width:16px;display:inline-flex"></i></span><span>Sandbox keys and full request logs for debugging</span></li>
+            </ul>
+            <div class="d-flex gap-3 flex-wrap">
+              <a class="btn btn-primary" href="documentation.html">API Documentation <i data-icon="arrow-right"></i></a>
+              <a class="btn btn-secondary" href="contact.html">Request an Integration</a>
+            </div>
+          </div>
+          <div data-aos="fade-left" aria-hidden="true">
+            <div class="code-card">
+              <div class="code-card-bar">
+                <span class="d-flex items-center gap-2"><i data-icon="workflow" style="width:14px;display:inline-flex"></i> POST · webhook payload</span>
+                <span>record.created</span>
+              </div>
+              <pre><code>{
+  <span class="ck">"event"</span>: <span class="cs">"record.created"</span>,
+  <span class="ck">"app"</span>: <span class="cs">"aurora-crm"</span>,
+  <span class="ck">"collection"</span>: <span class="cs">"customers"</span>,
+  <span class="ck">"record"</span>: {
+    <span class="ck">"id"</span>: <span class="cs">"rec_9f2map71"</span>,
+    <span class="ck">"name"</span>: <span class="cs">"Lena Moreau"</span>,
+    <span class="ck">"plan"</span>: <span class="cs">"pro"</span>,
+    <span class="ck">"mrr"</span>: <span class="cn">49</span>
+  },
+  <span class="ck">"timestamp"</span>: <span class="cs">"2026-08-18T09:41:22Z"</span>,
+  <span class="ck">"signature"</span>: <span class="cs">"sha256=4fd1a…"</span> <span class="cc">// verify us</span>
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="section-sm" aria-label="Call to action">
+      <div class="container">
+        <div class="cta-band" data-aos="zoom-in">
+          <h2>Connect your stack in minutes</h2>
+          <p>Create a free workspace, connect your first integration, and watch data flow into your app — before your standup ends.</p>
+          <div class="hero-cta">
+            <a class="btn btn-white btn-lg" href="register.html">Start Building Free <i data-icon="arrow-right"></i></a>
+            <a class="btn btn-outline-white btn-lg" href="documentation.html">Read the Docs</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    /* ---- Integrations directory: render, filter, connect/configure/disconnect ---- */
+    document.addEventListener('DOMContentLoaded', function () {
+      var grid = document.getElementById('int-grid');
+      var catsHost = document.getElementById('int-cats');
+      var searchInput = document.getElementById('int-search');
+      var countEl = document.getElementById('int-count');
+      if (!grid || !window.AppStore) return;
+
+      var ICON_MAP = {
+        'int-google': 'google',
+        'int-slack': 'chat',
+        'int-stripe': 'credit-card',
+        'int-mailchimp': 'mail',
+        'int-shopify': 'cart',
+        'int-zapier': 'zap',
+        'int-sheets': 'table',
+        'int-rest': 'code',
+        'int-webhooks': 'workflow',
+        'int-razor': 'dollar'
+      };
+      var state = { q: '', cat: 'All' };
+
+      /* Dark icon on very light brand colors (e.g. Mailchimp yellow) */
+      function logoFg(hex) {
+        var m = /^#?([0-9a-f]{6})$/i.exec(hex || '');
+        if (!m) return '#fff';
+        var n = parseInt(m[1], 16);
+        var lum = 0.299 * (n >> 16) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255);
+        return lum > 175 ? '#1E293B' : '#fff';
+      }
+
+      function esc(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+      }
+
+      function categories() {
+        var cats = ['All'];
+        AppStore.getIntegrations().forEach(function (i) {
+          if (cats.indexOf(i.category) === -1) cats.push(i.category);
+        });
+        return cats;
+      }
+
+      function filtered() {
+        var q = state.q.trim().toLowerCase();
+        return AppStore.getIntegrations().filter(function (i) {
+          var matchQ = !q || i.name.toLowerCase().indexOf(q) !== -1 || i.desc.toLowerCase().indexOf(q) !== -1;
+          var matchC = state.cat === 'All' || i.category === state.cat;
+          return matchQ && matchC;
+        });
+      }
+
+      function cardHTML(i) {
+        var icon = ICON_MAP[i.id] || 'cloud';
+        var actions = i.connected
+          ? '<button class="btn btn-secondary btn-sm" type="button" data-action="configure" data-id="' + i.id + '"><i data-icon="settings"></i> Configure</button>' +
+            '<button class="btn btn-ghost btn-sm" type="button" data-action="disconnect" data-id="' + i.id + '" style="color:var(--danger)">Disconnect</button>'
+          : '<button class="btn btn-primary btn-sm" type="button" data-action="connect" data-id="' + i.id + '"><i data-icon="plus"></i> Connect</button>';
+        return (
+          '<article class="card card-hover int-card">' +
+            '<div class="int-top">' +
+              '<span class="ic-logo" style="background:' + esc(i.color) + ';color:' + logoFg(i.color) + '" aria-hidden="true"><i data-icon="' + icon + '"></i></span>' +
+              '<div><h3>' + esc(i.name) + '</h3><span class="badge badge-neutral">' + esc(i.category) + '</span></div>' +
+              (i.connected ? '<span class="badge badge-success int-status"><i data-icon="check" style="width:12px;display:inline-flex"></i> Connected</span>' : '') +
+            '</div>' +
+            '<p class="text-sm text-secondary-c">' + esc(i.desc) + '</p>' +
+            '<div class="int-actions">' + actions + '</div>' +
+          '</article>'
+        );
+      }
+
+      function render() {
+        var list = filtered();
+        var total = AppStore.getIntegrations().length;
+        if (list.length) {
+          grid.innerHTML = list.map(cardHTML).join('');
+        } else {
+          grid.innerHTML =
+            '<div class="empty-state" style="grid-column:1/-1">' +
+              '<i data-icon="search" style="width:38px;display:inline-flex"></i>' +
+              '<h3 class="text-md mt-3 mb-2">No integrations found</h3>' +
+              '<p class="text-sm text-secondary-c mb-4">Nothing matches "' + esc(state.q) + '". Try another name or category.</p>' +
+              '<button class="btn btn-secondary btn-sm" type="button" id="int-reset">Clear filters</button>' +
+            '</div>';
+          var reset = document.getElementById('int-reset');
+          if (reset) reset.addEventListener('click', function () {
+            state.q = '';
+            state.cat = 'All';
+            searchInput.value = '';
+            renderCats();
+            render();
+          });
+        }
+        Icons.inject(grid);
+        if (countEl) countEl.innerHTML = 'Showing <b>' + list.length + '</b> of ' + total + ' integrations';
+      }
+
+      function renderCats() {
+        catsHost.innerHTML = categories().map(function (c) {
+          return '<button class="cat-pill' + (state.cat === c ? ' is-active' : '') + '" type="button" data-cat="' + esc(c) + '">' + esc(c) + '</button>';
+        }).join('');
+      }
+
+      catsHost.addEventListener('click', function (e) {
+        var pill = e.target.closest('[data-cat]');
+        if (!pill) return;
+        state.cat = pill.dataset.cat;
+        renderCats();
+        render();
+      });
+
+      searchInput.addEventListener('input', function () {
+        state.q = searchInput.value;
+        render();
+      });
+
+      /* ---- Card actions ---- */
+      function findIntegration(id) {
+        return AppStore.getIntegrations().find(function (i) { return i.id === id; });
+      }
+
+      function connect(item) {
+        if (!AppStore.auth.isLoggedIn()) {
+          Modal.confirm({
+            title: 'Sign in to connect',
+            message: 'Connecting ' + item.name + ' links it to your workspace, so you need an Stackly account first. Sign in or create a free account to continue.',
+            okText: 'Sign In',
+            cancelText: 'Not now',
+            onConfirm: function () { window.location.href = 'login.html'; }
+          });
+          return;
+        }
+        AppStore.setIntegration(item.id, true);
+        render();
+        Toast.success(item.name + ' is now connected to your workspace.', 'Integration connected');
+      }
+
+      function disconnect(item) {
+        Modal.confirm({
+          title: 'Disconnect ' + item.name + '?',
+          message: 'Workflows and data bindings that use ' + item.name + ' will stop running until you reconnect it. Your historical data is kept.',
+          okText: 'Disconnect',
+          danger: true,
+          onConfirm: function () {
+            AppStore.setIntegration(item.id, false);
+            render();
+            Toast.warning(item.name + ' has been disconnected.', 'Integration removed');
+          }
+        });
+      }
+
+      function configure(item) {
+        var backdrop = Modal.custom({
+          title: 'Configure ' + item.name,
+          size: 'lg',
+          bodyHTML:
+            '<div class="form-group">' +
+              '<label class="form-label" for="cfg-key">API key</label>' +
+              '<input class="form-control" id="cfg-key" type="text" value="af_live_••••••••••4Kd2" readonly>' +
+              '<span class="form-hint">Managed automatically — rotate it from workspace settings.</span>' +
+            '</div>' +
+            '<div class="form-group">' +
+              '<label class="form-label" for="cfg-env">Environment</label>' +
+              '<select class="form-control" id="cfg-env">' +
+                '<option>Production</option><option>Sandbox / Test</option>' +
+              '</select>' +
+            '</div>' +
+            '<div class="form-group">' +
+              '<span class="form-label">Send events</span>' +
+              '<div class="d-grid gap-3 mt-2">' +
+                '<label class="switch"><input type="checkbox" checked><span class="switch-track"></span><span class="switch-label">Form submissions</span></label>' +
+                '<label class="switch"><input type="checkbox" checked><span class="switch-track"></span><span class="switch-label">Record created / updated</span></label>' +
+                '<label class="switch"><input type="checkbox"><span class="switch-track"></span><span class="switch-label">App published</span></label>' +
+              '</div>' +
+            '</div>',
+          footHTML:
+            '<button class="btn btn-secondary" type="button" data-modal-close>Cancel</button>' +
+            '<button class="btn btn-primary" type="button" data-cfg-save>Save changes</button>'
+        });
+        Icons.inject(backdrop);
+        backdrop.querySelector('[data-cfg-save]').addEventListener('click', function () {
+          Modal.close(backdrop);
+          Toast.success(item.name + ' settings saved.', 'Configuration updated');
+        });
+      }
+
+      grid.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-action]');
+        if (!btn) return;
+        var item = findIntegration(btn.dataset.id);
+        if (!item) return;
+        if (btn.dataset.action === 'connect') connect(item);
+        else if (btn.dataset.action === 'disconnect') disconnect(item);
+        else if (btn.dataset.action === 'configure') configure(item);
+      });
+
+      renderCats();
+      render();
+    });
+  </script>
+</body>
+</html>

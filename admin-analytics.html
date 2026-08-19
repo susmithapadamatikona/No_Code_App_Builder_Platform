@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin · Analytics — Stackly | No-Code App Builder</title>
+  <meta name="description" content="Deep platform analytics for Stackly — user growth, project creation, publishing volume, revenue, plan splits, and top template performance.">
+  <meta property="og:title" content="Admin · Analytics — Stackly">
+  <meta property="og:description" content="Platform-wide analytics for Stackly administrators.">
+  <meta property="og:type" content="website">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/admin.css">
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script src="assets/js/darkmode.js"></script>
+</head>
+<body data-admin="analytics">
+
+  <div class="admin-layout">
+    <aside id="admin-sidebar" aria-label="Admin navigation"></aside>
+    <div class="admin-main">
+      <header id="admin-topbar"></header>
+      <main id="main" class="admin-content">
+
+        <div class="admin-toolbar">
+          <p class="table-foot-info" style="margin:0">Platform performance across acquisition, building, publishing, and revenue.</p>
+          <div class="toolbar-spacer"></div>
+          <div class="tabs" id="an-period" role="tablist" aria-label="Reporting period">
+            <button type="button" class="tab-btn" data-period="30d" role="tab" aria-selected="false">30 days</button>
+            <button type="button" class="tab-btn" data-period="90d" role="tab" aria-selected="false">90 days</button>
+            <button type="button" class="tab-btn is-active" data-period="12mo" role="tab" aria-selected="true">12 months</button>
+          </div>
+        </div>
+
+        <section class="charts-grid" aria-label="Analytics charts">
+          <article class="a-card">
+            <div class="a-card-head">
+              <div><h2 class="a-card-title">Monthly users</h2><p class="a-card-sub">Total vs active accounts</p></div>
+              <button type="button" class="a-kebab" aria-label="Chart options" data-demo-toast="Chart options (export, compare, annotate) are a demo interaction."><i data-icon="menu"></i></button>
+            </div>
+            <div class="a-card-body"><div id="an-users"></div></div>
+          </article>
+          <article class="a-card">
+            <div class="a-card-head">
+              <div><h2 class="a-card-title">Project creation</h2><p class="a-card-sub">New apps started in the builder</p></div>
+              <button type="button" class="a-kebab" aria-label="Chart options" data-demo-toast="Chart options (export, compare, annotate) are a demo interaction."><i data-icon="menu"></i></button>
+            </div>
+            <div class="a-card-body"><div id="an-projects"></div></div>
+          </article>
+          <article class="a-card">
+            <div class="a-card-head">
+              <div><h2 class="a-card-title">Published apps</h2><p class="a-card-sub">Apps shipped to live domains</p></div>
+              <button type="button" class="a-kebab" aria-label="Chart options" data-demo-toast="Chart options (export, compare, annotate) are a demo interaction."><i data-icon="menu"></i></button>
+            </div>
+            <div class="a-card-body"><div id="an-published"></div></div>
+          </article>
+          <article class="a-card">
+            <div class="a-card-head">
+              <div><h2 class="a-card-title">Revenue</h2><p class="a-card-sub">Subscriptions + template sales</p></div>
+              <button type="button" class="a-kebab" aria-label="Chart options" data-demo-toast="Chart options (export, compare, annotate) are a demo interaction."><i data-icon="menu"></i></button>
+            </div>
+            <div class="a-card-body"><div id="an-revenue"></div></div>
+          </article>
+          <article class="a-card">
+            <div class="a-card-head">
+              <div><h2 class="a-card-title">Subscription split</h2><p class="a-card-sub">Accounts by plan</p></div>
+              <button type="button" class="a-kebab" aria-label="Chart options" data-demo-toast="Chart options (export, compare, annotate) are a demo interaction."><i data-icon="menu"></i></button>
+            </div>
+            <div class="a-card-body"><div id="an-plans"></div></div>
+          </article>
+          <article class="a-card">
+            <div class="a-card-head">
+              <div><h2 class="a-card-title">Template usage</h2><p class="a-card-sub">Top 5 categories by uses</p></div>
+              <button type="button" class="a-kebab" aria-label="Chart options" data-demo-toast="Chart options (export, compare, annotate) are a demo interaction."><i data-icon="menu"></i></button>
+            </div>
+            <div class="a-card-body"><div id="an-categories"></div></div>
+          </article>
+          <article class="a-card">
+            <div class="a-card-head">
+              <div><h2 class="a-card-title">Customer growth</h2><p class="a-card-sub">Paying customers over time</p></div>
+              <button type="button" class="a-kebab" aria-label="Chart options" data-demo-toast="Chart options (export, compare, annotate) are a demo interaction."><i data-icon="menu"></i></button>
+            </div>
+            <div class="a-card-body"><div id="an-growth"></div></div>
+          </article>
+          <article class="a-card conv-card">
+            <span class="stat-icon tint-green" style="width:44px;height:44px;border-radius:12px;display:grid;place-items:center"><i data-icon="trend-up"></i></span>
+            <div>
+              <div class="conv-value">3.8%</div>
+              <div class="stat-label">Visitor → paid conversion rate</div>
+            </div>
+            <div class="progress" aria-label="Conversion progress toward 10% goal"><div class="progress-bar is-success" id="conv-bar" style="width:0"></div></div>
+            <p class="conv-note">Up 0.6 points vs the previous period. Goal for Q4 2026 is 5.0%.</p>
+          </article>
+        </section>
+
+        <section aria-label="Top templates">
+          <article class="a-card">
+            <div class="a-card-head">
+              <div><h2 class="a-card-title">Top templates</h2><p class="a-card-sub">Ranked by real marketplace usage</p></div>
+              <a class="btn btn-ghost btn-sm" href="admin-templates.html">Manage templates <i data-icon="arrow-right"></i></a>
+            </div>
+            <div class="a-card-body is-flush">
+              <div class="table-wrap" id="an-top-templates" style="border:none;box-shadow:none;border-radius:0"></div>
+            </div>
+          </article>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/validation.js"></script>
+  <script src="assets/js/charts.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

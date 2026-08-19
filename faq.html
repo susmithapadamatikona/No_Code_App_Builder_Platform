@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — Stackly | No-Code App Builder</title>
+  <meta name="description" content="Every Stackly question answered: the visual builder, billing and plans, templates, publishing, custom domains, and account management. Searchable, always current.">
+  <meta property="og:title" content="Stackly FAQ — 30+ Questions Answered">
+  <meta property="og:description" content="Searchable answers about the Stackly builder, billing, templates, publishing, and your account. Still stuck? Docs and support are one click away.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script src="assets/js/darkmode.js"></script>
+  <style>
+    /* FAQ page extras */
+    .faq-search { max-width: 560px; margin: var(--sp-5) auto 0; }
+    .faq-tabs { justify-content: center; flex-wrap: wrap; }
+    /* While a search query is active every panel is shown and its category label appears */
+    .faq-wrap.is-searching .faq-tabs { display: none; }
+    .faq-wrap.is-searching .tab-panel { display: block; }
+    .faq-cat-label {
+      display: none; font-size: var(--fs-xs); font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.07em; color: var(--primary); margin: var(--sp-5) 0 var(--sp-3);
+    }
+    .faq-wrap.is-searching .faq-cat-label { display: block; }
+    .faq-wrap.is-searching .tab-panel.has-no-match { display: none; }
+    .accordion-item[hidden] { display: none; }
+  </style>
+</head>
+<body data-page="faq">
+  <div id="header-root"></div>
+
+  <main id="main">
+
+    <!-- ================= PAGE HEADER ================= -->
+    <header class="page-header">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><span class="crumb-sep">/</span><span aria-current="page">FAQ</span>
+        </nav>
+        <h1>How can we <span class="text-gradient">help?</span></h1>
+        <p>Search 30+ answers about the builder, billing, templates, publishing, and your account.</p>
+        <div class="search-bar faq-search">
+          <i data-icon="search"></i>
+          <label class="sr-only" for="faq-search-input">Search the FAQ</label>
+          <input type="search" id="faq-search-input" placeholder="Search questions… e.g. domain, refund, export" autocomplete="off">
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= FAQ ================= -->
+    <section class="section" aria-labelledby="faq-list-title">
+      <div class="container" style="max-width:860px">
+        <h2 class="sr-only" id="faq-list-title">Frequently asked questions</h2>
+        <div class="faq-wrap" id="faq-wrap" data-tabs>
+          <div class="tabs faq-tabs mb-5" role="tablist" aria-label="FAQ categories">
+            <button class="tab-btn is-active" type="button" data-tab-target="#faq-general" role="tab" aria-selected="true">General</button>
+            <button class="tab-btn" type="button" data-tab-target="#faq-builder" role="tab" aria-selected="false">Builder</button>
+            <button class="tab-btn" type="button" data-tab-target="#faq-billing" role="tab" aria-selected="false">Billing</button>
+            <button class="tab-btn" type="button" data-tab-target="#faq-templates" role="tab" aria-selected="false">Templates</button>
+            <button class="tab-btn" type="button" data-tab-target="#faq-publishing" role="tab" aria-selected="false">Publishing</button>
+            <button class="tab-btn" type="button" data-tab-target="#faq-account" role="tab" aria-selected="false">Account</button>
+          </div>
+
+          <div>
+            <!-- ============ GENERAL ============ -->
+            <div class="tab-panel is-active" id="faq-general">
+              <p class="faq-cat-label">General</p>
+              <div class="accordion">
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">What exactly is Stackly?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Stackly is a visual platform for building real web applications — CRMs, stores, portals, dashboards — without writing code. You drag components onto a canvas, connect them to a built-in database, and publish to the web with one click.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">Do I need any technical background to use it?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">No. If you can use a slide editor, you can use Stackly. Most builders ship their first app within a day. Optional custom code blocks exist on Pro for people who want them — they're never required.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">What kinds of apps can I build?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Anything data-driven: internal tools, client portals, booking systems, storefronts, directories, event sites, and MVPs. Browse the <a href="templates.html" class="text-primary-c fw-600">template marketplace</a> for 120+ real examples you can start from.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">Is Stackly good for a real production app, or just prototypes?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Production, absolutely. Published apps run on a global edge network with automatic SSL, 99.9% uptime SLA on Business plans, and 132,000+ live apps to prove it — including revenue-generating stores and mission-critical internal tools.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">How is Stackly different from website builders?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Website builders make pages; Stackly makes applications. You get a real database with relations and permissions, logged-in users and roles, workflow automation, and components that read and write live data — not just static content blocks.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">Where can I learn Stackly quickly?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Start with the guided tour on the <a href="how-it-works.html" class="text-primary-c fw-600">How It Works</a> page, then the <a href="documentation.html" class="text-primary-c fw-600">documentation</a> — it includes a 20-minute "first app" tutorial. The <a href="blog.html" class="text-primary-c fw-600">blog</a> publishes build-along guides twice a month.</div></div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ============ BUILDER ============ -->
+            <div class="tab-panel" id="faq-builder">
+              <p class="faq-cat-label">Builder</p>
+              <div class="accordion">
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">How does the drag &amp; drop canvas work?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Pick any of 120+ components from the left panel — tables, forms, charts, buttons, navbars — and drop them onto the canvas. Components snap to a responsive grid, and the properties panel on the right controls typography, color, spacing, and data bindings.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">Can I undo mistakes or restore an old version?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Yes. Every action is undoable (Ctrl/Cmd+Z), and the builder keeps automatic version snapshots — 7 days on Free, 90 days on Pro, unlimited on Business. You can name a version before a big change and restore it any time.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">Will my app work on mobile?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Every layout is responsive by default. Use the device preview toolbar (desktop, tablet, phone) to check each breakpoint, and override spacing or visibility per device when you need fine control.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">How do I connect my data?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Three ways: the built-in database (collections, relations, permissions — no SQL), a spreadsheet import, or an external REST API on Pro and above. Once connected, drag a table or chart onto the canvas and pick the collection to bind it.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">Can I add custom code if I want to?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Pro and Business plans include optional code blocks for custom HTML, CSS, and JavaScript, plus custom API calls in workflows. They're sandboxed so a typo can't break the rest of your app — and completely optional.</div></div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ============ BILLING ============ -->
+            <div class="tab-panel" id="faq-billing">
+              <p class="faq-cat-label">Billing</p>
+              <div class="accordion">
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">What does each plan cost?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Free is $0 forever. Pro is $19/month (or $15/month billed yearly). Business is $49/month (or $39/month billed yearly). The <a href="pricing.html" class="text-primary-c fw-600">pricing page</a> has a full side-by-side comparison.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">Is there a free trial of the paid plans?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Yes — 14 days of full Pro or Business features, no credit card required. When the trial ends you keep everything you built; features above your plan just pause until you subscribe.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">Can I get a refund?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Every new subscription has a 30-day money-back guarantee, no questions asked. After that, cancelling stops future charges and your plan stays active until the end of the current billing period.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">How do upgrades and downgrades work mid-cycle?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Upgrades apply instantly and we prorate the remainder of your cycle. Downgrades take effect at the next renewal so you never lose time you've paid for. Apps above the new plan's limits are paused, never deleted.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">Do you offer invoicing or purchase orders?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Business plans on yearly billing can pay by invoice or bank transfer with NET-30 terms. <a href="contact.html" class="text-primary-c fw-600">Contact sales</a> and we'll set it up — usually within one business day.</div></div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ============ TEMPLATES ============ -->
+            <div class="tab-panel" id="faq-templates">
+              <p class="faq-cat-label">Templates</p>
+              <div class="accordion">
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">What's included in a template?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Everything a working app needs: designed pages, wired-up components, a sample data model, and placeholder content. Pick one, swap in your data and branding, and you're most of the way to launch.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">What's the difference between free and premium templates?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Free templates cover common starting points and are available on every plan. Premium templates are deeper builds — multi-page apps with advanced components and complete data models — included with Pro and Business subscriptions.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">Can I customize every part of a template?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Yes — a template is just a head start, not a cage. Every page, component, style, and data field is fully editable in the builder, exactly as if you'd built it from a blank canvas.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">Can I sell my own templates on the marketplace?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Yes. The creator program pays a 70% revenue share, and top creators earn four figures monthly. Apply from the <a href="templates.html" class="text-primary-c fw-600">templates page</a>; our team reviews new submissions weekly for quality.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">Can I switch templates after I've started building?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Templates are a starting point, so there's no live "re-skin" of an existing project. The usual path is to create a new project from the other template and copy pages or components across — both take just a few clicks.</div></div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ============ PUBLISHING ============ -->
+            <div class="tab-panel" id="faq-publishing">
+              <p class="faq-cat-label">Publishing</p>
+              <div class="accordion">
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">How do I publish my app?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">One click. Hit Publish in the builder and your app deploys to our global edge network in under a minute, with SSL configured automatically. Every publish creates a version you can roll back to instantly.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">Can I use my own custom domain?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Free apps publish to yourapp.appflow.site. Pro connects one custom domain per project; Business connects unlimited domains. Point a CNAME record at us and SSL certificates are issued and renewed automatically.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">How fast and reliable is hosting?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Apps are served from 40+ edge locations worldwide with median response times under 100ms. We've maintained 99.97% measured uptime over the past year, and Business plans carry a contractual 99.9% SLA.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">Can I unpublish or roll back a bad release?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Yes to both. Unpublish takes an app offline immediately (a friendly holding page appears instead). Roll back restores any previous published version in seconds — no rebuild required.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">Is my published app SEO-friendly?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Yes. Pages render server-side with clean URLs, editable titles and meta descriptions, automatic sitemaps, and fast Core Web Vitals scores. Pro adds Open Graph controls and redirect management.</div></div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ============ ACCOUNT ============ -->
+            <div class="tab-panel" id="faq-account">
+              <p class="faq-cat-label">Account</p>
+              <div class="accordion">
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">How do I reset my password?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Use the <a href="forgot-password.html" class="text-primary-c fw-600">forgot password</a> page and we'll email you a secure reset link that's valid for 60 minutes. If the email doesn't arrive, check spam or contact support.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">Can I invite teammates to my workspace?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Team collaboration is a Business feature: invite unlimited members with Owner, Editor, or Viewer roles, edit together in real time, and leave comments on any component. Free and Pro are single-seat plans.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">How do I export or back up my data?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">Your data is yours. Export any collection to CSV or JSON from the data panel at any time, on any plan. Business workspaces can also schedule automatic weekly exports to cloud storage.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">Is my data secure with Stackly?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">All data is encrypted in transit (TLS 1.3) and at rest (AES-256), with daily backups retained for 30 days. Business plans add SSO, audit logs, and role-based access controls. We never sell or share your data.</div></div></div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-trigger" aria-expanded="false">How do I delete my account?
+                    <span class="accordion-icon"><i data-icon="plus"></i></span></button>
+                  <div class="accordion-panel"><div><div class="accordion-body">From Settings → Account → Delete account. We'll ask you to confirm, then permanently erase your projects and personal data within 30 days, in line with GDPR and CCPA. Published apps go offline immediately.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Search empty state -->
+          <div class="empty-state" id="faq-empty" hidden>
+            <div class="empty-icon"><i data-icon="search"></i></div>
+            <h3>No matching questions</h3>
+            <p>Try a different keyword — or ask us directly, we answer everything.</p>
+            <a class="btn btn-primary" href="contact.html">Ask support <i data-icon="arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= STILL STUCK ================= -->
+    <section class="section section-alt" aria-labelledby="stuck-title">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <span class="section-tag"><i data-icon="chat" style="width:14px;display:inline-flex"></i> Still Stuck?</span>
+          <h2 class="section-title" id="stuck-title">Two more ways to get unstuck</h2>
+        </div>
+        <div class="grid grid-2" data-aos-stagger>
+          <article class="card card-hover text-center" style="padding:var(--sp-7) var(--sp-5)">
+            <div class="feature-icon" style="margin-left:auto;margin-right:auto"><i data-icon="book"></i></div>
+            <h3 class="text-md mb-2">Read the documentation</h3>
+            <p class="text-sm text-secondary-c mb-4">Step-by-step guides, the full component reference, and a 20-minute "first app" tutorial.</p>
+            <a class="btn btn-secondary" href="documentation.html">Open the docs <i data-icon="arrow-right"></i></a>
+          </article>
+          <article class="card card-hover text-center" style="padding:var(--sp-7) var(--sp-5)">
+            <div class="feature-icon" style="margin-left:auto;margin-right:auto;background:var(--success-bg);color:var(--success)"><i data-icon="mail"></i></div>
+            <h3 class="text-md mb-2">Talk to a human</h3>
+            <p class="text-sm text-secondary-c mb-4">94% of support threads get a first reply within two hours during business time.</p>
+            <a class="btn btn-primary" href="contact.html">Contact support <i data-icon="arrow-right"></i></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    /* ---- FAQ: live search across all categories ---- */
+    document.addEventListener('DOMContentLoaded', function () {
+      var input = document.getElementById('faq-search-input');
+      var wrap = document.getElementById('faq-wrap');
+      var emptyState = document.getElementById('faq-empty');
+      if (!input || !wrap) return;
+
+      var items = Array.prototype.slice.call(wrap.querySelectorAll('.accordion-item'));
+      /* cache searchable text once */
+      items.forEach(function (item) {
+        item.dataset.search = item.textContent.toLowerCase().replace(/\s+/g, ' ');
+      });
+
+      function filter() {
+        var q = input.value.trim().toLowerCase();
+        var searching = q.length > 0;
+        wrap.classList.toggle('is-searching', searching);
+
+        var total = 0;
+        items.forEach(function (item) {
+          var match = !searching || item.dataset.search.indexOf(q) !== -1;
+          item.hidden = !match;
+          if (match) total++;
+        });
+
+        /* hide category labels/panels that have no visible items while searching */
+        wrap.querySelectorAll('.tab-panel').forEach(function (panel) {
+          var any = panel.querySelectorAll('.accordion-item:not([hidden])').length > 0;
+          panel.classList.toggle('has-no-match', searching && !any);
+        });
+
+        emptyState.hidden = !(searching && total === 0);
+      }
+
+      var t;
+      input.addEventListener('input', function () {
+        clearTimeout(t);
+        t = setTimeout(filter, 120);
+      });
+      /* handle the native clear button on type=search */
+      input.addEventListener('search', filter);
+    });
+  </script>
+</body>
+</html>

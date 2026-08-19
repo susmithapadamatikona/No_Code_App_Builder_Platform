@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solutions — Stackly | No-Code App Builder</title>
+  <meta name="description" content="Stackly solutions for startups, agencies, e-commerce, healthcare, education, and enterprise ops — plus plans that fit solo makers to large teams.">
+  <meta property="og:title" content="Stackly Solutions — Built for Your Industry and Team">
+  <meta property="og:description" content="See how startups, agencies, stores, clinics, schools, and ops teams ship real applications on Stackly without writing code.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <style>
+    /* Solutions page: checklists inside industry cards */
+    .sol-card { display: flex; flex-direction: column; height: 100%; }
+    .sol-list { display: grid; gap: 9px; margin: var(--sp-4) 0 var(--sp-5); }
+    .sol-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-size: var(--fs-sm);
+      color: var(--text-secondary);
+    }
+    .sol-list svg { width: 16px; height: 16px; color: var(--success); flex-shrink: 0; margin-top: 2px; }
+    .sol-card .card-link { margin-top: auto; }
+    .team-col { text-align: center; }
+    .team-col .feature-icon { margin-inline: auto; }
+  </style>
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script src="assets/js/darkmode.js"></script>
+</head>
+<body data-page="solutions">
+  <div id="header-root"></div>
+
+  <main id="main">
+
+    <!-- ================= PAGE HEADER ================= -->
+    <header class="page-header" style="--ph-photo:url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1920&h=640&q=80')">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="crumb-sep">/</span>
+          <span aria-current="page">Solutions</span>
+        </nav>
+        <h1>The right solution for <span class="text-gradient">every kind of team</span></h1>
+        <p>Whether you're validating a startup idea, running client projects, or replacing enterprise spreadsheets — there's a proven Stackly playbook for your world.</p>
+      </div>
+    </header>
+
+    <!-- ================= BY INDUSTRY ================= -->
+    <section class="section" aria-labelledby="industry-title">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <span class="section-tag"><i data-icon="briefcase" style="width:14px;display:inline-flex"></i> Solutions by Industry</span>
+          <h2 class="section-title" id="industry-title">Purpose-built for your market</h2>
+          <p class="section-sub">Six playbooks, each with matching templates, components, and integrations ready to go.</p>
+        </div>
+        <div class="grid grid-3" data-aos-stagger>
+          <article class="card card-hover sol-card">
+            <div class="feature-icon tint-blue" style="background:var(--info-bg);color:var(--info)"><i data-icon="rocket"></i></div>
+            <h3 class="text-md mb-2">Startups</h3>
+            <p class="text-sm text-secondary-c">Runway burns while your MVP sits in a dev backlog. Ship a real, testable product this week — then iterate daily on live user feedback instead of waiting on sprints.</p>
+            <ul class="sol-list">
+              <li><i data-icon="check-circle"></i> Launch an MVP in a weekend, not a quarter</li>
+              <li><i data-icon="check-circle"></i> Built-in auth, payments, and analytics from day one</li>
+              <li><i data-icon="check-circle"></i> Pivot the product without rewriting a codebase</li>
+            </ul>
+            <a class="card-link fw-600 text-sm" href="templates.html" style="color:var(--primary)">Startup templates <i data-icon="arrow-right" style="width:14px;display:inline-flex"></i></a>
+          </article>
+
+          <article class="card card-hover sol-card">
+            <div class="feature-icon tint-orange" style="background:var(--warning-bg);color:var(--warning)"><i data-icon="palette"></i></div>
+            <h3 class="text-md mb-2">Agencies</h3>
+            <p class="text-sm text-secondary-c">Custom builds eat margins and every client wants it yesterday. Deliver branded portals and web apps in days, then manage every client workspace from one dashboard.</p>
+            <ul class="sol-list">
+              <li><i data-icon="check-circle"></i> White-label apps under your agency's brand</li>
+              <li><i data-icon="check-circle"></i> Duplicate proven builds across clients in one click</li>
+              <li><i data-icon="check-circle"></i> Client-safe editor roles for handoff without risk</li>
+            </ul>
+            <a class="card-link fw-600 text-sm" href="templates.html" style="color:var(--primary)">Agency templates <i data-icon="arrow-right" style="width:14px;display:inline-flex"></i></a>
+          </article>
+
+          <article class="card card-hover sol-card">
+            <div class="feature-icon tint-green" style="background:var(--success-bg);color:var(--success)"><i data-icon="cart"></i></div>
+            <h3 class="text-md mb-2">E-Commerce</h3>
+            <p class="text-sm text-secondary-c">Generic storefronts can't keep up with your catalog, bundles, and promos. Build a store that works exactly like you sell — with Stripe and Shopify wired in natively.</p>
+            <ul class="sol-list">
+              <li><i data-icon="check-circle"></i> Product catalogs, carts, and checkout flows</li>
+              <li><i data-icon="check-circle"></i> Live inventory sync from Shopify or Sheets</li>
+              <li><i data-icon="check-circle"></i> Abandoned-cart emails via workflow automation</li>
+            </ul>
+            <a class="card-link fw-600 text-sm" href="templates.html" style="color:var(--primary)">E-commerce templates <i data-icon="arrow-right" style="width:14px;display:inline-flex"></i></a>
+          </article>
+
+          <article class="card card-hover sol-card">
+            <div class="feature-icon tint-red" style="background:var(--danger-bg);color:var(--danger)"><i data-icon="heart"></i></div>
+            <h3 class="text-md mb-2">Healthcare</h3>
+            <p class="text-sm text-secondary-c">Paper intake forms and phone-tag scheduling frustrate patients and staff alike. Digitize bookings, intake, and follow-ups with role-based access protecting every record.</p>
+            <ul class="sol-list">
+              <li><i data-icon="check-circle"></i> Appointment booking with automated reminders</li>
+              <li><i data-icon="check-circle"></i> Secure patient intake forms and portals</li>
+              <li><i data-icon="check-circle"></i> Row-level permissions for staff and practitioners</li>
+            </ul>
+            <a class="card-link fw-600 text-sm" href="templates.html" style="color:var(--primary)">Healthcare templates <i data-icon="arrow-right" style="width:14px;display:inline-flex"></i></a>
+          </article>
+
+          <article class="card card-hover sol-card">
+            <div class="feature-icon" style="background:var(--light-purple);color:var(--secondary)"><i data-icon="book"></i></div>
+            <h3 class="text-md mb-2">Education</h3>
+            <p class="text-sm text-secondary-c">Course content lives in one tool, enrollment in another, grades in a third. Bring classes, cohorts, and communication into a single portal students actually use.</p>
+            <ul class="sol-list">
+              <li><i data-icon="check-circle"></i> Course catalogs with enrollment and payments</li>
+              <li><i data-icon="check-circle"></i> Student dashboards with progress tracking</li>
+              <li><i data-icon="check-circle"></i> Announcements and schedules synced to calendars</li>
+            </ul>
+            <a class="card-link fw-600 text-sm" href="templates.html" style="color:var(--primary)">Education templates <i data-icon="arrow-right" style="width:14px;display:inline-flex"></i></a>
+          </article>
+
+          <article class="card card-hover sol-card">
+            <div class="feature-icon tint-blue" style="background:var(--info-bg);color:var(--info)"><i data-icon="settings"></i></div>
+            <h3 class="text-md mb-2">Enterprise Ops</h3>
+            <p class="text-sm text-secondary-c">Critical processes run on fragile spreadsheets and email chains. Replace them with governed internal tools — approvals, trackers, and dashboards IT can actually sign off on.</p>
+            <ul class="sol-list">
+              <li><i data-icon="check-circle"></i> Approval workflows with full audit trails</li>
+              <li><i data-icon="check-circle"></i> SSO, roles, and centralized user management</li>
+              <li><i data-icon="check-circle"></i> Live KPI dashboards from your existing APIs</li>
+            </ul>
+            <a class="card-link fw-600 text-sm" href="templates.html" style="color:var(--primary)">Internal tool templates <i data-icon="arrow-right" style="width:14px;display:inline-flex"></i></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BY TEAM SIZE ================= -->
+    <section class="section section-alt" aria-labelledby="team-title">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <span class="section-tag"><i data-icon="users" style="width:14px;display:inline-flex"></i> Solutions by Team Size</span>
+          <h2 class="section-title" id="team-title">Scales from one maker to hundreds</h2>
+          <p class="section-sub">Start solo on the Free plan and grow into collaboration, governance, and scale — without ever migrating platforms.</p>
+        </div>
+        <div class="grid grid-3" data-aos-stagger>
+          <article class="card card-hover team-col">
+            <div class="feature-icon"><i data-icon="user"></i></div>
+            <h3 class="text-md mb-2">Solo Makers</h3>
+            <p class="text-sm text-secondary-c mb-4">Indie hackers and freelancers shipping fast. Free to start, Pro when clients arrive — everything you need is in one subscription with no infrastructure to babysit.</p>
+            <p class="text-xs fw-600 text-muted-c mb-4">Free &amp; Pro plans · 1 builder</p>
+            <a class="btn btn-secondary btn-sm" href="pricing.html">Compare plans</a>
+          </article>
+          <article class="card card-hover team-col">
+            <div class="feature-icon"><i data-icon="users"></i></div>
+            <h3 class="text-md mb-2">Growing Teams</h3>
+            <p class="text-sm text-secondary-c mb-4">Real-time co-editing, comments, and roles keep designers, marketers, and ops building together without stepping on each other. Version history catches every mistake.</p>
+            <p class="text-xs fw-600 text-muted-c mb-4">Business plan · 2–25 builders</p>
+            <a class="btn btn-secondary btn-sm" href="pricing.html">Compare plans</a>
+          </article>
+          <article class="card card-hover team-col">
+            <div class="feature-icon"><i data-icon="shield"></i></div>
+            <h3 class="text-md mb-2">Enterprise</h3>
+            <p class="text-sm text-secondary-c mb-4">SSO enforcement, granular permissions, audit logs, and a dedicated success manager. Roll out no-code across departments with the guardrails IT requires.</p>
+            <p class="text-xs fw-600 text-muted-c mb-4">Custom pricing · 25+ builders</p>
+            <a class="btn btn-secondary btn-sm" href="contact.html">Talk to sales</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TESTIMONIALS ================= -->
+    <section class="section" aria-labelledby="sol-tst-title">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <span class="section-tag"><i data-icon="heart" style="width:14px;display:inline-flex"></i> Customer Stories</span>
+          <h2 class="section-title" id="sol-tst-title">Teams like yours, already shipping</h2>
+        </div>
+        <div class="grid grid-3" data-aos-stagger>
+          <article class="card card-hover testimonial-card">
+            <span class="stars" aria-label="5 out of 5 stars"><i data-icon="star"></i><i data-icon="star"></i><i data-icon="star"></i><i data-icon="star"></i><i data-icon="star"></i></span>
+            <p class="testimonial-quote">"We're a two-person startup. Stackly let us launch a booking product in nine days and land our first paying customers before we'd even talked to investors."</p>
+            <div class="testimonial-person">
+              <span class="avatar avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Priya Nair"></span><img src="https://randomuser.me/api/portraits/women/58.jpg" alt="Priya Nair" loading="lazy" onerror="this.remove()"></span>
+              <span><b>Priya Nair</b><span>Co-founder, Slotly</span></span>
+            </div>
+          </article>
+          <article class="card card-hover testimonial-card">
+            <span class="stars" aria-label="5 out of 5 stars"><i data-icon="star"></i><i data-icon="star"></i><i data-icon="star"></i><i data-icon="star"></i><i data-icon="star"></i></span>
+            <p class="testimonial-quote">"Our clinic replaced paper intake with an Stackly patient portal. No-shows dropped 34% the first month thanks to automated reminders alone."</p>
+            <div class="testimonial-person">
+              <span class="avatar avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Hannah Berg"></span><img src="https://randomuser.me/api/portraits/women/26.jpg" alt="Hannah Berg" loading="lazy" onerror="this.remove()"></span>
+              <span><b>Dr. Hannah Berg</b><span>Practice Director, Cedar Health</span></span>
+            </div>
+          </article>
+          <article class="card card-hover testimonial-card">
+            <span class="stars" aria-label="5 out of 5 stars"><i data-icon="star"></i><i data-icon="star"></i><i data-icon="star"></i><i data-icon="star"></i><i data-icon="star"></i></span>
+            <p class="testimonial-quote">"Procurement approvals used to live in a 40-tab spreadsheet. Now it's an Stackly tool with audit trails, and finance closes requests 3x faster."</p>
+            <div class="testimonial-person">
+              <span class="avatar avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Omar Aziz"></span><img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Omar Aziz" loading="lazy" onerror="this.remove()"></span>
+              <span><b>Omar Aziz</b><span>Ops Lead, Meridian Group</span></span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= STATS BAND ================= -->
+    <section class="section-sm" aria-label="Customer statistics">
+      <div class="container">
+        <div class="stats-band" data-aos="fade-up">
+          <div class="stat-item">
+            <div class="stat-num"><span data-counter="48000" data-suffix="+">0</span></div>
+            <p>Teams Building on Stackly</p>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num"><span data-counter="12" data-suffix="x">0</span></div>
+            <p>Faster Than Custom Dev</p>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num"><span data-counter="68" data-suffix="%">0</span></div>
+            <p>Avg. Cost Reduction</p>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num"><span data-counter="140" data-suffix="+">0</span></div>
+            <p>Countries Served</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="section-sm" aria-label="Call to action">
+      <div class="container">
+        <div class="cta-band" data-aos="zoom-in">
+          <h2>Find your playbook. Ship this week.</h2>
+          <p>Start free with a template built for your industry, or talk to our team about rolling Stackly out across your organization.</p>
+          <div class="hero-cta">
+            <a class="btn btn-white btn-lg" href="register.html">Start Building Free <i data-icon="arrow-right"></i></a>
+            <a class="btn btn-outline-white btn-lg" href="contact.html">Talk to Sales</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

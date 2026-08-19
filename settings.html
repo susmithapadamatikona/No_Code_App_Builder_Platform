@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings — Stackly | No-Code App Builder</title>
+  <meta name="description" content="Stackly workspace settings — appearance, notifications, builder preferences, language, and security.">
+  <meta property="og:title" content="Settings — Stackly">
+  <meta property="og:description" content="Appearance, notifications, builder preferences, and security.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script src="assets/js/darkmode.js"></script>
+</head>
+<body data-dash="settings">
+  <div class="dash-layout">
+    <aside id="dash-sidebar" aria-label="Dashboard navigation"></aside>
+    <div class="dash-main">
+      <header id="dash-topbar"></header>
+      <main id="main" class="dash-content dash-section-gap">
+
+        <section class="dash-cols-main" aria-label="Appearance and notifications">
+          <article class="card">
+            <div class="card-head"><h3>Appearance</h3><span class="badge badge-primary">Stackly Dark</span></div>
+            <p class="text-sm text-secondary-c mb-4">Stackly ships with a single, carefully tuned dark theme — purple, violet, and cyan on deep indigo. No toggles to fiddle with.</p>
+            <div class="set-row" style="border-bottom:1px dashed var(--border)">
+              <div class="set-row-meta"><b>Theme</b><span>Dark — always on, across every page and the builder.</span></div>
+              <span class="badge badge-success"><span class="badge-dot"></span>Active</span>
+            </div>
+            <div class="set-row">
+              <div class="set-row-meta"><b>Compact density</b><span>Tighter spacing in tables and lists across the dashboard.</span></div>
+              <label class="switch"><input type="checkbox" data-setting="density"><span class="switch-track"></span></label>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-head"><h3>Notifications</h3></div>
+            <div class="set-row">
+              <div class="set-row-meta"><b>Product updates</b><span>New templates, builder features, and platform news.</span></div>
+              <label class="switch"><input type="checkbox" data-setting="notif_product" checked><span class="switch-track"></span></label>
+            </div>
+            <div class="set-row">
+              <div class="set-row-meta"><b>Publish events</b><span>Email me when an app finishes publishing or fails.</span></div>
+              <label class="switch"><input type="checkbox" data-setting="notif_publish" checked><span class="switch-track"></span></label>
+            </div>
+            <div class="set-row">
+              <div class="set-row-meta"><b>Form submissions</b><span>Instant alerts when visitors submit forms in my apps.</span></div>
+              <label class="switch"><input type="checkbox" data-setting="notif_forms"><span class="switch-track"></span></label>
+            </div>
+            <div class="set-row">
+              <div class="set-row-meta"><b>Weekly digest</b><span>A Monday summary of views, visitors, and conversions.</span></div>
+              <label class="switch"><input type="checkbox" data-setting="notif_digest" checked><span class="switch-track"></span></label>
+            </div>
+          </article>
+        </section>
+
+        <section class="dash-cols-main" aria-label="Builder and region">
+          <article class="card">
+            <div class="card-head"><h3>Builder preferences</h3></div>
+            <div class="set-row">
+              <div class="set-row-meta"><b>Autosave</b><span>Save builder changes automatically every few seconds.</span></div>
+              <label class="switch"><input type="checkbox" data-setting="builder_autosave" checked><span class="switch-track"></span></label>
+            </div>
+            <div class="set-row">
+              <div class="set-row-meta"><b>Snap to grid</b><span>Align components to the canvas grid while dragging.</span></div>
+              <label class="switch"><input type="checkbox" data-setting="builder_snap" checked><span class="switch-track"></span></label>
+            </div>
+            <div class="set-row">
+              <div class="set-row-meta"><b>Default device</b><span>Canvas size when opening the builder.</span></div>
+              <select class="form-control" data-setting-select="builder_device" aria-label="Default device">
+                <option value="desktop">Desktop</option>
+                <option value="tablet">Tablet</option>
+                <option value="mobile">Mobile</option>
+              </select>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-head"><h3>Language &amp; region</h3></div>
+            <div class="set-row">
+              <div class="set-row-meta"><b>Language</b><span>Interface language for your workspace.</span></div>
+              <select class="form-control" data-setting-select="lang" aria-label="Language">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+                <option value="hi">हिन्दी</option>
+              </select>
+            </div>
+            <div class="set-row">
+              <div class="set-row-meta"><b>Time zone</b><span>Used for analytics reports and scheduling.</span></div>
+              <select class="form-control" data-setting-select="tz" aria-label="Time zone">
+                <option value="utc">UTC</option>
+                <option value="ist">Asia/Kolkata (IST)</option>
+                <option value="est">America/New_York (EST)</option>
+                <option value="pst">America/Los_Angeles (PST)</option>
+                <option value="cet">Europe/Berlin (CET)</option>
+              </select>
+            </div>
+            <div class="set-row">
+              <div class="set-row-meta"><b>Date format</b><span>How dates appear across the dashboard.</span></div>
+              <select class="form-control" data-setting-select="datefmt" aria-label="Date format">
+                <option value="mdy">MM/DD/YYYY</option>
+                <option value="dmy">DD/MM/YYYY</option>
+                <option value="ymd">YYYY-MM-DD</option>
+              </select>
+            </div>
+          </article>
+        </section>
+
+        <section class="dash-cols-main" aria-label="Security">
+          <article class="card">
+            <div class="card-head"><h3>Change password</h3></div>
+            <form id="pwd-form" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="cur-pwd">Current password <span class="req">*</span></label>
+                <div class="password-wrap">
+                  <input class="form-control" id="cur-pwd" type="password" data-validate="required" autocomplete="current-password">
+                  <button class="password-toggle" type="button" data-password-toggle="cur-pwd" aria-label="Show password">
+                    <span class="icon-eye"><i data-icon="eye"></i></span><span class="icon-eye-off"><i data-icon="eye-off"></i></span>
+                  </button>
+                </div>
+                <span class="form-error" data-error-for="cur-pwd"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="new-pwd">New password <span class="req">*</span></label>
+                <div class="password-wrap">
+                  <input class="form-control" id="new-pwd" type="password" data-validate="required|password" autocomplete="new-password">
+                  <button class="password-toggle" type="button" data-password-toggle="new-pwd" aria-label="Show password">
+                    <span class="icon-eye"><i data-icon="eye"></i></span><span class="icon-eye-off"><i data-icon="eye-off"></i></span>
+                  </button>
+                </div>
+                <div class="strength-meter" data-level="0">
+                  <div class="strength-bars"><i></i><i></i><i></i><i></i></div>
+                  <span class="strength-label">Use 8+ characters with a mix of letters, numbers &amp; symbols</span>
+                </div>
+                <span class="form-error" data-error-for="new-pwd"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="cfm-pwd">Confirm new password <span class="req">*</span></label>
+                <input class="form-control" id="cfm-pwd" type="password" data-validate="required|match:new-pwd" autocomplete="new-password">
+                <span class="form-error" data-error-for="cfm-pwd"></span>
+              </div>
+              <button class="btn btn-primary" type="submit"><i data-icon="lock"></i> Update password</button>
+            </form>
+          </article>
+
+          <div class="d-grid gap-5" style="align-content:start">
+            <article class="card">
+              <div class="card-head"><h3>Two-factor authentication</h3><span class="badge badge-warning">Recommended</span></div>
+              <div class="set-row">
+                <div class="set-row-meta"><b>Authenticator app</b><span>Require a 6-digit code from your authenticator at sign-in.</span></div>
+                <label class="switch"><input type="checkbox" data-setting="tfa"><span class="switch-track"></span></label>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-head"><h3>Active sessions</h3></div>
+              <div class="table-wrap" style="border:none;box-shadow:none">
+                <table class="table" style="min-width:460px">
+                  <thead><tr><th>Device</th><th>Location</th><th>Last active</th><th></th></tr></thead>
+                  <tbody>
+                    <tr>
+                      <td class="cell-strong">Chrome · Windows</td>
+                      <td>Hyderabad, IN</td>
+                      <td><span class="badge badge-success"><span class="badge-dot"></span>This device</span></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td class="cell-strong">Safari · iPhone 15</td>
+                      <td>Hyderabad, IN</td>
+                      <td>2 days ago</td>
+                      <td><button class="btn btn-ghost btn-sm" type="button" data-revoke>Revoke</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/validation.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    if (!window.AppStore || !AppStore.auth.isLoggedIn()) return;
+
+    var KEY = 'settings_prefs';
+
+    function prefs() { return AppStore.read(KEY, {}); }
+    function save(patch) {
+      AppStore.write(KEY, Object.assign({}, prefs(), patch));
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var p = prefs();
+
+      /* Switches */
+      document.querySelectorAll('[data-setting]').forEach(function (input) {
+        var key = input.dataset.setting;
+        if (typeof p[key] === 'boolean') input.checked = p[key];
+        input.addEventListener('change', function () {
+          var patch = {};
+          patch[key] = input.checked;
+          save(patch);
+          if (key === 'tfa') {
+            window.Toast[input.checked ? 'success' : 'info'](input.checked
+              ? 'Two-factor authentication enabled. Scan the QR code from your authenticator app (demo).'
+              : 'Two-factor authentication disabled.', 'Security');
+          } else {
+            window.Toast.success('Preference saved.', 'Settings');
+          }
+        });
+      });
+
+      /* Selects */
+      document.querySelectorAll('[data-setting-select]').forEach(function (sel) {
+        var key = sel.dataset.settingSelect;
+        if (p[key]) sel.value = p[key];
+        sel.addEventListener('change', function () {
+          var patch = {};
+          patch[key] = sel.value;
+          save(patch);
+          window.Toast.success('Preference saved.', 'Settings');
+        });
+      });
+
+      /* Password form */
+      var form = document.getElementById('pwd-form');
+      window.Validate.bindLive(form);
+      var newPwd = document.getElementById('new-pwd');
+      var meter = document.querySelector('.strength-meter');
+      newPwd.addEventListener('input', function () {
+        var s = window.Validate.passwordStrength(newPwd.value);
+        meter.dataset.level = s.level;
+        meter.querySelector('.strength-label').textContent = newPwd.value
+          ? 'Password strength: ' + s.label
+          : 'Use 8+ characters with a mix of letters, numbers & symbols';
+      });
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!window.Validate.form(form)) return;
+        var btn = form.querySelector('[type="submit"]');
+        btn.classList.add('is-loading');
+        setTimeout(function () {
+          btn.classList.remove('is-loading');
+          form.reset();
+          meter.dataset.level = 0;
+          window.Toast.success('Your password was updated.', 'Security');
+        }, 900);
+      });
+
+      /* Revoke session */
+      document.querySelectorAll('[data-revoke]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var row = btn.closest('tr');
+          window.Modal.confirm({
+            title: 'Revoke this session?',
+            message: 'The device will be signed out immediately.',
+            okText: 'Revoke',
+            danger: true,
+            onConfirm: function () {
+              row.remove();
+              window.Toast.success('Session revoked.', 'Security');
+            }
+          });
+        });
+      });
+    });
+  })();
+  </script>
+</body>
+</html>

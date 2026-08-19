@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resources Hub — Stackly | No-Code App Builder</title>
+  <meta name="description" content="Guides, docs, videos, webinars, and community — everything you need to master no-code building with Stackly, gathered in one resources hub.">
+  <meta property="og:title" content="Resources Hub — Stackly">
+  <meta property="og:description" content="Learn Stackly your way: blog articles, documentation, video tutorials, live webinars, templates, and a maker community.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <style>
+    /* ---- Resources page ---- */
+    .res-featured {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: var(--sp-6);
+      align-items: center;
+      padding: clamp(28px, 4vw, 56px);
+      border-radius: var(--radius-xl);
+      background: var(--gradient-dark);
+      color: #E2E8F0;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .res-featured::before,
+    .res-featured::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .res-featured::before { width: 340px; height: 340px; background: rgba(154,40,156,.4); top: -140px; right: -80px; }
+    .res-featured::after { width: 280px; height: 280px; background: rgba(85,149,228,.32); bottom: -140px; left: -60px; }
+    .res-featured > * { position: relative; z-index: 1; }
+    .res-featured h2 { color: #fff; font-size: clamp(1.5rem, 2.6vw, 2.1rem); letter-spacing: -0.02em; margin: var(--sp-3) 0; }
+    .res-featured p { color: #94A3B8; max-width: 52ch; }
+    .res-featured-visual {
+      display: grid;
+      gap: 14px;
+      justify-items: stretch;
+    }
+    .res-chapter {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px);
+      font-size: var(--fs-sm);
+      color: #E2E8F0;
+      font-weight: 600;
+    }
+    .res-chapter svg { width: 18px; height: 18px; color: var(--soft-purple); flex-shrink: 0; }
+    .res-chapter span:last-child { margin-left: auto; color: #64748B; font-weight: 500; font-size: var(--fs-xs); }
+    .res-card { display: flex; flex-direction: column; align-items: flex-start; }
+    .res-card .card-link {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: var(--fs-sm);
+    }
+    .res-card button.card-link { font-family: inherit; font-size: var(--fs-sm); }
+    .res-card .card-link svg { width: 14px; height: 14px; transition: transform var(--t-fast); }
+    .res-card:hover .card-link svg { transform: translateX(3px); }
+    .mini-post { display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+    .mini-post-thumb {
+      position: relative;
+      height: 150px;
+      display: flex;
+      align-items: flex-end;
+      padding: 14px;
+    }
+    .mini-post-thumb svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .5; }
+    .mini-post-body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .mini-post-body h3 { font-size: var(--fs-md); line-height: 1.35; }
+    .mini-post-body h3 a { color: var(--text-primary); transition: color var(--t-fast); }
+    .mini-post-body h3 a:hover { color: var(--primary); }
+    .mini-post-meta { margin-top: auto; display: flex; align-items: center; gap: 10px; font-size: var(--fs-xs); color: var(--text-muted); }
+    /* Fake video player inside modal */
+    .fake-player {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #242044, #4C1D95 55%, #7928AB);
+    }
+    .fake-player .fp-play {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      cursor: pointer;
+      transition: transform var(--t-fast), background var(--t-fast);
+    }
+    .fake-player .fp-play:hover { transform: scale(1.08); background: rgba(255,255,255,0.24); }
+    .fake-player .fp-play svg { width: 26px; height: 26px; margin-left: 4px; }
+    .fake-player .fp-bar {
+      position: absolute; left: 16px; right: 16px; bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+      color: rgba(255,255,255,0.85); font-size: 12px;
+    }
+    .fake-player .fp-track { flex: 1; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.25); overflow: hidden; }
+    .fake-player .fp-track i { display: block; width: 18%; height: 100%; background: var(--gradient-primary); }
+    @media (max-width: 900px) {
+      .res-featured { grid-template-columns: 1fr; }
+      .res-featured-visual { grid-template-columns: 1fr; }
+    }
+  </style>
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script src="assets/js/darkmode.js"></script>
+</head>
+<body data-page="resources">
+  <div id="header-root"></div>
+
+  <main id="main">
+
+    <!-- ================= PAGE HEADER ================= -->
+    <section class="page-header" aria-labelledby="page-title" style="--ph-photo:url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1920&h=640&q=80')">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="crumb-sep">/</span>
+          <span aria-current="page">Resources</span>
+        </nav>
+        <h1 id="page-title">Resources Hub</h1>
+        <p>Everything you need to go from first drag-and-drop to a published, revenue-ready app — guides, docs, videos, webinars, and a community of 48,000+ makers.</p>
+      </div>
+    </section>
+
+    <!-- ================= FEATURED RESOURCE ================= -->
+    <section class="section" aria-labelledby="featured-title">
+      <div class="container">
+        <div class="res-featured" data-aos="fade-up">
+          <div>
+            <span class="badge badge-gradient"><i data-icon="star"></i> Featured guide</span>
+            <h2 id="featured-title">The No-Code Launch Playbook, 2026 Edition</h2>
+            <p class="mb-5">A free 9-chapter guide that walks you from idea to a live app: choosing a template, modeling data, wiring workflows, and launching on a custom domain — with checklists at every step.</p>
+            <div class="d-flex gap-3 flex-wrap">
+              <a class="btn btn-white" href="documentation.html">Start reading <i data-icon="arrow-right"></i></a>
+              <a class="btn btn-outline-white" href="blog.html">Browse the blog</a>
+            </div>
+          </div>
+          <div class="res-featured-visual" aria-hidden="true">
+            <div class="res-chapter"><i data-icon="layers"></i> Ch. 1 — Pick the right template <span>6 min</span></div>
+            <div class="res-chapter"><i data-icon="database"></i> Ch. 4 — Model your collections <span>11 min</span></div>
+            <div class="res-chapter"><i data-icon="workflow"></i> Ch. 6 — Automate with workflows <span>9 min</span></div>
+            <div class="res-chapter"><i data-icon="rocket"></i> Ch. 9 — Launch day checklist <span>7 min</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RESOURCE TYPES ================= -->
+    <section class="section section-alt" aria-labelledby="types-title">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <span class="section-tag"><i data-icon="gift" style="width:14px;display:inline-flex"></i> Learn Your Way</span>
+          <h2 class="section-title" id="types-title">Pick your <span class="text-gradient">learning lane</span></h2>
+          <p class="section-sub">Whether you read, watch, or learn by doing, there's a resource format made for you.</p>
+        </div>
+        <div class="grid grid-4" data-aos-stagger>
+          <article class="card card-hover res-card">
+            <div class="feature-icon"><i data-icon="edit"></i></div>
+            <h3 class="text-md mb-2">Blog</h3>
+            <p class="text-sm text-secondary-c mb-4">Product deep-dives, customer stories, and no-code tactics from the Stackly team — published twice a week.</p>
+            <a class="card-link" href="blog.html">Read articles <i data-icon="arrow-right"></i></a>
+          </article>
+          <article class="card card-hover res-card">
+            <div class="feature-icon tint-blue" style="background:var(--info-bg);color:var(--info)"><i data-icon="book"></i></div>
+            <h3 class="text-md mb-2">Documentation</h3>
+            <p class="text-sm text-secondary-c mb-4">The complete reference for the builder, data collections, workflows, publishing, and integrations.</p>
+            <a class="card-link" href="documentation.html">Open the docs <i data-icon="arrow-right"></i></a>
+          </article>
+          <article class="card card-hover res-card">
+            <div class="feature-icon tint-orange" style="background:var(--warning-bg);color:var(--warning)"><i data-icon="video"></i></div>
+            <h3 class="text-md mb-2">Video Tutorials</h3>
+            <p class="text-sm text-secondary-c mb-4">Short, focused screencasts — from a 4-minute builder tour to full app builds you can follow along.</p>
+            <button class="card-link" type="button" data-video="Builder Fundamentals in 12 Minutes" style="background:none;border:0;cursor:pointer;padding:0">Watch now <i data-icon="arrow-right"></i></button>
+          </article>
+          <article class="card card-hover res-card">
+            <div class="feature-icon tint-green" style="background:var(--success-bg);color:var(--success)"><i data-icon="calendar"></i></div>
+            <h3 class="text-md mb-2">Webinars</h3>
+            <p class="text-sm text-secondary-c mb-4">Live sessions every Thursday: office hours, template teardowns, and Q&amp;A with the product team.</p>
+            <button class="card-link" type="button" data-webinar="Office Hours — Data &amp; Collections" style="background:none;border:0;cursor:pointer;padding:0">Save a seat <i data-icon="arrow-right"></i></button>
+          </article>
+          <article class="card card-hover res-card">
+            <div class="feature-icon tint-purple" style="background:var(--soft-purple, #F0EAF8);color:var(--primary)"><i data-icon="users"></i></div>
+            <h3 class="text-md mb-2">Community</h3>
+            <p class="text-sm text-secondary-c mb-4">12,000+ makers swapping templates, workflows, and launch stories. Get answers in minutes, not days.</p>
+            <a class="card-link" href="contact.html">Join the community <i data-icon="arrow-right"></i></a>
+          </article>
+          <article class="card card-hover res-card">
+            <div class="feature-icon"><i data-icon="layers"></i></div>
+            <h3 class="text-md mb-2">Template Gallery</h3>
+            <p class="text-sm text-secondary-c mb-4">120+ production-ready starters for stores, CRMs, portals, and dashboards — every one fully customizable.</p>
+            <a class="card-link" href="templates.html">Browse templates <i data-icon="arrow-right"></i></a>
+          </article>
+          <article class="card card-hover res-card">
+            <div class="feature-icon tint-blue" style="background:var(--info-bg);color:var(--info)"><i data-icon="help-circle"></i></div>
+            <h3 class="text-md mb-2">Help Center</h3>
+            <p class="text-sm text-secondary-c mb-4">Answers to the most common questions on plans, publishing, domains, billing, and account management.</p>
+            <a class="card-link" href="faq.html">Get answers <i data-icon="arrow-right"></i></a>
+          </article>
+          <article class="card card-hover res-card">
+            <div class="feature-icon tint-green" style="background:var(--success-bg);color:var(--success)"><i data-icon="code"></i></div>
+            <h3 class="text-md mb-2">API Reference</h3>
+            <p class="text-sm text-secondary-c mb-4">Connect Stackly apps to anything: REST endpoints, webhooks, and authentication flows, fully documented.</p>
+            <a class="card-link" href="documentation.html">Explore the API <i data-icon="arrow-right"></i></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= LATEST FROM THE BLOG ================= -->
+    <section class="section" aria-labelledby="latest-title">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <span class="section-tag"><i data-icon="edit" style="width:14px;display:inline-flex"></i> Fresh Off the Press</span>
+          <h2 class="section-title" id="latest-title">Latest from the blog</h2>
+          <p class="section-sub">New posts every Tuesday and Thursday. Here's what the community is reading this week.</p>
+        </div>
+        <div class="grid grid-3" data-aos-stagger>
+          <article class="card card-hover mini-post">
+            <a class="mini-post-thumb" href="blog-details.html" style="background:linear-gradient(135deg,#7928AB,#9A289C)" aria-hidden="true" tabindex="-1">
+              <span class="pic-frame pic-fill"><span class="pic-art" data-artwork="cover:growth" data-colors="#7928AB,#9A289C"></span><img class="pic-photo" src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=700&h=394&q=80" alt="" loading="lazy" onerror="this.remove()"></span>
+              <span class="badge badge-dark">Case Study</span>
+            </a>
+            <div class="mini-post-body">
+              <h3><a href="blog-details.html">How Bloom Store replaced a 6-month dev backlog with one weekend in Stackly</a></h3>
+              <div class="mini-post-meta"><span class="avatar avatar-sm avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Sarah Kim"></span><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Kim" loading="lazy" onerror="this.remove()"></span> Sarah Kim · Aug 12, 2026 · 8 min read</div>
+            </div>
+          </article>
+          <article class="card card-hover mini-post">
+            <a class="mini-post-thumb" href="blog-details.html" style="background:linear-gradient(135deg,#47C1D1,#7928AB)" aria-hidden="true" tabindex="-1">
+              <span class="pic-frame pic-fill"><span class="pic-art" data-artwork="cover:idea" data-colors="#47C1D1,#7928AB"></span><img class="pic-photo" src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=700&h=394&q=80" alt="" loading="lazy" onerror="this.remove()"></span>
+              <span class="badge badge-dark">Product</span>
+            </a>
+            <div class="mini-post-body">
+              <h3><a href="blog-details.html">Introducing AI-assisted layouts: describe a page, get a first draft</a></h3>
+              <div class="mini-post-meta"><span class="avatar avatar-sm avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Diego Park"></span><img src="https://randomuser.me/api/portraits/men/29.jpg" alt="Diego Park" loading="lazy" onerror="this.remove()"></span> Diego Park · Aug 7, 2026 · 5 min read</div>
+            </div>
+          </article>
+          <article class="card card-hover mini-post">
+            <a class="mini-post-thumb" href="blog-details.html" style="background:linear-gradient(135deg,#10B981,#47C1D1)" aria-hidden="true" tabindex="-1">
+              <span class="pic-frame pic-fill"><span class="pic-art" data-artwork="cover:code" data-colors="#10B981,#47C1D1"></span><img class="pic-photo" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&h=394&q=80" alt="" loading="lazy" onerror="this.remove()"></span>
+              <span class="badge badge-dark">Tutorials</span>
+            </a>
+            <div class="mini-post-body">
+              <h3><a href="blog-details.html">Build a client portal in 45 minutes: the complete walkthrough</a></h3>
+              <div class="mini-post-meta"><span class="avatar avatar-sm avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Maya Rodriguez"></span><img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Maya Rodriguez" loading="lazy" onerror="this.remove()"></span> Maya Rodriguez · Aug 5, 2026 · 12 min read</div>
+            </div>
+          </article>
+        </div>
+        <div class="text-center mt-6" data-aos="fade-up">
+          <a class="btn btn-secondary" href="blog.html">View all posts <i data-icon="arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= NEWSLETTER ================= -->
+    <section class="section-sm section-alt" aria-labelledby="nl-title">
+      <div class="container">
+        <div class="newsletter-box" data-aos="fade-up">
+          <span class="section-tag"><i data-icon="mail" style="width:14px;display:inline-flex"></i> Newsletter</span>
+          <h2 class="section-title" id="nl-title" style="font-size:var(--fs-2xl)">Get new resources in your inbox</h2>
+          <p class="section-sub">Fresh templates, tutorials, and webinar invites, twice a month. No spam, unsubscribe anytime.</p>
+          <form class="newsletter-form" data-newsletter novalidate>
+            <label class="sr-only" for="nl-email">Email address</label>
+            <input type="email" id="nl-email" name="email" placeholder="you@company.com" autocomplete="email" required>
+            <button class="btn btn-primary" type="submit">Subscribe <i data-icon="arrow-right"></i></button>
+          </form>
+          <p class="newsletter-note">Joined by 12,400+ subscribers. Read past issues on the <a href="blog.html" class="text-primary-c fw-600">blog</a>.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    /* ---- Resources page: video / webinar modals ---- */
+    document.addEventListener('DOMContentLoaded', function () {
+
+      function playerHTML(caption, meta) {
+        return (
+          '<div class="fake-player" role="img" aria-label="Video preview">' +
+            (window.Artwork ? '<span class="pic-art" style="position:absolute;inset:0">' + Artwork.cover('device', '#242044', '#7928AB') + '</span>' : '') +
+            '<img class="pic-photo" src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=900&h=506&q=80" alt="" loading="lazy" onerror="this.remove()" style="opacity:0.55">' +
+            '<button class="fp-play" type="button" aria-label="Play video" style="position:relative;z-index:2">' + Icons.get('play') + '</button>' +
+            '<div class="fp-bar"><span>0:00</span><span class="fp-track"><i></i></span><span>' + meta + '</span></div>' +
+          '</div>' +
+          '<p class="text-sm text-secondary-c mt-4 mb-0">' + caption + '</p>'
+        );
+      }
+
+      document.addEventListener('click', function (e) {
+        var vid = e.target.closest('[data-video]');
+        var web = e.target.closest('[data-webinar]');
+
+        if (vid) {
+          var m = Modal.custom({
+            title: vid.getAttribute('data-video'),
+            size: 'lg',
+            bodyHTML: playerHTML('A guided tour of the canvas, components panel, and property inspector — everything you touch in your first session.', '12:04'),
+            footHTML: '<button class="btn btn-secondary" type="button" data-modal-close>Close</button>' +
+                      '<a class="btn btn-primary" href="documentation.html">' + Icons.get('book') + ' Read the docs</a>'
+          });
+          m.querySelector('.fp-play').addEventListener('click', function () {
+            Toast.info('Video playback is simulated in this demo.', 'Demo player');
+          });
+        }
+
+        if (web) {
+          var w = Modal.custom({
+            title: web.getAttribute('data-webinar'),
+            size: 'lg',
+            bodyHTML:
+              playerHTML('Live every Thursday at 10:00 AM PT. Bring your project — the team answers data-modeling questions on air.', 'LIVE') +
+              '<div class="d-flex items-center gap-3 mt-4">' +
+                '<span class="badge badge-success">' + Icons.get('calendar') + ' Next session: Thu, Aug 20</span>' +
+                '<span class="badge badge-neutral">45 min + Q&amp;A</span>' +
+              '</div>',
+            footHTML: '<button class="btn btn-secondary" type="button" data-modal-close>Maybe later</button>' +
+                      '<button class="btn btn-primary" type="button" data-register-webinar>' + Icons.get('check-circle') + ' Register free</button>'
+          });
+          w.querySelector('[data-register-webinar]').addEventListener('click', function () {
+            Modal.close(w);
+            Toast.success('You are registered. A calendar invite is on its way.', 'Seat saved');
+          });
+          w.querySelector('.fp-play').addEventListener('click', function () {
+            Toast.info('The webinar goes live on Thursday — replay available after.', 'Not live yet');
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

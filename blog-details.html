@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Bloom Store Shipped in a Weekend — Stackly Blog</title>
+  <meta name="description" content="Case study: how Bloom Store replaced a 6-month development backlog with one weekend in Stackly — templates, data modeling, workflows, and launch.">
+  <meta property="og:title" content="How Bloom Store replaced a 6-month dev backlog with one weekend in Stackly">
+  <meta property="og:description" content="A boutique retailer's custom-build quote said six months. The real answer was one weekend and a no-code builder. The full story.">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <style>
+    /* ---- Article page ---- */
+    .article-hero-meta {
+      display: flex; align-items: center; justify-content: center; gap: 14px;
+      flex-wrap: wrap; margin-top: var(--sp-5);
+      color: rgba(226,232,240,.85); font-size: var(--fs-sm);
+    }
+    .article-hero-meta .avatar { box-shadow: 0 0 0 3px rgba(255,255,255,.2); }
+    .article-hero-meta b { display: block; color: #fff; }
+    .article-hero-meta > span:last-child { color: rgba(226,232,240,.65); }
+    .article-cover {
+      position: relative;
+      max-width: 980px;
+      margin: calc(-1 * var(--sp-7)) auto var(--sp-7);
+      height: clamp(220px, 34vw, 380px);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: linear-gradient(135deg, #32287D, #7928AB 55%, #9A289C);
+      box-shadow: var(--shadow-xl);
+    }
+    .article-cover svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .article-body { max-width: 760px; margin-inline: auto; font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary); }
+    .article-body h2 { color: var(--text-primary); font-size: var(--fs-xl); margin: var(--sp-7) 0 var(--sp-3); letter-spacing: -0.01em; }
+    .article-body p { margin-bottom: var(--sp-4); }
+    .article-body a { color: var(--primary); font-weight: 600; }
+    .article-body a:hover { text-decoration: underline; }
+    .pull-quote {
+      margin: var(--sp-6) 0;
+      padding: var(--sp-5) var(--sp-6);
+      border-left: 4px solid var(--primary);
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      background: var(--surface-sunken, var(--bg-secondary));
+      font-family: var(--font-heading);
+      font-size: var(--fs-lg);
+      font-weight: 600;
+      line-height: 1.5;
+      color: var(--text-primary);
+    }
+    .pull-quote footer { margin-top: 10px; font-family: var(--font-body); font-size: var(--fs-sm); font-weight: 500; color: var(--text-muted); }
+    .article-checklist { list-style: none; margin: var(--sp-4) 0 var(--sp-5); display: grid; gap: 12px; padding: 0; }
+    .article-checklist li { display: flex; gap: 12px; align-items: flex-start; }
+    .article-checklist li svg { width: 20px; height: 20px; color: var(--success); flex-shrink: 0; margin-top: 4px; }
+    .stat-callout {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4);
+      margin: var(--sp-6) 0; padding: var(--sp-5);
+      border-radius: var(--radius-lg);
+      background: var(--gradient-primary);
+      color: #fff; text-align: center;
+      box-shadow: var(--shadow-primary);
+    }
+    .stat-callout b { display: block; font-family: var(--font-display); font-size: var(--fs-2xl); line-height: 1.1; }
+    .stat-callout span { font-size: var(--fs-xs); opacity: .85; }
+    .code-card {
+      margin: var(--sp-5) 0;
+      border-radius: var(--radius-lg);
+      background: #0F172A;
+      border: 1px solid #1E293B;
+      overflow: hidden;
+      font-size: var(--fs-sm);
+    }
+    .code-card-bar {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 16px; border-bottom: 1px solid #1E293B; color: #64748B; font-size: var(--fs-xs);
+    }
+    .code-card-bar i { width: 10px; height: 10px; border-radius: 50%; background: #334155; display: inline-block; }
+    .code-card pre { margin: 0; padding: 18px 20px; overflow-x: auto; color: #E2E8F0; font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; line-height: 1.7; }
+    .code-card .tok-k { color: #CF86C8; } .code-card .tok-s { color: #6EE7B7; } .code-card .tok-c { color: #475569; }
+    .article-figure { margin: var(--sp-6) 0; }
+    .article-figure .fig-art {
+      position: relative; height: clamp(200px, 30vw, 300px);
+      border-radius: var(--radius-lg); overflow: hidden;
+      background: linear-gradient(135deg, #47C1D1, #9A289C);
+    }
+    .article-figure .fig-art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .article-figure figcaption { margin-top: 10px; text-align: center; font-size: var(--fs-xs); color: var(--text-muted); }
+    .share-row { display: flex; align-items: center; gap: 12px; margin: var(--sp-7) 0 var(--sp-5); flex-wrap: wrap; }
+    .share-row .btn-icon svg { width: 17px; height: 17px; }
+    .author-bio {
+      display: flex; gap: var(--sp-5); align-items: flex-start;
+      padding: var(--sp-5) var(--sp-6);
+    }
+    .author-bio .avatar-xl { flex-shrink: 0; }
+    .comment { display: flex; gap: 14px; padding: var(--sp-4) 0; border-bottom: 1px solid var(--border); }
+    .comment:last-child { border-bottom: 0; }
+    .comment .avatar { flex-shrink: 0; }
+    .comment-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+    .comment-head b { color: var(--text-primary); }
+    .comment-head time { font-size: var(--fs-xs); color: var(--text-muted); }
+    .comment p { margin: 6px 0 0; font-size: var(--fs-sm); color: var(--text-secondary); line-height: 1.65; }
+    @media (max-width: 640px) {
+      .stat-callout { grid-template-columns: 1fr; }
+      .author-bio { flex-direction: column; }
+    }
+  </style>
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script src="assets/js/darkmode.js"></script>
+</head>
+<body data-page="blog">
+  <div id="header-root"></div>
+
+  <main id="main">
+
+    <!-- ================= ARTICLE HERO ================= -->
+    <header class="page-header" style="padding-bottom:calc(var(--sp-8) + var(--sp-7));--ph-photo:url('https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=1920&h=640&q=80')" aria-labelledby="article-title">
+      <div class="container" style="max-width:900px">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="crumb-sep">/</span>
+          <a href="blog.html">Blog</a>
+          <span class="crumb-sep">/</span>
+          <span aria-current="page">Bloom Store case study</span>
+        </nav>
+        <div><span class="badge badge-gradient"><i data-icon="briefcase"></i> Case Study</span></div>
+        <h1 id="article-title" class="mt-3">How Bloom Store replaced a 6-month dev backlog with one weekend in Stackly</h1>
+        <div class="article-hero-meta">
+          <span class="avatar avatar-lg avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Sarah Kim"></span><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Kim" loading="lazy" onerror="this.remove()"></span>
+          <span style="text-align:left"><b>Sarah Kim</b>Operations Lead, Bloom Store</span>
+          <span aria-hidden="true">·</span>
+          <span>Aug 12, 2026 · 8 min read</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Cover art -->
+    <div class="container">
+      <div class="article-cover" data-aos="zoom-in" role="img" aria-label="Illustration of the Bloom Store app being assembled from components">
+        <span class="pic-frame pic-fill"><span class="pic-art" data-artwork="appShot:commerce" data-colors="#32287D,#9A289C"></span><img class="pic-photo" src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=1400&h=920&q=80" alt="Bloom Store staff using the new order tablet at the counter" loading="lazy" onerror="this.remove()"></span>
+      </div>
+    </div>
+
+    <!-- ================= ARTICLE BODY ================= -->
+    <article class="section-sm" aria-label="Article">
+      <div class="container">
+        <div class="article-body">
+
+          <p><strong>Bloom Store</strong> is a three-location plant and homeware retailer with an online shop that grew faster than anyone planned. By January, the ops team was juggling order tracking in one spreadsheet, inventory in another, and wholesale requests over email. The agency quote to build a proper internal system: <em>six months, $80,000</em>. This is the story of how they shipped it in a weekend instead — told by the person who built it.</p>
+
+          <h2>The backlog that wouldn't move</h2>
+          <p>Every retailer knows this shape of problem. The store runs on Shopify, but everything around the store — purchase orders, supplier lead times, wholesale approvals, the repotting service calendar — lives in tools that were never meant to talk to each other. Our "system" was four spreadsheets, a shared inbox, and me, manually reconciling all of it every Sunday night.</p>
+          <p>We scoped a custom build twice. Both times the timeline landed somewhere between "two quarters" and "don't ask." Meanwhile the team was losing roughly ten hours a week to copy-paste work, and wholesale orders were slipping through the cracks — we later measured about 6% of them simply never got a reply.</p>
+
+          <h2>Friday, 7 PM: picking a starting point</h2>
+          <p>I'd seen Stackly's <a href="templates.html">template marketplace</a> in a community thread, so I opened the "Retail Ops" starter — pages for orders, inventory, suppliers, and a customer portal, with the data model already wired. My honest expectation was a toy. Twenty minutes in, I had renamed the collections to match our world (Plants, Planters, Suppliers, Wholesale Accounts) and dropped our logo and colors into the theme panel.</p>
+          <blockquote class="pull-quote">
+            "I kept waiting for the moment where the tool would say 'now hand this to a developer.' It never came. The wall I braced for just wasn't there."
+            <footer>— Sarah Kim, Operations Lead at Bloom Store</footer>
+          </blockquote>
+          <p>By the time I closed the laptop on Friday, the app had our five core pages sketched out and the nav made sense. Total time invested: about two hours, one of which was me fiddling with fonts because I could.</p>
+
+          <h2>Saturday: modeling data like it actually works</h2>
+          <p>Saturday was the real test: could the built-in database handle our actual complexity? Our inventory isn't flat — a single plant SKU varies by pot size, and wholesale pricing depends on the account tier. In Stackly that became three related collections with lookup fields, built entirely in the visual schema editor. Relations are drawn, not coded.</p>
+          <p>The part that surprised me most was <strong>permissions</strong>. Store managers see their own location's stock; the wholesale team sees accounts and pricing; our two retail partners get a portal view with only their orders. That's four roles, configured from a dropdown, with protected pages out of the box.</p>
+
+          <h2>Sunday: workflows that run the store</h2>
+          <p>Sunday morning I opened the workflow canvas and automated the Sunday-night job that used to be mine:</p>
+          <ul class="article-checklist">
+            <li><i data-icon="check-circle"></i><span><strong>Low-stock alerts</strong> — when any variant drops below its reorder point, Slack pings the right location's channel with a one-click purchase-order draft.</span></li>
+            <li><i data-icon="check-circle"></i><span><strong>Wholesale approvals</strong> — new applications route to the wholesale lead; approval triggers a welcome email and unlocks tier pricing automatically.</span></li>
+            <li><i data-icon="check-circle"></i><span><strong>Order status sync</strong> — a webhook from Shopify updates the order record, so the portal always shows live status without anyone touching it.</span></li>
+            <li><i data-icon="check-circle"></i><span><strong>Weekly digest</strong> — every Monday at 8 AM, managers get an email with sales, stock-outs, and pending approvals for their location.</span></li>
+          </ul>
+          <p>Each of those is an if-this-then-that chain on the canvas. The Shopify piece uses the built-in webhook trigger — the entire configuration is a URL and a field mapping:</p>
+          <div class="code-card" role="img" aria-label="Workflow webhook configuration example">
+            <div class="code-card-bar"><i></i><i></i><i></i> workflow: order-status-sync</div>
+            <pre><span class="tok-c">// Trigger</span>
+<span class="tok-k">WHEN</span>  webhook <span class="tok-s">"shopify/orders/updated"</span> receives payload
+
+<span class="tok-c">// Steps</span>
+<span class="tok-k">FIND</span>  record <span class="tok-k">in</span> Orders <span class="tok-k">where</span> shopify_id = payload.id
+<span class="tok-k">SET</span>   status     = payload.fulfillment_status
+<span class="tok-k">SET</span>   updated_at = now()
+<span class="tok-k">IF</span>    status = <span class="tok-s">"delivered"</span>
+  <span class="tok-k">SEND</span> email <span class="tok-s">"review-request"</span> <span class="tok-k">to</span> record.customer</pre>
+          </div>
+
+          <h2>Monday: launch, and the part nobody believed</h2>
+          <p>Monday at 9 AM I hit <strong>Publish</strong>. SSL, custom domain (<em>ops.bloomstore.co</em>), and role-based logins for eleven people — live before the first coffee refill. The team's reaction went from polite skepticism to "wait, can you add a field for pot color?" in about an hour. (I added it during the meeting. That's the whole point.)</p>
+          <div class="stat-callout" data-aos="fade-up">
+            <div><b>1</b><span>weekend from template to live app</span></div>
+            <div><b>10 hrs</b><span>of manual work saved, every week</span></div>
+            <div><b>$78k</b><span>under the original agency quote</span></div>
+          </div>
+          <p>Six weeks later, the numbers are holding: wholesale response time dropped from days to hours, stock-outs on our top 20 SKUs are down 40%, and the Sunday-night spreadsheet ritual is gone. When something needs to change, we change it in the builder — usually in minutes, usually while the person who asked is still standing there.</p>
+
+          <h2>What I'd tell anyone staring at a dev backlog</h2>
+          <p>Start with a template that's 70% right rather than a blank canvas, model your data before you polish pixels, and automate the task you personally hate most first — the momentum from deleting a recurring chore carries the whole project. And publish early: a live app with three working pages beats a perfect spec every time.</p>
+          <figure class="article-figure" data-aos="fade-up">
+            <div class="fig-art" role="img" aria-label="Placeholder illustration of the Bloom Store operations dashboard">
+              <span class="pic-frame pic-fill"><span class="pic-art" data-artwork="appShot:dashboard" data-colors="#47C1D1,#7928AB"></span><img class="pic-photo" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&h=675&q=80" alt="The Bloom Store operations dashboard on a laptop" loading="lazy" onerror="this.remove()"></span>
+            </div>
+            <figcaption>The live ops dashboard: location stock, order flow, and wholesale queue on one screen.</figcaption>
+          </figure>
+          <p>The backlog didn't shrink — it evaporated. If your team is sitting on one, the <a href="how-it-works.html">four-step process</a> we followed is documented end to end, and the <a href="templates.html">Retail Ops template</a> we started from is in the gallery.</p>
+
+          <!-- Share -->
+          <div class="share-row" aria-label="Share this article">
+            <span class="text-sm fw-600 text-muted-c">Share this story</span>
+            <button class="btn btn-secondary btn-icon" type="button" data-share="Twitter / X" aria-label="Share on Twitter / X"><i data-icon="twitter"></i></button>
+            <button class="btn btn-secondary btn-icon" type="button" data-share="LinkedIn" aria-label="Share on LinkedIn"><i data-icon="linkedin"></i></button>
+            <button class="btn btn-secondary btn-icon" type="button" data-share-copy aria-label="Copy link"><i data-icon="copy"></i></button>
+          </div>
+
+          <!-- Author bio -->
+          <div class="card author-bio" data-aos="fade-up">
+            <span class="avatar avatar-xl avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Sarah Kim"></span><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Kim" loading="lazy" onerror="this.remove()"></span>
+            <div>
+              <span class="badge badge-neutral mb-2">Guest Author</span>
+              <h3 class="text-md mb-2">Sarah Kim</h3>
+              <p class="text-sm text-secondary-c mb-3">Sarah leads operations at Bloom Store, a three-location plant &amp; homeware retailer. Former spreadsheet whisperer, current no-code evangelist. She writes about internal tools, retail ops, and the occasional monstera.</p>
+              <div class="d-flex gap-2">
+                <a class="btn btn-ghost btn-sm" href="blog.html"><i data-icon="edit"></i> More posts</a>
+                <a class="btn btn-ghost btn-sm" href="contact.html"><i data-icon="mail"></i> Contact</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ================= RELATED POSTS ================= -->
+    <section class="section section-alt" aria-labelledby="related-title">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <span class="section-tag"><i data-icon="book" style="width:14px;display:inline-flex"></i> Keep Reading</span>
+          <h2 class="section-title" id="related-title">Related posts</h2>
+        </div>
+        <div class="grid grid-3" data-aos-stagger>
+          <article class="card card-hover">
+            <span class="pic-frame rounded-md mb-3" style="display:block;aspect-ratio:16/9"><span class="pic-art" data-artwork="cover:growth" data-colors="#F59E0B,#EC4899"></span><img class="pic-photo" src="https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&w=700&h=394&q=80" alt="" loading="lazy" onerror="this.remove()"></span>
+            <span class="badge badge-warning mb-3">No-Code</span>
+            <h3 class="text-md mb-2"><a href="blog-details.html" style="color:var(--text-primary)">Spreadsheets are where workflows go to die</a></h3>
+            <p class="text-sm text-secondary-c mb-4">A practical migration path from a 40-tab spreadsheet to a real internal tool — without an IT ticket.</p>
+            <a class="fw-600 text-sm" href="blog-details.html" style="color:var(--primary)">Read post <i data-icon="arrow-right" style="width:14px;display:inline-flex"></i></a>
+          </article>
+          <article class="card card-hover">
+            <span class="pic-frame rounded-md mb-3" style="display:block;aspect-ratio:16/9"><span class="pic-art" data-artwork="cover:code" data-colors="#10B981,#47C1D1"></span><img class="pic-photo" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&h=394&q=80" alt="" loading="lazy" onerror="this.remove()"></span>
+            <span class="badge badge-success mb-3">Tutorials</span>
+            <h3 class="text-md mb-2"><a href="blog-details.html" style="color:var(--text-primary)">Build a client portal in 45 minutes</a></h3>
+            <p class="text-sm text-secondary-c mb-4">Login, project status, files, and invoices — a full portal built step-by-step from the Atlas template.</p>
+            <a class="fw-600 text-sm" href="blog-details.html" style="color:var(--primary)">Read post <i data-icon="arrow-right" style="width:14px;display:inline-flex"></i></a>
+          </article>
+          <article class="card card-hover">
+            <span class="pic-frame rounded-md mb-3" style="display:block;aspect-ratio:16/9"><span class="pic-art" data-artwork="cover:idea" data-colors="#47C1D1,#7928AB"></span><img class="pic-photo" src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=700&h=394&q=80" alt="" loading="lazy" onerror="this.remove()"></span>
+            <span class="badge badge-info mb-3">Product</span>
+            <h3 class="text-md mb-2"><a href="blog-details.html" style="color:var(--text-primary)">Introducing AI-assisted layouts</a></h3>
+            <p class="text-sm text-secondary-c mb-4">Describe a page in plain English and get a first draft on the canvas. How it works, and what's next.</p>
+            <a class="fw-600 text-sm" href="blog-details.html" style="color:var(--primary)">Read post <i data-icon="arrow-right" style="width:14px;display:inline-flex"></i></a>
+          </article>
+        </div>
+        <div class="text-center mt-6" data-aos="fade-up">
+          <a class="btn btn-secondary" href="blog.html">Back to all posts <i data-icon="arrow-left"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= COMMENTS ================= -->
+    <section class="section" aria-labelledby="comments-title">
+      <div class="container" style="max-width:760px">
+        <h2 class="section-title" id="comments-title" style="font-size:var(--fs-xl)">Comments <span class="badge badge-neutral" id="comment-count">3</span></h2>
+        <div class="card mt-5 p-6" data-aos="fade-up">
+          <div id="comment-list">
+            <div class="comment">
+              <span class="avatar avatar-img avatar-photo"><span class="pic-art" data-artwork="person:James Turner"></span><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="James Turner" loading="lazy" onerror="this.remove()"></span>
+              <div>
+                <div class="comment-head"><b>James Torres</b><time datetime="2026-08-13">Aug 13, 2026</time></div>
+                <p>We're in exactly this spot — agency quoted us 5 months for an ops tool. Bookmarking the Retail Ops template right now. Did the Shopify webhook need any custom code at all?</p>
+              </div>
+            </div>
+            <div class="comment">
+              <span class="avatar avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Lena Brandt"></span><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Lena Brandt" loading="lazy" onerror="this.remove()"></span>
+              <div>
+                <div class="comment-head"><b>Lena Brandt</b><time datetime="2026-08-14">Aug 14, 2026</time></div>
+                <p>The "automate the task you personally hate most first" advice is so underrated. I started with invoice reminders and the team bought in immediately. Great writeup, Sarah!</p>
+              </div>
+            </div>
+            <div class="comment">
+              <span class="avatar avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Rohan Acharya"></span><img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Rohan Acharya" loading="lazy" onerror="this.remove()"></span>
+              <div>
+                <div class="comment-head"><b>Rachid Amrani</b><time datetime="2026-08-15">Aug 15, 2026</time></div>
+                <p>Would love a follow-up on the permissions setup — four roles across three locations sounds like the part most tools fall over on. The stat callout numbers are impressive.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <h3 class="text-md mb-4">Leave a comment</h3>
+          <form id="comment-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="c-name">Name <span class="req">*</span></label>
+                <input class="form-control" id="c-name" name="name" type="text" placeholder="Your name" data-validate="required|minlen:2" autocomplete="name">
+                <span class="form-error" data-error-for="c-name"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="c-email">Email <span class="req">*</span></label>
+                <input class="form-control" id="c-email" name="email" type="email" placeholder="you@company.com (never shown)" data-validate="required|email" autocomplete="email">
+                <span class="form-error" data-error-for="c-email"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="c-text">Comment <span class="req">*</span></label>
+              <textarea class="form-control" id="c-text" name="comment" rows="4" placeholder="Share your thoughts…" data-validate="required|minlen:10"></textarea>
+              <span class="form-error" data-error-for="c-text"></span>
+              <span class="form-hint">Be kind. Comments are moderated before they appear publicly.</span>
+            </div>
+            <button class="btn btn-primary" type="submit"><i data-icon="chat"></i> Post comment</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/validation.js"></script>
+  <script>
+    /* ---- Article: share, comments (persisted via AppStore) ---- */
+    document.addEventListener('DOMContentLoaded', function () {
+      var STORE_KEY = 'blog_comments';
+      var POST_ID = 'bloom-store-weekend';
+      var list = document.getElementById('comment-list');
+      var countBadge = document.getElementById('comment-count');
+      var form = document.getElementById('comment-form');
+      var SEEDED = 3;
+
+      /* Share buttons */
+      document.querySelectorAll('[data-share]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          Toast.info('Sharing to ' + btn.getAttribute('data-share') + ' is disabled in this demo.', 'Share');
+        });
+      });
+      var copyBtn = document.querySelector('[data-share-copy]');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', function () {
+          Toast.info('Article link copied to clipboard.', 'Link copied');
+        });
+      }
+
+      function initialsOf(name) {
+        return String(name).trim().split(/\s+/).slice(0, 2).map(function (n) { return n[0]; }).join('').toUpperCase();
+      }
+
+      function renderComment(c) {
+        var wrap = document.createElement('div');
+        wrap.className = 'comment';
+        var av = document.createElement('span');
+        av.className = 'avatar tone-4';
+        av.textContent = initialsOf(c.name);
+        var body = document.createElement('div');
+        var head = document.createElement('div');
+        head.className = 'comment-head';
+        var b = document.createElement('b');
+        b.textContent = c.name;
+        var t = document.createElement('time');
+        t.dateTime = c.date;
+        t.textContent = new Date(c.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        head.appendChild(b);
+        head.appendChild(t);
+        var p = document.createElement('p');
+        p.textContent = c.text;
+        body.appendChild(head);
+        body.appendChild(p);
+        wrap.appendChild(av);
+        wrap.appendChild(body);
+        list.appendChild(wrap);
+      }
+
+      function updateCount() {
+        var stored = AppStore.read(STORE_KEY, []).filter(function (c) { return c.post === POST_ID; });
+        countBadge.textContent = String(SEEDED + stored.length);
+      }
+
+      /* Load stored comments */
+      AppStore.read(STORE_KEY, []).forEach(function (c) {
+        if (c.post === POST_ID) renderComment(c);
+      });
+      updateCount();
+
+      /* Submit */
+      Validate.bindLive(form);
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!Validate.form(form)) return;
+        var comment = {
+          id: AppStore.uid('cmt'),
+          post: POST_ID,
+          name: document.getElementById('c-name').value.trim(),
+          text: document.getElementById('c-text').value.trim(),
+          date: new Date().toISOString()
+        };
+        var all = AppStore.read(STORE_KEY, []);
+        all.push(comment);
+        AppStore.write(STORE_KEY, all);
+        renderComment(comment);
+        updateCount();
+        form.reset();
+        form.querySelectorAll('.is-valid').forEach(function (el) { el.classList.remove('is-valid'); });
+        Toast.success('Thanks for joining the conversation!', 'Comment posted');
+      });
+    });
+  </script>
+</body>
+</html>

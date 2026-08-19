@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Stackly | No-Code Insights, Tutorials & Product News</title>
+  <meta name="description" content="The Stackly Blog: product announcements, no-code strategy, hands-on tutorials, and stories from makers shipping real apps without code.">
+  <meta property="og:title" content="The Stackly Blog">
+  <meta property="og:description" content="Product news, no-code tactics, tutorials, and maker stories — published twice a week by the Stackly team.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <style>
+    /* ---- Blog listing ---- */
+    .post-hero {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+      transition: box-shadow var(--t-med), transform var(--t-med);
+    }
+    .post-hero:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .post-hero-thumb {
+      position: relative;
+      min-height: 320px;
+      background: linear-gradient(135deg, #32287D, #7928AB 55%, #9A289C);
+      display: block;
+    }
+    .post-hero-thumb .pic-frame { position: absolute; inset: 0; }
+    .post-hero-thumb .badge { position: absolute; top: 18px; left: 18px; z-index: 1; }
+    .post-hero-body { padding: clamp(24px, 3.4vw, 44px); display: flex; flex-direction: column; gap: 14px; }
+    .post-hero-body h2 { font-size: clamp(1.35rem, 2.2vw, 1.85rem); line-height: 1.25; letter-spacing: -0.02em; }
+    .post-hero-body h2 a { color: var(--text-primary); transition: color var(--t-fast); }
+    .post-hero-body h2 a:hover { color: var(--primary); }
+    .post-meta { display: flex; align-items: center; gap: 12px; font-size: var(--fs-xs); color: var(--text-muted); }
+    .post-meta b { display: block; color: var(--text-primary); font-size: var(--fs-sm); }
+    .cat-pills { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .cat-pill {
+      padding: 9px 20px;
+      border-radius: var(--radius-full);
+      border: 1.5px solid var(--border);
+      background: var(--surface-card);
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      line-height: 1;
+      cursor: pointer;
+      transition: all var(--t-fast);
+    }
+    .cat-pill:hover { border-color: var(--primary); color: var(--primary); }
+    .cat-pill.is-active { background: var(--gradient-primary); border-color: transparent; color: #fff; box-shadow: var(--shadow-primary); }
+    .post-card { display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+    .post-thumb { position: relative; height: 180px; display: block; }
+    .post-thumb .pic-frame { position: absolute; inset: 0; }
+    .post-thumb .badge { position: absolute; top: 14px; left: 14px; z-index: 1; }
+    .post-body { padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .post-body h3 { font-size: var(--fs-md); line-height: 1.35; }
+    .post-body h3 a { color: var(--text-primary); transition: color var(--t-fast); }
+    .post-body h3 a:hover { color: var(--primary); }
+    .post-excerpt {
+      font-size: var(--fs-sm);
+      color: var(--text-secondary);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .post-body .post-meta { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border); }
+    @media (max-width: 900px) {
+      .post-hero { grid-template-columns: 1fr; }
+      .post-hero-thumb { min-height: 220px; }
+    }
+  </style>
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script src="assets/js/darkmode.js"></script>
+</head>
+<body data-page="blog">
+  <div id="header-root"></div>
+
+  <main id="main">
+
+    <!-- ================= PAGE HEADER ================= -->
+    <section class="page-header" aria-labelledby="page-title" style="--ph-photo:url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1920&h=640&q=80')">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="crumb-sep">/</span>
+          <span aria-current="page">Blog</span>
+        </nav>
+        <h1 id="page-title">The Stackly Blog</h1>
+        <p>Product news, no-code strategy, hands-on tutorials, and stories from makers shipping real software — published twice a week.</p>
+      </div>
+    </section>
+
+    <!-- ================= FEATURED POST ================= -->
+    <section class="section" aria-labelledby="featured-post-title">
+      <div class="container">
+        <article class="post-hero" data-aos="fade-up">
+          <a class="post-hero-thumb" href="blog-details.html" aria-hidden="true" tabindex="-1">
+            <span class="pic-frame pic-fill"><span class="pic-art" data-artwork="cover:growth" data-colors="#32287D,#9A289C"></span><img class="pic-photo" src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&h=675&q=80" alt="Team reviewing the Bloom Store build together" loading="lazy" onerror="this.remove()"></span>
+            <span class="badge badge-dark">Case Study</span>
+          </a>
+          <div class="post-hero-body">
+            <span class="badge badge-primary" style="align-self:flex-start"><i data-icon="star"></i> Editor's pick</span>
+            <h2 id="featured-post-title"><a href="blog-details.html">How Bloom Store replaced a 6-month dev backlog with one weekend in Stackly</a></h2>
+            <p class="text-sm text-secondary-c">When a boutique retailer's custom-build quote came back at six months and $80k, ops lead Sarah Kim opened a template on Friday night instead. By Monday, orders, inventory, and a customer portal were live. Here's exactly how she did it.</p>
+            <div class="post-meta">
+              <span class="avatar avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Sarah Kim"></span><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Kim" loading="lazy" onerror="this.remove()"></span>
+              <span><b>Sarah Kim</b>Operations Lead, Bloom Store</span>
+              <span class="divider" style="width:1px;height:26px;margin:0"></span>
+              <span>Aug 12, 2026 · 8 min read</span>
+            </div>
+            <a class="btn btn-primary" href="blog-details.html" style="align-self:flex-start">Read the story <i data-icon="arrow-right"></i></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= FILTER + GRID ================= -->
+    <section class="section section-alt" aria-labelledby="all-posts-title">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <span class="section-tag"><i data-icon="edit" style="width:14px;display:inline-flex"></i> All Articles</span>
+          <h2 class="section-title" id="all-posts-title">Browse by topic</h2>
+          <div class="cat-pills mt-5" role="group" aria-label="Filter posts by category">
+            <button class="cat-pill is-active" type="button" data-cat="all">All</button>
+            <button class="cat-pill" type="button" data-cat="product">Product</button>
+            <button class="cat-pill" type="button" data-cat="no-code">No-Code</button>
+            <button class="cat-pill" type="button" data-cat="tutorials">Tutorials</button>
+            <button class="cat-pill" type="button" data-cat="company">Company</button>
+            <button class="cat-pill" type="button" data-cat="design">Design</button>
+          </div>
+        </div>
+
+        <div class="grid grid-3" id="post-grid" data-aos-stagger>
+
+          <article class="card card-hover post-card" data-cat="product">
+            <a class="post-thumb" href="blog-details.html" style="background:linear-gradient(135deg,#47C1D1,#7928AB)" aria-hidden="true" tabindex="-1">
+              <span class="pic-frame pic-fill"><span class="pic-art" data-artwork="cover:idea" data-colors="#47C1D1,#7928AB"></span><img class="pic-photo" src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()"></span>
+              <span class="badge badge-info">Product</span>
+            </a>
+            <div class="post-body">
+              <h3><a href="blog-details.html">Introducing AI-assisted layouts: describe a page, get a first draft</a></h3>
+              <p class="post-excerpt">Type "pricing page with three tiers and an FAQ" and watch the canvas assemble itself. Here's how the new layout assistant works and where it's going next.</p>
+              <div class="post-meta"><span class="avatar avatar-sm avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Diego Park"></span><img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Diego Park" loading="lazy" onerror="this.remove()"></span> Diego Park · Aug 7 · 5 min read</div>
+            </div>
+          </article>
+
+          <article class="card card-hover post-card" data-cat="tutorials">
+            <a class="post-thumb" href="blog-details.html" style="background:linear-gradient(135deg,#10B981,#47C1D1)" aria-hidden="true" tabindex="-1">
+              <span class="pic-frame pic-fill"><span class="pic-art" data-artwork="cover:code" data-colors="#10B981,#47C1D1"></span><img class="pic-photo" src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()"></span>
+              <span class="badge badge-success">Tutorials</span>
+            </a>
+            <div class="post-body">
+              <h3><a href="blog-details.html">Build a client portal in 45 minutes: the complete walkthrough</a></h3>
+              <p class="post-excerpt">Login, project status, file sharing, and invoices — a full agency client portal built step-by-step from the Atlas template, no code involved.</p>
+              <div class="post-meta"><span class="avatar avatar-sm avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Maya Rodriguez"></span><img src="https://randomuser.me/api/portraits/women/5.jpg" alt="Maya Rodriguez" loading="lazy" onerror="this.remove()"></span> Maya Rodriguez · Aug 5 · 12 min read</div>
+            </div>
+          </article>
+
+          <article class="card card-hover post-card" data-cat="no-code">
+            <a class="post-thumb" href="blog-details.html" style="background:linear-gradient(135deg,#F59E0B,#EF4444)" aria-hidden="true" tabindex="-1">
+              <span class="pic-frame pic-fill"><span class="pic-art" data-artwork="cover:growth" data-colors="#F59E0B,#EF4444"></span><img class="pic-photo" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()"></span>
+              <span class="badge badge-warning">No-Code</span>
+            </a>
+            <div class="post-body">
+              <h3><a href="blog-details.html">Spreadsheets are where workflows go to die</a></h3>
+              <p class="post-excerpt">Your ops team runs on a 40-tab spreadsheet held together by hope. Here's a practical migration path to a real internal tool — without an IT ticket.</p>
+              <div class="post-meta"><span class="avatar avatar-sm avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Sarah Kim"></span><img src="https://randomuser.me/api/portraits/men/76.jpg" alt="Sarah Kim" loading="lazy" onerror="this.remove()"></span> Sarah Kim · Jul 31 · 6 min read</div>
+            </div>
+          </article>
+
+          <article class="card card-hover post-card" data-cat="design">
+            <a class="post-thumb" href="blog-details.html" style="background:linear-gradient(135deg,#9A289C,#EC4899)" aria-hidden="true" tabindex="-1">
+              <span class="pic-frame pic-fill"><span class="pic-art" data-artwork="cover:team" data-colors="#9A289C,#EC4899"></span><img class="pic-photo" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()"></span>
+              <span class="badge badge-primary">Design</span>
+            </a>
+            <div class="post-body">
+              <h3><a href="blog-details.html">Design tokens for non-designers: ship a consistent brand</a></h3>
+              <p class="post-excerpt">Pick two fonts, five colors, one radius — and let the theme engine do the rest. A designer's shortcuts for makers who just want it to look right.</p>
+              <div class="post-meta"><span class="avatar avatar-sm avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Amara Osei"></span><img src="https://randomuser.me/api/portraits/men/96.jpg" alt="Amara Osei" loading="lazy" onerror="this.remove()"></span> Amara Osei · Jul 29 · 7 min read</div>
+            </div>
+          </article>
+
+          <article class="card card-hover post-card" data-cat="product">
+            <a class="post-thumb" href="blog-details.html" style="background:linear-gradient(135deg,#7928AB,#14B8A6)" aria-hidden="true" tabindex="-1">
+              <span class="pic-frame pic-fill"><span class="pic-art" data-artwork="cover:design" data-colors="#7928AB,#14B8A6"></span><img class="pic-photo" src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()"></span>
+              <span class="badge badge-info">Product</span>
+            </a>
+            <div class="post-body">
+              <h3><a href="blog-details.html">Named versions and one-click rollbacks are here</a></h3>
+              <p class="post-excerpt">Publish fearlessly: label any version of your app, compare what changed, and restore in one click. Available today on every plan — including Free.</p>
+              <div class="post-meta"><span class="avatar avatar-sm avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Liam Chen"></span><img src="https://randomuser.me/api/portraits/women/49.jpg" alt="Liam Chen" loading="lazy" onerror="this.remove()"></span> Liam Chen · Jul 24 · 4 min read</div>
+            </div>
+          </article>
+
+          <article class="card card-hover post-card" data-cat="company">
+            <a class="post-thumb" href="blog-details.html" style="background:linear-gradient(135deg,#1E3A8A,#7928AB)" aria-hidden="true" tabindex="-1">
+              <span class="pic-frame pic-fill"><span class="pic-art" data-artwork="cover:device" data-colors="#1E3A8A,#7928AB"></span><img class="pic-photo" src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()"></span>
+              <span class="badge badge-neutral">Company</span>
+            </a>
+            <div class="post-body">
+              <h3><a href="blog-details.html">Our Series B: making software-making universal</a></h3>
+              <p class="post-excerpt">We've raised $40M to double down on the builder, open our template marketplace to creators, and grow the team across three continents.</p>
+              <div class="post-meta"><span class="avatar avatar-sm avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Elena Vasquez"></span><img src="https://randomuser.me/api/portraits/men/96.jpg" alt="Elena Vasquez" loading="lazy" onerror="this.remove()"></span> Elena Vasquez · Jul 18 · 3 min read</div>
+            </div>
+          </article>
+
+          <article class="card card-hover post-card" data-cat="tutorials">
+            <a class="post-thumb" href="blog-details.html" style="background:linear-gradient(135deg,#4B2D9D,#47C1D1)" aria-hidden="true" tabindex="-1">
+              <span class="pic-frame pic-fill"><span class="pic-art" data-artwork="cover:launch" data-colors="#4B2D9D,#47C1D1"></span><img class="pic-photo" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()"></span>
+              <span class="badge badge-success">Tutorials</span>
+            </a>
+            <div class="post-body">
+              <h3><a href="blog-details.html">Connecting Stripe: take your first payment in 20 minutes</a></h3>
+              <p class="post-excerpt">From API keys to a live checkout button — the complete guide to charging real money in your Stackly app, with test-mode tips along the way.</p>
+              <div class="post-meta"><span class="avatar avatar-sm avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Diego Park"></span><img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Diego Park" loading="lazy" onerror="this.remove()"></span> Diego Park · Jul 15 · 9 min read</div>
+            </div>
+          </article>
+
+          <article class="card card-hover post-card" data-cat="no-code">
+            <a class="post-thumb" href="blog-details.html" style="background:linear-gradient(135deg,#059669,#84CC16)" aria-hidden="true" tabindex="-1">
+              <span class="pic-frame pic-fill"><span class="pic-art" data-artwork="cover:design" data-colors="#059669,#84CC16"></span><img class="pic-photo" src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()"></span>
+              <span class="badge badge-warning">No-Code</span>
+            </a>
+            <div class="post-body">
+              <h3><a href="blog-details.html">The maker's guide to validating an idea before you build</a></h3>
+              <p class="post-excerpt">Landing page, waitlist, three customer interviews — a lean validation loop you can run in a week using nothing but Stackly and a coffee budget.</p>
+              <div class="post-meta"><span class="avatar avatar-sm avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Priya Nair"></span><img src="https://randomuser.me/api/portraits/women/7.jpg" alt="Priya Nair" loading="lazy" onerror="this.remove()"></span> Priya Nair · Jul 10 · 8 min read</div>
+            </div>
+          </article>
+
+          <article class="card card-hover post-card" data-cat="design">
+            <a class="post-thumb" href="blog-details.html" style="background:linear-gradient(135deg,#DB2777,#F59E0B)" aria-hidden="true" tabindex="-1">
+              <span class="pic-frame pic-fill"><span class="pic-art" data-artwork="cover:code" data-colors="#DB2777,#F59E0B"></span><img class="pic-photo" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()"></span>
+              <span class="badge badge-primary">Design</span>
+            </a>
+            <div class="post-body">
+              <h3><a href="blog-details.html">Grid, rhythm, whitespace: layout rules the pros never break</a></h3>
+              <p class="post-excerpt">Why some pages just feel right: a crash course in the invisible geometry behind great layouts, and how to apply it on the Stackly canvas.</p>
+              <div class="post-meta"><span class="avatar avatar-sm avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Amara Osei"></span><img src="https://randomuser.me/api/portraits/men/96.jpg" alt="Amara Osei" loading="lazy" onerror="this.remove()"></span> Amara Osei · Jul 8 · 6 min read</div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="empty-state d-none" id="posts-empty">
+          <div class="empty-icon"><i data-icon="search"></i></div>
+          <h3>No posts in this category yet</h3>
+          <p>We're writing more every week — check back soon or browse all articles.</p>
+        </div>
+
+        <!-- Pagination -->
+        <nav class="pagination mt-7" aria-label="Blog pages" data-aos="fade-up" style="justify-content:center">
+          <button class="page-btn" type="button" disabled aria-label="Previous page"><i data-icon="chevron-left"></i></button>
+          <button class="page-btn is-active" type="button" aria-current="page">1</button>
+          <button class="page-btn" type="button" data-demo-page>2</button>
+          <button class="page-btn" type="button" data-demo-page>3</button>
+          <span class="page-ellipsis">…</span>
+          <button class="page-btn" type="button" data-demo-page>8</button>
+          <button class="page-btn" type="button" data-demo-page aria-label="Next page"><i data-icon="chevron-right"></i></button>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ================= NEWSLETTER BAND ================= -->
+    <section class="section-sm" aria-labelledby="nl-title">
+      <div class="container">
+        <div class="newsletter-box" data-aos="fade-up">
+          <span class="section-tag"><i data-icon="mail" style="width:14px;display:inline-flex"></i> The Stackly Digest</span>
+          <h2 class="section-title" id="nl-title" style="font-size:var(--fs-2xl)">Never miss a post</h2>
+          <p class="section-sub">The best of the blog plus new templates and builder updates, twice a month.</p>
+          <form class="newsletter-form" data-newsletter novalidate>
+            <label class="sr-only" for="nl-email">Email address</label>
+            <input type="email" id="nl-email" name="email" placeholder="you@company.com" autocomplete="email" required>
+            <button class="btn btn-primary" type="submit">Subscribe <i data-icon="arrow-right"></i></button>
+          </form>
+          <p class="newsletter-note">Joined by 12,400+ subscribers. Unsubscribe anytime.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    /* ---- Blog: category filter + demo pagination ---- */
+    document.addEventListener('DOMContentLoaded', function () {
+      var pills = document.querySelectorAll('.cat-pill');
+      var cards = document.querySelectorAll('#post-grid .post-card');
+      var empty = document.getElementById('posts-empty');
+
+      pills.forEach(function (pill) {
+        pill.addEventListener('click', function () {
+          pills.forEach(function (p) { p.classList.toggle('is-active', p === pill); });
+          var cat = pill.dataset.cat;
+          var shown = 0;
+          cards.forEach(function (card) {
+            var show = cat === 'all' || card.dataset.cat === cat;
+            card.style.display = show ? '' : 'none';
+            if (show) shown++;
+          });
+          empty.classList.toggle('d-none', shown > 0);
+        });
+      });
+
+      document.querySelectorAll('[data-demo-page]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          Toast.info('Demo pagination — all sample posts live on page 1.', 'Demo');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

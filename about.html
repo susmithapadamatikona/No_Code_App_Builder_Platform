@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — Stackly | No-Code App Builder</title>
+  <meta name="description" content="Meet the team behind Stackly. Since 2021 we've helped 48,000+ makers ship real software without code — from a garage in Austin to offices on three continents.">
+  <meta property="og:title" content="About Stackly — The Team Democratizing Software">
+  <meta property="og:description" content="Our mission: make building software as easy as describing it. Learn about Stackly's story, values, team, and journey from 2021 to 48,000+ builders.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script src="assets/js/darkmode.js"></script>
+  <style>
+    /* About page extras */
+    .team-card { text-align: center; }
+    .team-card .avatar { margin: 0 auto var(--sp-4); }
+    .team-role { font-size: var(--fs-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--primary); margin-bottom: 8px; }
+    .team-bio { font-size: var(--fs-sm); color: var(--text-secondary); margin-bottom: var(--sp-4); }
+    .team-social { display: flex; justify-content: center; gap: 8px; }
+    .team-social a {
+      width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center;
+      color: var(--text-muted); border: 1px solid var(--border); transition: all var(--t-fast);
+    }
+    .team-social a:hover { color: var(--primary); border-color: var(--primary); transform: translateY(-2px); }
+    .team-social svg { width: 15px; height: 15px; }
+
+    .timeline { position: relative; max-width: 760px; margin: 0 auto; display: grid; gap: var(--sp-5); padding-left: 44px; }
+    .timeline::before {
+      content: ""; position: absolute; left: 15px; top: 8px; bottom: 8px; width: 2px;
+      background: linear-gradient(180deg, var(--primary), #9A289C 60%, transparent);
+      border-radius: 2px; opacity: 0.5;
+    }
+    .timeline-item { position: relative; }
+    .timeline-item::before {
+      content: ""; position: absolute; left: -36px; top: 22px; width: 14px; height: 14px;
+      border-radius: 50%; background: var(--gradient-primary);
+      box-shadow: 0 0 0 4px var(--surface-page, var(--surface-card)), 0 0 0 5px var(--primary);
+    }
+    .timeline-year {
+      font-family: var(--font-display); font-weight: 800; font-size: var(--fs-sm);
+      color: var(--primary); letter-spacing: 0.04em;
+    }
+    .office-flag { font-size: 1.6rem; line-height: 1; }
+  </style>
+</head>
+<body data-page="about">
+  <div id="header-root"></div>
+
+  <main id="main">
+
+    <!-- ================= PAGE HEADER ================= -->
+    <header class="page-header" style="--ph-photo:url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&h=640&q=80')">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><span class="crumb-sep">/</span><span aria-current="page">About</span>
+        </nav>
+        <h1>We're making software <span class="text-gradient">something anyone can build</span></h1>
+        <p>Stackly started in 2021 with a stubborn belief: the next great app shouldn't require a computer science degree. Today, 48,000+ makers prove us right every day.</p>
+      </div>
+    </header>
+
+    <!-- ================= MISSION ================= -->
+    <section class="section" aria-labelledby="mission-title">
+      <div class="container">
+        <div class="grid grid-2 items-center gap-6">
+          <div data-aos="fade-right">
+            <span class="section-tag"><i data-icon="rocket" style="width:14px;display:inline-flex"></i> Our Mission</span>
+            <h2 class="section-title" id="mission-title">Close the gap between <span class="text-gradient">idea and product</span></h2>
+            <p class="mb-4 text-secondary-c">In 2021, our founders were running a small agency and watching the same story repeat: brilliant people with real problems to solve, stuck in six-month dev queues and five-figure quotes. The ideas weren't the bottleneck — the tooling was.</p>
+            <p class="mb-4 text-secondary-c">So we built the tool we wished existed: a visual builder with real components, a real database, and a real publishing pipeline. Not a prototype toy — a production stack you can drag and drop.</p>
+            <p class="mb-5 text-secondary-c">Five years later, Stackly powers client portals, internal tools, storefronts, and startups in 140+ countries. And we're still just getting started.</p>
+            <div class="d-flex gap-3">
+              <a class="btn btn-primary" href="careers.html">Join the team <i data-icon="arrow-right"></i></a>
+              <a class="btn btn-secondary" href="how-it-works.html">How Stackly works</a>
+            </div>
+          </div>
+          <div data-aos="fade-left">
+            <span class="pic-frame rounded-lg shadow-lg mb-4" style="height:260px;display:block"><span class="pic-art" data-artwork="cover:team" data-colors="#32287D,#9A289C"></span><img class="pic-photo" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&h=625&q=80" alt="The Stackly team working together in the studio" loading="lazy" onerror="this.remove()"></span>
+            <div class="grid grid-2" style="gap:var(--sp-4)">
+              <div class="stat-card card">
+                <div class="stat-icon tint-purple"><i data-icon="users"></i></div>
+                <div class="stat-value"><span data-counter="48000" data-suffix="+">0</span></div>
+                <div class="stat-label">Active builders</div>
+              </div>
+              <div class="stat-card card">
+                <div class="stat-icon tint-blue"><i data-icon="rocket"></i></div>
+                <div class="stat-value"><span data-counter="132000" data-suffix="+">0</span></div>
+                <div class="stat-label">Apps published</div>
+              </div>
+              <div class="stat-card card">
+                <div class="stat-icon tint-green"><i data-icon="globe"></i></div>
+                <div class="stat-value"><span data-counter="140" data-suffix="+">0</span></div>
+                <div class="stat-label">Countries served</div>
+              </div>
+              <div class="stat-card card">
+                <div class="stat-icon tint-orange"><i data-icon="heart"></i></div>
+                <div class="stat-value"><span data-counter="72">0</span></div>
+                <div class="stat-label">Teammates, fully remote-friendly</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VALUES ================= -->
+    <section class="section section-alt" aria-labelledby="values-title">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <span class="section-tag"><i data-icon="heart" style="width:14px;display:inline-flex"></i> What We Believe</span>
+          <h2 class="section-title" id="values-title">Values we actually use</h2>
+          <p class="section-sub">Not wall posters — these are the four questions we ask in every product review, hiring loop, and support thread.</p>
+        </div>
+        <div class="grid grid-4" data-aos-stagger>
+          <article class="card card-hover">
+            <div class="feature-icon"><i data-icon="unlock"></i></div>
+            <h3 class="text-md mb-2">Democratize, don't gatekeep</h3>
+            <p class="text-sm text-secondary-c">Every feature must make building easier for a non-engineer. If it needs a manual, it's not done.</p>
+          </article>
+          <article class="card card-hover">
+            <div class="feature-icon" style="background:var(--info-bg);color:var(--info)"><i data-icon="zap"></i></div>
+            <h3 class="text-md mb-2">Ship, then polish</h3>
+            <p class="text-sm text-secondary-c">We release small and often. Real user feedback beats perfect roadmaps — for us and for our builders.</p>
+          </article>
+          <article class="card card-hover">
+            <div class="feature-icon" style="background:var(--success-bg);color:var(--success)"><i data-icon="shield"></i></div>
+            <h3 class="text-md mb-2">Earn trust with defaults</h3>
+            <p class="text-sm text-secondary-c">Secure, accessible, and fast out of the box. Our users shouldn't need to know what an SSL cert is.</p>
+          </article>
+          <article class="card card-hover">
+            <div class="feature-icon" style="background:var(--warning-bg);color:var(--warning)"><i data-icon="users"></i></div>
+            <h3 class="text-md mb-2">Makers before metrics</h3>
+            <p class="text-sm text-secondary-c">When a decision helps the dashboard but hurts a builder, the builder wins. Every time.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TEAM ================= -->
+    <section class="section" aria-labelledby="team-title">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <span class="section-tag"><i data-icon="users" style="width:14px;display:inline-flex"></i> Leadership</span>
+          <h2 class="section-title" id="team-title">The people behind the platform</h2>
+          <p class="section-sub">A 72-person team across three continents — here are a few of the faces steering the ship.</p>
+        </div>
+        <div class="grid grid-4" data-aos-stagger>
+          <article class="card card-hover team-card">
+            <span class="avatar avatar-xl avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Elena Cruz"></span><img src="https://randomuser.me/api/portraits/women/21.jpg" alt="Elena Cruz" loading="lazy" onerror="this.remove()"></span>
+            <h3 class="text-md">Elena Cruz</h3>
+            <p class="team-role">Co-founder &amp; CEO</p>
+            <p class="team-bio">Ex-agency owner who got tired of quoting $40k for a CRUD app.</p>
+            <div class="team-social">
+              <a href="https://twitter.com" aria-label="Elena Cruz on Twitter"><i data-icon="twitter"></i></a>
+              <a href="https://linkedin.com" aria-label="Elena Cruz on LinkedIn"><i data-icon="linkedin"></i></a>
+            </div>
+          </article>
+          <article class="card card-hover team-card">
+            <span class="avatar avatar-xl avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Marcus Okafor"></span><img src="https://randomuser.me/api/portraits/men/86.jpg" alt="Marcus Okafor" loading="lazy" onerror="this.remove()"></span>
+            <h3 class="text-md">Marcus Okafor</h3>
+            <p class="team-role">Co-founder &amp; CTO</p>
+            <p class="team-bio">Built rendering engines at scale; now makes them drag-and-droppable.</p>
+            <div class="team-social">
+              <a href="https://github.com" aria-label="Marcus Okafor on GitHub"><i data-icon="github"></i></a>
+              <a href="https://linkedin.com" aria-label="Marcus Okafor on LinkedIn"><i data-icon="linkedin"></i></a>
+            </div>
+          </article>
+          <article class="card card-hover team-card">
+            <span class="avatar avatar-xl avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Priya Sharma"></span><img src="https://randomuser.me/api/portraits/women/58.jpg" alt="Priya Sharma" loading="lazy" onerror="this.remove()"></span>
+            <h3 class="text-md">Priya Sharma</h3>
+            <p class="team-role">VP of Product</p>
+            <p class="team-bio">Turns thousand-line feedback threads into features people love.</p>
+            <div class="team-social">
+              <a href="https://twitter.com" aria-label="Priya Sharma on Twitter"><i data-icon="twitter"></i></a>
+              <a href="https://linkedin.com" aria-label="Priya Sharma on LinkedIn"><i data-icon="linkedin"></i></a>
+            </div>
+          </article>
+          <article class="card card-hover team-card">
+            <span class="avatar avatar-xl avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Jonas Weber"></span><img src="https://randomuser.me/api/portraits/men/41.jpg" alt="Jonas Weber" loading="lazy" onerror="this.remove()"></span>
+            <h3 class="text-md">Jonas Weber</h3>
+            <p class="team-role">Head of Design</p>
+            <p class="team-bio">Believes great defaults are the most underrated design feature.</p>
+            <div class="team-social">
+              <a href="https://dribbble.com" aria-label="Jonas Weber on Dribbble"><i data-icon="dribbble"></i></a>
+              <a href="https://linkedin.com" aria-label="Jonas Weber on LinkedIn"><i data-icon="linkedin"></i></a>
+            </div>
+          </article>
+          <article class="card card-hover team-card">
+            <span class="avatar avatar-xl avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Aisha Lawal"></span><img src="https://randomuser.me/api/portraits/women/79.jpg" alt="Aisha Lawal" loading="lazy" onerror="this.remove()"></span>
+            <h3 class="text-md">Aisha Lawal</h3>
+            <p class="team-role">VP of Engineering</p>
+            <p class="team-bio">Keeps 132,000 published apps fast, safe, and always online.</p>
+            <div class="team-social">
+              <a href="https://github.com" aria-label="Aisha Lawal on GitHub"><i data-icon="github"></i></a>
+              <a href="https://linkedin.com" aria-label="Aisha Lawal on LinkedIn"><i data-icon="linkedin"></i></a>
+            </div>
+          </article>
+          <article class="card card-hover team-card">
+            <span class="avatar avatar-xl avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Tomas Nakamura"></span><img src="https://randomuser.me/api/portraits/men/11.jpg" alt="Tomás Nakamura" loading="lazy" onerror="this.remove()"></span>
+            <h3 class="text-md">Tomás Nakamura</h3>
+            <p class="team-role">Head of Growth</p>
+            <p class="team-bio">Joined after building his own startup's MVP on Stackly in a weekend.</p>
+            <div class="team-social">
+              <a href="https://twitter.com" aria-label="Tomás Nakamura on Twitter"><i data-icon="twitter"></i></a>
+              <a href="https://linkedin.com" aria-label="Tomás Nakamura on LinkedIn"><i data-icon="linkedin"></i></a>
+            </div>
+          </article>
+          <article class="card card-hover team-card">
+            <span class="avatar avatar-xl avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Rachel Donovan"></span><img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Rachel Donovan" loading="lazy" onerror="this.remove()"></span>
+            <h3 class="text-md">Rachel Donovan</h3>
+            <p class="team-role">Head of Customer Success</p>
+            <p class="team-bio">Her team answers 94% of support threads in under two hours.</p>
+            <div class="team-social">
+              <a href="https://linkedin.com" aria-label="Rachel Donovan on LinkedIn"><i data-icon="linkedin"></i></a>
+              <a href="https://twitter.com" aria-label="Rachel Donovan on Twitter"><i data-icon="twitter"></i></a>
+            </div>
+          </article>
+          <article class="card card-hover team-card">
+            <span class="avatar avatar-xl avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Samuel Boateng"></span><img src="https://randomuser.me/api/portraits/men/64.jpg" alt="Samuel Boateng" loading="lazy" onerror="this.remove()"></span>
+            <h3 class="text-md">Samuel Boateng</h3>
+            <p class="team-role">Head of Templates</p>
+            <p class="team-bio">Curates the 120+ template marketplace and its creator community.</p>
+            <div class="team-social">
+              <a href="https://dribbble.com" aria-label="Samuel Boateng on Dribbble"><i data-icon="dribbble"></i></a>
+              <a href="https://linkedin.com" aria-label="Samuel Boateng on LinkedIn"><i data-icon="linkedin"></i></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TIMELINE ================= -->
+    <section class="section section-alt" aria-labelledby="story-title">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <span class="section-tag"><i data-icon="calendar" style="width:14px;display:inline-flex"></i> Our Story</span>
+          <h2 class="section-title" id="story-title">From garage to global, in five years</h2>
+        </div>
+        <div class="timeline" data-aos-stagger>
+          <article class="card card-hover timeline-item">
+            <span class="timeline-year">2021</span>
+            <h3 class="text-md mb-2">Founded in Austin</h3>
+            <p class="text-sm text-secondary-c">Elena and Marcus sketch the first canvas prototype in a garage co-working space and onboard 40 beta users from their old agency clients.</p>
+          </article>
+          <article class="card card-hover timeline-item">
+            <span class="timeline-year">2022</span>
+            <h3 class="text-md mb-2">Public launch &amp; seed round</h3>
+            <p class="text-sm text-secondary-c">Stackly 1.0 ships with 25 templates and the built-in database. A $4.2M seed round grows the team to 12 and the waitlist to 9,000.</p>
+          </article>
+          <article class="card card-hover timeline-item">
+            <span class="timeline-year">2023</span>
+            <h3 class="text-md mb-2">10,000 builders &amp; the marketplace</h3>
+            <p class="text-sm text-secondary-c">The template marketplace opens to community creators. Workflow automation launches, and the 10,000th builder publishes an app.</p>
+          </article>
+          <article class="card card-hover timeline-item">
+            <span class="timeline-year">2024</span>
+            <h3 class="text-md mb-2">Business plans &amp; London office</h3>
+            <p class="text-sm text-secondary-c">Team collaboration, SSO, and custom domains arrive for Business customers. We open our first international office in London.</p>
+          </article>
+          <article class="card card-hover timeline-item">
+            <span class="timeline-year">2025</span>
+            <h3 class="text-md mb-2">Series A &amp; 100,000 apps</h3>
+            <p class="text-sm text-secondary-c">A $18M Series A funds the edge publishing network. The 100,000th app goes live — a nonprofit's volunteer portal built in three days.</p>
+          </article>
+          <article class="card card-hover timeline-item">
+            <span class="timeline-year">2026</span>
+            <h3 class="text-md mb-2">48,000 builders and counting</h3>
+            <p class="text-sm text-secondary-c">AI-assisted layouts launch, the Bangalore hub opens, and 48,000+ active builders ship on Stackly across 140+ countries.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= OFFICES ================= -->
+    <section class="section" aria-labelledby="offices-title">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <span class="section-tag"><i data-icon="globe" style="width:14px;display:inline-flex"></i> Where We Are</span>
+          <h2 class="section-title" id="offices-title">Three hubs, one remote-first team</h2>
+        </div>
+        <div class="grid grid-4" data-aos-stagger>
+          <article class="card card-hover text-center">
+            <p class="office-flag" aria-hidden="true">🇺🇸</p>
+            <h3 class="text-md mb-1 mt-3">Austin, USA</h3>
+            <p class="text-sm text-secondary-c">HQ · Product &amp; Engineering<br>600 Congress Ave, TX 78701</p>
+          </article>
+          <article class="card card-hover text-center">
+            <p class="office-flag" aria-hidden="true">🇬🇧</p>
+            <h3 class="text-md mb-1 mt-3">London, UK</h3>
+            <p class="text-sm text-secondary-c">EMEA · Sales &amp; Success<br>1 Finsbury Square, EC2A 1AE</p>
+          </article>
+          <article class="card card-hover text-center">
+            <p class="office-flag" aria-hidden="true">🇮🇳</p>
+            <h3 class="text-md mb-1 mt-3">Bangalore, India</h3>
+            <p class="text-sm text-secondary-c">APAC · Engineering hub<br>Koramangala, 560034</p>
+          </article>
+          <article class="card card-hover text-center">
+            <p class="office-flag" aria-hidden="true">🌍</p>
+            <h3 class="text-md mb-1 mt-3">Everywhere else</h3>
+            <p class="text-sm text-secondary-c">38 teammates work fully remote<br>across 14 time zones</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="section-sm" aria-label="Call to action">
+      <div class="container">
+        <div class="cta-band" data-aos="zoom-in">
+          <h2>Want to build the builder?</h2>
+          <p>We're hiring across engineering, design, marketing, and customer success — remote-first, always.</p>
+          <div class="hero-cta">
+            <a class="btn btn-white btn-lg" href="careers.html">See open roles <i data-icon="arrow-right"></i></a>
+            <a class="btn btn-outline-white btn-lg" href="contact.html">Get in touch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

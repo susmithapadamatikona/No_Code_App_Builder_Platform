@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Features — Stackly | No-Code App Builder</title>
+  <meta name="description" content="Explore every Stackly feature: drag & drop builder, visual editor, database, workflow automation, analytics, team collaboration, publishing, and more.">
+  <meta property="og:title" content="Stackly Features — Everything You Need to Build Without Code">
+  <meta property="og:description" content="16 powerful capabilities in one visual platform: builder, database, automations, auth, analytics, publishing, and a template marketplace.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <style>
+    /* Features page: mini data-table + workflow mock visuals */
+    .mini-table {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .mini-table-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      font-weight: 700;
+      font-size: var(--fs-sm);
+    }
+    .mini-row {
+      display: grid;
+      grid-template-columns: 34px 1.4fr 1fr auto;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--border);
+      font-size: var(--fs-sm);
+    }
+    .mini-row:last-child { border-bottom: none; }
+    .mini-row .mr-name { font-weight: 600; color: var(--text-primary); }
+    .mini-row .mr-sub { font-size: var(--fs-xs); color: var(--text-muted); }
+    .flow-mock {
+      display: grid;
+      gap: 0;
+      justify-items: center;
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      box-shadow: var(--shadow-lg);
+    }
+    .flow-node {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: min(100%, 340px);
+      padding: 13px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--surface-raised);
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .flow-node .fn-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .flow-node .fn-icon svg { width: 16px; height: 16px; }
+    .flow-node small { display: block; font-weight: 500; color: var(--text-muted); font-size: var(--fs-xs); }
+    .flow-link {
+      width: 2px;
+      height: 26px;
+      background: linear-gradient(180deg, var(--primary), var(--secondary));
+      position: relative;
+    }
+    .flow-link::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -1px;
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid var(--secondary);
+      border-bottom: 2px solid var(--secondary);
+      transform: translateX(-50%) rotate(45deg);
+    }
+  </style>
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script src="assets/js/darkmode.js"></script>
+</head>
+<body data-page="features">
+  <div id="header-root"></div>
+
+  <main id="main">
+
+    <!-- ================= PAGE HEADER ================= -->
+    <header class="page-header" style="--ph-photo:url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1920&h=640&q=80')">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="crumb-sep">/</span>
+          <span aria-current="page">Features</span>
+        </nav>
+        <h1>One platform. <span class="text-gradient">Every feature you need.</span></h1>
+        <p>From the first dragged component to the millionth page view — Stackly covers design, data, logic, and deployment so you never leave the canvas.</p>
+      </div>
+    </header>
+
+    <!-- ================= FEATURE GRID ================= -->
+    <section class="section" aria-labelledby="all-features-title">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <span class="section-tag"><i data-icon="zap" style="width:14px;display:inline-flex"></i> Full Feature Set</span>
+          <h2 class="section-title" id="all-features-title">18 capabilities, zero code</h2>
+          <p class="section-sub">Every tool below ships on every plan tier — higher plans simply raise the limits.</p>
+        </div>
+        <div class="grid grid-3" data-aos-stagger>
+          <article class="card card-hover" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+            <span class="pic-frame" style="display:block;aspect-ratio:16/9;flex-shrink:0" aria-hidden="true">
+              <span class="pic-art" data-artwork="cover:design" data-colors="#7928AB,#9A289C"></span>
+              <img class="pic-photo" src="https://images.unsplash.com/photo-1587440871875-191322ee64b0?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()">
+            </span>
+            <div style="padding:20px 22px 22px;flex:1">
+              <div class="d-flex items-center gap-3 mb-2"><div class="feature-icon" style="width:40px;height:40px;margin:0;border-radius:11px"><i data-icon="move"></i></div><h3 class="text-md m-0">Drag &amp; Drop Builder</h3></div>
+              <p class="text-sm text-secondary-c">Assemble pages by dragging components onto a free-form canvas with smart guides and snap-to-grid. Reorder, resize, and nest elements exactly the way a designer would.</p>
+            </div>
+          </article>
+          <article class="card card-hover" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+            <span class="pic-frame" style="display:block;aspect-ratio:16/9;flex-shrink:0" aria-hidden="true">
+              <span class="pic-art" data-artwork="cover:code" data-colors="#9A289C,#EC4899"></span>
+              <img class="pic-photo" src="https://images.unsplash.com/photo-1541462608143-67571c6738dd?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()">
+            </span>
+            <div style="padding:20px 22px 22px;flex:1">
+              <div class="d-flex items-center gap-3 mb-2"><div class="feature-icon" style="width:40px;height:40px;margin:0;border-radius:11px"><i data-icon="edit"></i></div><h3 class="text-md m-0">Visual App Editor</h3></div>
+              <p class="text-sm text-secondary-c">Edit text inline, restyle with a full properties panel, and see the result instantly. What you see in the editor is byte-for-byte what your users get.</p>
+            </div>
+          </article>
+          <article class="card card-hover" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+            <span class="pic-frame" style="display:block;aspect-ratio:16/9;flex-shrink:0" aria-hidden="true">
+              <span class="pic-art" data-artwork="appShot:landing" data-colors="#32287D,#7928AB"></span>
+              <img class="pic-photo" src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()">
+            </span>
+            <div style="padding:20px 22px 22px;flex:1">
+              <div class="d-flex items-center gap-3 mb-2"><div class="feature-icon" style="width:40px;height:40px;margin:0;border-radius:11px"><i data-icon="layers"></i></div><h3 class="text-md m-0">Pre-Built Components</h3></div>
+              <p class="text-sm text-secondary-c">120+ production-grade components: navbars, tables, charts, forms, galleries, checkouts. Each one is accessible, themeable, and responsive out of the box.</p>
+            </div>
+          </article>
+          <article class="card card-hover" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+            <span class="pic-frame" style="display:block;aspect-ratio:16/9;flex-shrink:0" aria-hidden="true">
+              <span class="pic-art" data-artwork="cover:device" data-colors="#47C1D1,#7928AB"></span>
+              <img class="pic-photo" src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()">
+            </span>
+            <div style="padding:20px 22px 22px;flex:1">
+              <div class="d-flex items-center gap-3 mb-2"><div class="feature-icon" style="width:40px;height:40px;margin:0;border-radius:11px"><i data-icon="smartphone"></i></div><h3 class="text-md m-0">Responsive Design</h3></div>
+              <p class="text-sm text-secondary-c">Layouts adapt automatically to desktop, tablet, and mobile breakpoints. Override any property per device when you need pixel-level control.</p>
+            </div>
+          </article>
+          <article class="card card-hover" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+            <span class="pic-frame" style="display:block;aspect-ratio:16/9;flex-shrink:0" aria-hidden="true">
+              <span class="pic-art" data-artwork="cover:code" data-colors="#0F172A,#334155"></span>
+              <img class="pic-photo" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()">
+            </span>
+            <div style="padding:20px 22px 22px;flex:1">
+              <div class="d-flex items-center gap-3 mb-2"><div class="feature-icon" style="width:40px;height:40px;margin:0;border-radius:11px"><i data-icon="database"></i></div><h3 class="text-md m-0">Database Management</h3></div>
+              <p class="text-sm text-secondary-c">Model collections, fields, and relations visually — no SQL required. Row-level permissions keep every record visible only to the right users.</p>
+            </div>
+          </article>
+          <article class="card card-hover" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+            <span class="pic-frame" style="display:block;aspect-ratio:16/9;flex-shrink:0" aria-hidden="true">
+              <span class="pic-art" data-artwork="cover:code" data-colors="#22C55E,#47C1D1"></span>
+              <img class="pic-photo" src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()">
+            </span>
+            <div style="padding:20px 22px 22px;flex:1">
+              <div class="d-flex items-center gap-3 mb-2"><div class="feature-icon" style="width:40px;height:40px;margin:0;border-radius:11px"><i data-icon="code"></i></div><h3 class="text-md m-0">API Integration</h3></div>
+              <p class="text-sm text-secondary-c">Connect any REST endpoint with auth headers, pagination, and field mapping. Bind responses straight to tables, charts, and repeating lists.</p>
+            </div>
+          </article>
+          <article class="card card-hover" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+            <span class="pic-frame" style="display:block;aspect-ratio:16/9;flex-shrink:0" aria-hidden="true">
+              <span class="pic-art" data-artwork="cover:idea" data-colors="#7928AB,#47C1D1"></span>
+              <img class="pic-photo" src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()">
+            </span>
+            <div style="padding:20px 22px 22px;flex:1">
+              <div class="d-flex items-center gap-3 mb-2"><div class="feature-icon" style="width:40px;height:40px;margin:0;border-radius:11px"><i data-icon="shield"></i></div><h3 class="text-md m-0">Authentication</h3></div>
+              <p class="text-sm text-secondary-c">Ship sign-up, login, password reset, and role-based access in minutes. SSO, magic links, and social login are included on Pro and Business plans.</p>
+            </div>
+          </article>
+          <article class="card card-hover" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+            <span class="pic-frame" style="display:block;aspect-ratio:16/9;flex-shrink:0" aria-hidden="true">
+              <span class="pic-art" data-artwork="appShot:list" data-colors="#F59E0B,#EC4899"></span>
+              <img class="pic-photo" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()">
+            </span>
+            <div style="padding:20px 22px 22px;flex:1">
+              <div class="d-flex items-center gap-3 mb-2"><div class="feature-icon" style="width:40px;height:40px;margin:0;border-radius:11px"><i data-icon="workflow"></i></div><h3 class="text-md m-0">Workflow Automation</h3></div>
+              <p class="text-sm text-secondary-c">Chain triggers, conditions, and actions on a visual logic canvas. Send emails, call webhooks, and update records the moment something happens.</p>
+            </div>
+          </article>
+          <article class="card card-hover" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+            <span class="pic-frame" style="display:block;aspect-ratio:16/9;flex-shrink:0" aria-hidden="true">
+              <span class="pic-art" data-artwork="appShot:list" data-colors="#47C1D1,#22C55E"></span>
+              <img class="pic-photo" src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()">
+            </span>
+            <div style="padding:20px 22px 22px;flex:1">
+              <div class="d-flex items-center gap-3 mb-2"><div class="feature-icon" style="width:40px;height:40px;margin:0;border-radius:11px"><i data-icon="form-el"></i></div><h3 class="text-md m-0">Form Builder</h3></div>
+              <p class="text-sm text-secondary-c">Build multi-step forms with validation, conditional fields, and file uploads. Submissions land in your database and can trigger any workflow.</p>
+            </div>
+          </article>
+          <article class="card card-hover" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+            <span class="pic-frame" style="display:block;aspect-ratio:16/9;flex-shrink:0" aria-hidden="true">
+              <span class="pic-art" data-artwork="cover:design" data-colors="#EC4899,#9A289C"></span>
+              <img class="pic-photo" src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()">
+            </span>
+            <div style="padding:20px 22px 22px;flex:1">
+              <div class="d-flex items-center gap-3 mb-2"><div class="feature-icon" style="width:40px;height:40px;margin:0;border-radius:11px"><i data-icon="palette"></i></div><h3 class="text-md m-0">Custom Branding</h3></div>
+              <p class="text-sm text-secondary-c">Define brand colors, typography, radii, and logos once — every component inherits them. Agencies can white-label the entire published app.</p>
+            </div>
+          </article>
+          <article class="card card-hover" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+            <span class="pic-frame" style="display:block;aspect-ratio:16/9;flex-shrink:0" aria-hidden="true">
+              <span class="pic-art" data-artwork="appShot:dashboard" data-colors="#7928AB,#47C1D1"></span>
+              <img class="pic-photo" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()">
+            </span>
+            <div style="padding:20px 22px 22px;flex:1">
+              <div class="d-flex items-center gap-3 mb-2"><div class="feature-icon" style="width:40px;height:40px;margin:0;border-radius:11px"><i data-icon="chart"></i></div><h3 class="text-md m-0">Analytics</h3></div>
+              <p class="text-sm text-secondary-c">Track visitors, conversions, and top pages with a built-in, privacy-friendly dashboard. No tracking scripts to install, no cookie banners forced on you.</p>
+            </div>
+          </article>
+          <article class="card card-hover" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+            <span class="pic-frame" style="display:block;aspect-ratio:16/9;flex-shrink:0" aria-hidden="true">
+              <span class="pic-art" data-artwork="cover:team" data-colors="#32287D,#9A289C"></span>
+              <img class="pic-photo" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()">
+            </span>
+            <div style="padding:20px 22px 22px;flex:1">
+              <div class="d-flex items-center gap-3 mb-2"><div class="feature-icon" style="width:40px;height:40px;margin:0;border-radius:11px"><i data-icon="users"></i></div><h3 class="text-md m-0">Team Collaboration</h3></div>
+              <p class="text-sm text-secondary-c">Invite teammates with Owner, Editor, or Viewer roles and build together in real time. Comments and mentions keep feedback attached to the exact element.</p>
+            </div>
+          </article>
+          <article class="card card-hover" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+            <span class="pic-frame" style="display:block;aspect-ratio:16/9;flex-shrink:0" aria-hidden="true">
+              <span class="pic-art" data-artwork="cover:idea" data-colors="#F59E0B,#7928AB"></span>
+              <img class="pic-photo" src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()">
+            </span>
+            <div style="padding:20px 22px 22px;flex:1">
+              <div class="d-flex items-center gap-3 mb-2"><div class="feature-icon" style="width:40px;height:40px;margin:0;border-radius:11px"><i data-icon="clock"></i></div><h3 class="text-md m-0">Version History</h3></div>
+              <p class="text-sm text-secondary-c">Every publish creates a named, restorable snapshot — and the editor autosaves as you work. Roll back any page or the whole app in one click.</p>
+            </div>
+          </article>
+          <article class="card card-hover" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+            <span class="pic-frame" style="display:block;aspect-ratio:16/9;flex-shrink:0" aria-hidden="true">
+              <span class="pic-art" data-artwork="cover:device" data-colors="#22C55E,#7928AB"></span>
+              <img class="pic-photo" src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()">
+            </span>
+            <div style="padding:20px 22px 22px;flex:1">
+              <div class="d-flex items-center gap-3 mb-2"><div class="feature-icon" style="width:40px;height:40px;margin:0;border-radius:11px"><i data-icon="eye"></i></div><h3 class="text-md m-0">App Preview</h3></div>
+              <p class="text-sm text-secondary-c">Preview on desktop, tablet, and phone frames without leaving the builder. Share a private preview link so stakeholders can review before launch.</p>
+            </div>
+          </article>
+          <article class="card card-hover" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+            <span class="pic-frame" style="display:block;aspect-ratio:16/9;flex-shrink:0" aria-hidden="true">
+              <span class="pic-art" data-artwork="cover:launch" data-colors="#0F172A,#7928AB"></span>
+              <img class="pic-photo" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()">
+            </span>
+            <div style="padding:20px 22px 22px;flex:1">
+              <div class="d-flex items-center gap-3 mb-2"><div class="feature-icon" style="width:40px;height:40px;margin:0;border-radius:11px"><i data-icon="rocket"></i></div><h3 class="text-md m-0">Publishing</h3></div>
+              <p class="text-sm text-secondary-c">Deploy to a global edge network with automatic SSL in one click. Connect custom domains and roll back to any previous version instantly.</p>
+            </div>
+          </article>
+          <article class="card card-hover" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+            <span class="pic-frame" style="display:block;aspect-ratio:16/9;flex-shrink:0" aria-hidden="true">
+              <span class="pic-art" data-artwork="appShot:commerce" data-colors="#9A289C,#47C1D1"></span>
+              <img class="pic-photo" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()">
+            </span>
+            <div style="padding:20px 22px 22px;flex:1">
+              <div class="d-flex items-center gap-3 mb-2"><div class="feature-icon" style="width:40px;height:40px;margin:0;border-radius:11px"><i data-icon="grid"></i></div><h3 class="text-md m-0">Template Marketplace</h3></div>
+              <p class="text-sm text-secondary-c">Start from 120+ hand-crafted templates for CRMs, stores, portals, and dashboards. Every template includes pages, components, and a ready data model.</p>
+            </div>
+          </article>
+          <article class="card card-hover" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+            <span class="pic-frame" style="display:block;aspect-ratio:16/9;flex-shrink:0" aria-hidden="true">
+              <span class="pic-art" data-artwork="cover:idea" data-colors="#9A289C,#EC4899"></span>
+              <img class="pic-photo" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()">
+            </span>
+            <div style="padding:20px 22px 22px;flex:1">
+              <div class="d-flex items-center gap-3 mb-2"><div class="feature-icon" style="width:40px;height:40px;margin:0;border-radius:11px"><i data-icon="zap"></i></div><h3 class="text-md m-0">AI Assist</h3></div>
+              <p class="text-sm text-secondary-c">Describe a page in plain English — "pricing page with three tiers and an FAQ" — and get a first draft on the canvas. AI also suggests copy, color pairs, and layout fixes as you build.</p>
+            </div>
+          </article>
+          <article class="card card-hover" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+            <span class="pic-frame" style="display:block;aspect-ratio:16/9;flex-shrink:0" aria-hidden="true">
+              <span class="pic-art" data-artwork="appShot:finance" data-colors="#22C55E,#47C1D1"></span>
+              <img class="pic-photo" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&h=450&q=80" alt="" loading="lazy" onerror="this.remove()">
+            </span>
+            <div style="padding:20px 22px 22px;flex:1">
+              <div class="d-flex items-center gap-3 mb-2"><div class="feature-icon" style="width:40px;height:40px;margin:0;border-radius:11px"><i data-icon="credit-card"></i></div><h3 class="text-md m-0">Payments &amp; Subscriptions</h3></div>
+              <p class="text-sm text-secondary-c">Accept one-time payments, subscriptions, and invoices with built-in Stripe and regional gateway blocks. Checkout, receipts, and dunning emails work out of the box.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DEEP DIVE 1: BUILDER ================= -->
+    <section class="section section-alt" aria-labelledby="dd-builder-title">
+      <div class="container">
+        <div class="grid grid-2 items-center gap-6">
+          <div data-aos="fade-right">
+            <span class="section-tag"><i data-icon="move" style="width:14px;display:inline-flex"></i> Flagship · Builder</span>
+            <h2 class="section-title" id="dd-builder-title">A drag &amp; drop builder that <span class="text-gradient">feels like a design tool</span></h2>
+            <p class="section-sub" style="margin-inline:0;text-align:left">Most no-code builders make you fight rigid grids. Stackly's canvas gives you design-tool freedom with engineering-grade output: semantic markup, real components, and clean responsive behavior.</p>
+            <ul class="d-grid gap-3 mt-5 mb-6">
+              <li class="d-flex items-center gap-3"><span class="feature-icon" style="width:38px;height:38px;margin:0;border-radius:10px"><i data-icon="check" style="width:16px;display:inline-flex"></i></span><span>Smart guides, snap-to-grid, and multi-select alignment</span></li>
+              <li class="d-flex items-center gap-3"><span class="feature-icon" style="width:38px;height:38px;margin:0;border-radius:10px"><i data-icon="check" style="width:16px;display:inline-flex"></i></span><span>Copy, paste, and reuse sections across pages and projects</span></li>
+              <li class="d-flex items-center gap-3"><span class="feature-icon" style="width:38px;height:38px;margin:0;border-radius:10px"><i data-icon="check" style="width:16px;display:inline-flex"></i></span><span>Full undo / redo history with named checkpoints</span></li>
+            </ul>
+            <a class="btn btn-primary" href="app-builder.html">Try the Builder <i data-icon="arrow-right"></i></a>
+          </div>
+          <div data-aos="fade-left" aria-hidden="true">
+            <div class="hero-photo hero-photo--flat">
+              <span class="pic-art" data-artwork="appShot:landing" data-colors="#32287D,#9A289C"></span>
+              <img class="pic-photo" src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=1400&h=920&q=80" alt="A maker designing an app page in the Stackly builder" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1541462608143-67571c6738dd?auto=format&fit=crop&w=1400&h=920&q=80';this.onerror=function(){this.remove();};">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DEEP DIVE 2: DATABASE ================= -->
+    <section class="section" aria-labelledby="dd-db-title">
+      <div class="container">
+        <div class="grid grid-2 items-center gap-6">
+          <div data-aos="fade-right" aria-hidden="true">
+            <div class="mini-table">
+              <div class="mini-table-head">
+                <span class="d-flex items-center gap-2"><span class="feature-icon" style="width:30px;height:30px;margin:0;border-radius:8px"><i data-icon="database" style="width:15px;display:inline-flex"></i></span> customers · 1,284 records</span>
+                <span class="badge badge-success">Live</span>
+              </div>
+              <div class="mini-row">
+                <span class="avatar avatar-sm avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Lena Moreau"></span><img src="https://randomuser.me/api/portraits/women/47.jpg" alt="Lena Moreau" loading="lazy" onerror="this.remove()"></span>
+                <span><span class="mr-name">Lena Moreau</span><span class="mr-sub">lena@brightloop.io</span></span>
+                <span class="badge badge-primary">Pro plan</span>
+                <span class="text-xs text-muted-c">2m ago</span>
+              </div>
+              <div class="mini-row">
+                <span class="avatar avatar-sm avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Theo Walsh"></span><img src="https://randomuser.me/api/portraits/men/36.jpg" alt="Theo Walsh" loading="lazy" onerror="this.remove()"></span>
+                <span><span class="mr-name">Theo Walsh</span><span class="mr-sub">theo@orbitex.com</span></span>
+                <span class="badge badge-info">Trialing</span>
+                <span class="text-xs text-muted-c">1h ago</span>
+              </div>
+              <div class="mini-row">
+                <span class="avatar avatar-sm avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Ana Rojas"></span><img src="https://randomuser.me/api/portraits/women/17.jpg" alt="Ana Rojas" loading="lazy" onerror="this.remove()"></span>
+                <span><span class="mr-name">Ana Rojas</span><span class="mr-sub">ana@nimbuslabs.co</span></span>
+                <span class="badge badge-success">Active</span>
+                <span class="text-xs text-muted-c">3h ago</span>
+              </div>
+              <div class="mini-row">
+                <span class="avatar avatar-sm avatar-img avatar-photo"><span class="pic-art" data-artwork="person:Kenji Okafor"></span><img src="https://randomuser.me/api/portraits/men/71.jpg" alt="Kenji Okafor" loading="lazy" onerror="this.remove()"></span>
+                <span><span class="mr-name">Kenji Okafor</span><span class="mr-sub">kenji@stackline.dev</span></span>
+                <span class="badge badge-warning">Past due</span>
+                <span class="text-xs text-muted-c">1d ago</span>
+              </div>
+            </div>
+          </div>
+          <div data-aos="fade-left">
+            <span class="section-tag"><i data-icon="database" style="width:14px;display:inline-flex"></i> Flagship · Data</span>
+            <h2 class="section-title" id="dd-db-title">A real database, <span class="text-gradient">modeled visually</span></h2>
+            <p class="section-sub" style="margin-inline:0;text-align:left">Create collections, add typed fields, and link relations with a spreadsheet-simple editor. Your UI binds to live data instantly — edit a record and every table, chart, and card updates in place.</p>
+            <ul class="d-grid gap-3 mt-5 mb-6">
+              <li class="d-flex items-center gap-3"><span class="feature-icon" style="width:38px;height:38px;margin:0;border-radius:10px"><i data-icon="check" style="width:16px;display:inline-flex"></i></span><span>Text, number, date, file, reference, and formula fields</span></li>
+              <li class="d-flex items-center gap-3"><span class="feature-icon" style="width:38px;height:38px;margin:0;border-radius:10px"><i data-icon="check" style="width:16px;display:inline-flex"></i></span><span>Row-level permissions tied to user roles</span></li>
+              <li class="d-flex items-center gap-3"><span class="feature-icon" style="width:38px;height:38px;margin:0;border-radius:10px"><i data-icon="check" style="width:16px;display:inline-flex"></i></span><span>CSV import/export and Google Sheets sync</span></li>
+            </ul>
+            <a class="btn btn-secondary" href="documentation.html">Read the data docs <i data-icon="arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DEEP DIVE 3: WORKFLOWS ================= -->
+    <section class="section section-alt" aria-labelledby="dd-wf-title">
+      <div class="container">
+        <div class="grid grid-2 items-center gap-6">
+          <div data-aos="fade-right">
+            <span class="section-tag"><i data-icon="workflow" style="width:14px;display:inline-flex"></i> Flagship · Automation</span>
+            <h2 class="section-title" id="dd-wf-title">Automations that run <span class="text-gradient">while you sleep</span></h2>
+            <p class="section-sub" style="margin-inline:0;text-align:left">Every form submit, record change, or schedule tick can kick off a workflow. Branch on conditions, wait for delays, and fan out to email, Slack, webhooks, and record updates — all drawn as a flowchart.</p>
+            <ul class="d-grid gap-3 mt-5 mb-6">
+              <li class="d-flex items-center gap-3"><span class="feature-icon" style="width:38px;height:38px;margin:0;border-radius:10px"><i data-icon="check" style="width:16px;display:inline-flex"></i></span><span>Triggers: form submit, record change, schedule, webhook</span></li>
+              <li class="d-flex items-center gap-3"><span class="feature-icon" style="width:38px;height:38px;margin:0;border-radius:10px"><i data-icon="check" style="width:16px;display:inline-flex"></i></span><span>Conditions, delays, and loops with a visual debugger</span></li>
+              <li class="d-flex items-center gap-3"><span class="feature-icon" style="width:38px;height:38px;margin:0;border-radius:10px"><i data-icon="check" style="width:16px;display:inline-flex"></i></span><span>Run history with per-step logs and one-click retries</span></li>
+            </ul>
+            <a class="btn btn-secondary" href="integrations.html">See connected apps <i data-icon="arrow-right"></i></a>
+          </div>
+          <div data-aos="fade-left" aria-hidden="true">
+            <div class="flow-mock">
+              <div class="flow-node">
+                <span class="fn-icon" style="background:linear-gradient(135deg,#7928AB,#9A289C)"><i data-icon="form-el"></i></span>
+                <span>Form submitted<small>Trigger · "Request a demo"</small></span>
+              </div>
+              <div class="flow-link"></div>
+              <div class="flow-node">
+                <span class="fn-icon" style="background:linear-gradient(135deg,#F59E0B,#F97316)"><i data-icon="filter"></i></span>
+                <span>Company size &gt; 50?<small>Condition · branch on field</small></span>
+              </div>
+              <div class="flow-link"></div>
+              <div class="flow-node">
+                <span class="fn-icon" style="background:linear-gradient(135deg,#47C1D1,#5595E4)"><i data-icon="chat"></i></span>
+                <span>Notify #sales on Slack<small>Action · integration</small></span>
+              </div>
+              <div class="flow-link"></div>
+              <div class="flow-node">
+                <span class="fn-icon" style="background:linear-gradient(135deg,#22C55E,#16A34A)"><i data-icon="mail"></i></span>
+                <span>Send welcome email<small>Action · template "Demo booked"</small></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= STATS BAND ================= -->
+    <section class="section-sm" aria-label="Platform statistics">
+      <div class="container">
+        <div class="stats-band" data-aos="fade-up">
+          <div class="stat-item">
+            <div class="stat-num"><span data-counter="120" data-suffix="+">0</span></div>
+            <p>Drag &amp; Drop Components</p>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num"><span data-counter="132000" data-suffix="+">0</span></div>
+            <p>Apps Published</p>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num"><span data-counter="4" data-suffix="M+">0</span></div>
+            <p>Workflow Runs / Month</p>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num"><span data-counter="99.9" data-suffix="%">0</span></div>
+            <p>Uptime SLA</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="section-sm" aria-label="Call to action">
+      <div class="container">
+        <div class="cta-band" data-aos="zoom-in">
+          <h2>See every feature in action</h2>
+          <p>Spin up a free workspace and explore the builder, database, and workflows with sample data pre-loaded. No credit card required.</p>
+          <div class="hero-cta">
+            <a class="btn btn-white btn-lg" href="register.html">Start Building Free <i data-icon="arrow-right"></i></a>
+            <a class="btn btn-outline-white btn-lg" href="how-it-works.html">See How It Works</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

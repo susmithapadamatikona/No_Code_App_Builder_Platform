@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics — Stackly | No-Code App Builder</title>
+  <meta name="description" content="App analytics for your Stackly workspace — visitors, active users, views, conversions, device statistics, and traffic sources.">
+  <meta property="og:title" content="Analytics — Stackly">
+  <meta property="og:description" content="Visitors, conversions, devices, and traffic for your published apps.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237928AB'/%3E%3Cstop offset='1' stop-color='%239A289C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' fill='url(%23g)'/%3E%3Cpath d='M13 5 6.5 13H11l-.8 6L17 11h-4.5L13 5z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script src="assets/js/darkmode.js"></script>
+</head>
+<body data-dash="analytics">
+  <div class="dash-layout">
+    <aside id="dash-sidebar" aria-label="Dashboard navigation"></aside>
+    <div class="dash-main">
+      <header id="dash-topbar"></header>
+      <main id="main" class="dash-content dash-section-gap">
+
+        <section aria-label="Analytics controls">
+          <div class="dash-head-row">
+            <div>
+              <h2>App Analytics</h2>
+              <p class="sub" id="an-period-sub">Performance across all your published apps.</p>
+            </div>
+            <div class="d-flex items-center gap-3 flex-wrap">
+              <div class="tabs" role="tablist" aria-label="Reporting period" id="period-tabs">
+                <button class="tab-btn" type="button" data-period="7">7 days</button>
+                <button class="tab-btn is-active" type="button" data-period="30">30 days</button>
+                <button class="tab-btn" type="button" data-period="90">90 days</button>
+              </div>
+              <button class="btn btn-secondary" type="button" data-download-report><i data-icon="download"></i> Report</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="dash-row-4" id="an-stats" aria-label="Key metrics"></section>
+
+        <section class="dash-cols-main" aria-label="Traffic charts">
+          <article class="card">
+            <div class="card-head"><h3>Visitors &amp; active users</h3><span class="badge badge-neutral" data-period-badge>Last 30 days</span></div>
+            <div id="an-main-chart" role="img" aria-label="Visitors and active users chart"></div>
+          </article>
+          <article class="card">
+            <div class="card-head"><h3>Monthly growth</h3></div>
+            <div id="an-growth-chart" role="img" aria-label="Monthly growth chart"></div>
+          </article>
+        </section>
+
+        <section class="dash-row-2" aria-label="Audience breakdown">
+          <article class="card">
+            <div class="card-head"><h3>Device statistics</h3></div>
+            <div id="an-device-chart" role="img" aria-label="Device statistics"></div>
+          </article>
+          <article class="card">
+            <div class="card-head"><h3>Traffic sources</h3></div>
+            <div id="an-sources-chart" role="img" aria-label="Traffic sources"></div>
+          </article>
+        </section>
+
+        <section class="dash-cols-main" aria-label="Top apps and activity">
+          <article class="card">
+            <div class="card-head"><h3>Top performing apps</h3><a class="card-link" href="projects.html">All projects <i data-icon="arrow-right"></i></a></div>
+            <div id="an-top-apps"></div>
+          </article>
+          <article class="card">
+            <div class="card-head"><h3>Recent activity</h3><span class="badge badge-neutral">Live</span></div>
+            <div id="an-activity"></div>
+          </article>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/artwork.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/charts.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+  <script src="assets/js/analytics.js"></script>
+</body>
+</html>
