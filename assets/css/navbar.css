@@ -469,3 +469,17 @@
   .nav-actions .btn { display: none; }
   .nav-actions .nav-user { display: none; }
 }
+
+/* While the mobile drawer is open, hide the fixed header so its logo and
+   hamburger never overlap the drawer's own header */
+.site-header.drawer-open {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t-fast);
+}
+
+@media (max-width: 640px) {
+  .navbar { gap: var(--sp-3); }
+  .navbar .brand-logo { height: 32px; }
+  .nav-burger { width: 40px; height: 40px; }
+}

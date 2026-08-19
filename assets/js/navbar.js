@@ -177,6 +177,7 @@
       burger.classList.add('is-active');
       burger.setAttribute('aria-expanded', 'true');
       document.body.classList.add('no-scroll');
+      header.classList.add('drawer-open');
     }
     function closeDrawer() {
       drawer.classList.remove('is-open');
@@ -184,6 +185,7 @@
       burger.classList.remove('is-active');
       burger.setAttribute('aria-expanded', 'false');
       document.body.classList.remove('no-scroll');
+      header.classList.remove('drawer-open');
     }
     burger.addEventListener('click', function () {
       drawer.classList.contains('is-open') ? closeDrawer() : openDrawer();

@@ -83,3 +83,50 @@
   .tabs { width: 100%; }
   .pagination .page-btn { min-width: 36px; height: 36px; }
 }
+
+/* ==========================================================================
+   Mobile polish pass — later-added components
+   ========================================================================== */
+
+/* Two-column content sections stack earlier so tablets don't cramp
+   (feature deep-dives, about mission, contact split, template extras) */
+@media (max-width: 900px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .hero-photo,
+  .hero-photo--flat { max-width: 640px; margin-inline: auto; }
+}
+
+@media (max-width: 640px) {
+  /* centered hero: comfortable type + spacing on phones */
+  .hero .container { padding-inline: var(--sp-4); }
+  .hero-pill { font-size: var(--fs-xs); text-align: left; }
+  .hero-meta { gap: var(--sp-3); }
+
+  /* photo-led cards: slightly shorter frames on small screens */
+  .pic-frame[style*="aspect-ratio"] { max-height: 220px; }
+
+  /* templates page extras */
+  #market-extras .cta-band .btn { width: auto; }
+  #top-rated-list .btn { padding: 8px 12px; }
+  #top-rated-list > div { flex-wrap: wrap; }
+
+  /* auth shell breathing room */
+  .auth-main { padding: var(--sp-5) var(--sp-4); }
+  .auth-social-icons { gap: 10px; }
+  .social-icon-btn { width: 48px; height: 48px; }
+
+  /* curated collections & pills wrap cleanly */
+  .cat-pills { justify-content: center; }
+
+  /* 404 floating cards off on phones */
+  .nf-float { display: none; }
+}
+
+@media (max-width: 420px) {
+  .auth-shell { border-radius: 18px; }
+  .auth-side { padding: var(--sp-4); }
+  .auth-side-content h2 { font-size: var(--fs-lg); }
+  .form-row { grid-template-columns: 1fr; }
+  .dash-email-chip { max-width: 140px; }
+  .btn-lg { padding: 14px 22px; font-size: 1rem; }
+}

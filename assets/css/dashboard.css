@@ -1276,6 +1276,8 @@
     z-index: calc(var(--z-overlay) + 10);
     box-shadow: var(--shadow-xl);
   }
+  /* mobile drawer always shows the full wordmark — never the mini mark too */
+  .dash-brand-mini { display: none !important; }
   .dash-layout.menu-open .dash-sidebar { transform: translateX(0); }
   .dash-main { margin-left: 0 !important; }
   .dash-burger { display: grid; }

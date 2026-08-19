@@ -8,14 +8,18 @@
   display: flex;
   align-items: center;
   padding: calc(var(--navbar-h) + var(--sp-7)) 0 var(--sp-8);
-  /* HD photo backdrop, clearly visible: overlay is dark only behind the
-     headline (left) and fades out to the right (gradient is the fallback) */
+  /* HD photo backdrop, clearly visible: a light veil over the whole image
+     plus a soft dark pocket ONLY behind the centered text for readability */
   background:
+    radial-gradient(ellipse 62% 56% at 50% 44%,
+      rgba(18, 14, 42, 0.8) 0%,
+      rgba(18, 14, 42, 0.45) 55%,
+      rgba(18, 14, 42, 0.08) 78%),
     linear-gradient(180deg,
-      rgba(36, 32, 68, 0.9) 0%,
-      rgba(45, 36, 105, 0.82) 55%,
-      rgba(36, 32, 68, 0.92) 100%),
-    url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1920&h=1080&q=80') center / cover no-repeat,
+      rgba(36, 32, 68, 0.5) 0%,
+      rgba(36, 32, 68, 0.28) 45%,
+      rgba(36, 32, 68, 0.62) 100%),
+    url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=2000&h=1125&q=85') center / cover no-repeat,
     var(--gradient-hero);
   color: #E2E8F0;
   overflow: hidden;
@@ -43,7 +47,7 @@
   position: absolute;
   border-radius: 50%;
   filter: blur(90px);
-  opacity: 0.32; /* kept subtle so the backdrop photo stays clearly visible */
+  opacity: 0.18; /* kept subtle so the backdrop photo stays clearly visible */
   animation: orbFloat 14s ease-in-out infinite;
 }
 
@@ -52,8 +56,12 @@
 @media (max-width: 1024px) {
   .hero {
     background:
-      linear-gradient(180deg, rgba(36, 32, 68, 0.88), rgba(30, 27, 75, 0.82)),
-      url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&h=1400&q=80') center / cover no-repeat,
+      radial-gradient(ellipse 90% 60% at 50% 46%,
+        rgba(18, 14, 42, 0.82) 0%,
+        rgba(18, 14, 42, 0.5) 60%,
+        rgba(18, 14, 42, 0.14) 82%),
+      linear-gradient(180deg, rgba(36, 32, 68, 0.5), rgba(36, 32, 68, 0.32) 50%, rgba(36, 32, 68, 0.62)),
+      url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&h=1400&q=85') center / cover no-repeat,
       var(--gradient-hero);
   }
 }

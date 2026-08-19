@@ -397,7 +397,18 @@ select.form-control {
 
 @media (max-width: 900px) {
   .auth-shell { grid-template-columns: 1fr; max-width: 520px; }
-  .auth-side { display: none; }
+  /* left brand card stays visible on mobile — compact, stacked on top */
+  .auth-side {
+    padding: var(--sp-5) var(--sp-5);
+    gap: var(--sp-4);
+  }
+  .auth-side-content h2 {
+    font-size: var(--fs-xl);
+    max-width: none;
+  }
+  .auth-side-content p { margin-bottom: var(--sp-4); }
+  .auth-quote { padding: var(--sp-4); }
+  .auth-quote p { margin-bottom: var(--sp-3); }
   .form-row { grid-template-columns: 1fr; }
   .auth-page { padding: 20px 14px; }
 }
