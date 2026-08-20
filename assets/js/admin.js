@@ -257,7 +257,7 @@
     var me = AppStore.auth.current();
     var html =
       '<div class="as-head">' +
-        '<a class="as-brand" href="admin-dashboard.html"><img class="brand-logo" src="assets/images/logo-stackly.webp" alt="Stackly" style="height:30px;filter:none"></a>' +
+        '<a class="as-brand" href="admin-dashboard.html"><img class="brand-logo" src="assets/images/logo-stackly.webp" alt="Stackly" style="height:30px"></a>' +
         '<span class="as-admin-badge">Admin</span>' +
         '<button type="button" class="as-collapse" data-collapse aria-label="Collapse sidebar">' + icon('chevron-left') + '</button>' +
       '</div>' +

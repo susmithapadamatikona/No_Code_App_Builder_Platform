@@ -59,6 +59,21 @@
           </div>
         </div>
 
+        <div class="hero-visual">
+          <div class="ai-prompt-card">
+            <label class="ai-prompt-label" for="ai-idea">Describe your app idea</label>
+            <div class="ai-prompt-box">
+              <textarea id="ai-idea" maxlength="500" rows="4"
+                placeholder="Ask Stackly to build an app that automates employee onboarding and tracks every task…"></textarea>
+              <div class="ai-prompt-foot">
+                <span class="ai-count"><b id="ai-count">0</b>/500</span>
+                <button class="ai-send" type="button" id="ai-send" aria-label="Generate my app"><i data-icon="arrow-up"></i></button>
+              </div>
+            </div>
+            <p class="ai-prompt-hint"><i data-icon="zap"></i> Stackly AI drafts your pages, data model, and workflows in seconds.</p>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -481,6 +496,79 @@
         var featured = AppStore.getTemplates().slice().sort(function (a, b) { return b.uses - a.uses; }).slice(0, 3);
         host.innerHTML = featured.map(window.TemplateCards.render).join('');
         Icons.inject(host);
+      }
+
+      /* AI prompt card (hero) */
+      var idea = document.getElementById('ai-idea');
+      var count = document.getElementById('ai-count');
+      var send = document.getElementById('ai-send');
+      if (idea && send) {
+        idea.addEventListener('input', function () {
+          count.textContent = idea.value.length;
+        });
+
+        /* ---- typewriter placeholder: types ideas letter by letter ---- */
+        var IDEAS = [
+          'Ask Stackly to build an app that automates employee onboarding and tracks every task…',
+          'Build a booking app for my salon with payments and SMS reminders…',
+          'Create a CRM that scores leads and emails me a weekly pipeline report…',
+          'Design an inventory tracker for my store with low-stock alerts…'
+        ];
+        var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reduceMotion) {
+          var ideaIdx = 0, charIdx = 0, mode = 'type', pauseTicks = 0;
+          idea.placeholder = '▌';
+          (function tw() {
+            var full = IDEAS[ideaIdx];
+            if (mode === 'type') {
+              charIdx++;
+              idea.placeholder = full.slice(0, charIdx) + '▌';
+              if (charIdx >= full.length) { mode = 'pause'; pauseTicks = 0; }
+              setTimeout(tw, 34 + Math.random() * 42);
+            } else if (mode === 'pause') {
+              pauseTicks++;
+              idea.placeholder = full + (pauseTicks % 2 ? ' ' : '▌'); /* blinking caret */
+              if (pauseTicks >= 5) mode = 'del';
+              setTimeout(tw, 440);
+            } else {
+              charIdx -= 3;
+              if (charIdx <= 0) {
+                charIdx = 0;
+                ideaIdx = (ideaIdx + 1) % IDEAS.length;
+                mode = 'type';
+                idea.placeholder = '▌';
+                setTimeout(tw, 520);
+                return;
+              }
+              idea.placeholder = full.slice(0, charIdx) + '▌';
+              setTimeout(tw, 16);
+            }
+          })();
+        }
+        function submitIdea() {
+          var text = idea.value.trim();
+          if (!text) {
+            Toast.info('Describe your app idea first — e.g. "a booking app for my salon".', 'Tell us your idea');
+            idea.focus();
+            return;
+          }
+          if (!AppStore.auth.isLoggedIn()) {
+            AppStore.write('ai_idea_draft', text);
+            Toast.info('Sign in and Stackly AI will start building "' + text.slice(0, 40) + (text.length > 40 ? '…' : '') + '"', 'Almost there');
+            setTimeout(function () { window.location.href = 'login.html'; }, 1100);
+            return;
+          }
+          var name = text.split(/[.,!\n]/)[0].trim().slice(0, 32) || 'AI App';
+          name = name.charAt(0).toUpperCase() + name.slice(1);
+          var project = AppStore.addProject({ name: name, template: 'Stackly AI Draft' });
+          send.style.pointerEvents = 'none';
+          Toast.success('Stackly AI is drafting "' + name + '" — opening the builder…', 'Generating your app');
+          setTimeout(function () { window.location.href = 'app-builder.html?project=' + project.id; }, 1200);
+        }
+        send.addEventListener('click', submitIdea);
+        idea.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submitIdea(); }
+        });
       }
 
       /* Billing toggle */

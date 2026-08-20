@@ -435,12 +435,19 @@ h1, h2, h3, h4, h5, h6 {
   height: 20px;
 }
 
-/* Stackly wordmark image (silver, transparent bg — for dark surfaces) */
-.brand-logo {
+/* Stackly wordmark image (transparent bg — for dark surfaces).
+   The source art is silver; this tint shifts it to the Start Free button's
+   sky-blue → cyan tone while keeping the metallic shading. */
+.brand-logo,
+img[src$="logo-stackly.webp"] {
   height: 40px;
   width: auto;
   display: block;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+  /* flatten to silhouette, then paint solid deep blue (no white highlights) */
+  filter: brightness(0) saturate(100%)
+          invert(52%) sepia(72%) saturate(1450%) hue-rotate(198deg)
+          brightness(1.0) contrast(0.92)
+          drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
 }
 .site-footer .brand-logo {
   height: 44px;

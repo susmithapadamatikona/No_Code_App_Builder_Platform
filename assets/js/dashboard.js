@@ -144,7 +144,7 @@
       '<div class="dash-side-head">' +
         '<a class="dash-brand" href="index.html" aria-label="Stackly home">' +
           '<span class="brand-mark dash-brand-mini"><i data-icon="logo"></i></span>' +
-          '<img class="dash-brand-name brand-logo" src="assets/images/logo-stackly.webp" alt="Stackly" style="height:32px;filter:none">' +
+          '<img class="dash-brand-name brand-logo" src="assets/images/logo-stackly.webp" alt="Stackly" style="height:32px">' +
         '</a>' +
         '<button class="dash-collapse" type="button" data-dash-collapse aria-label="Toggle sidebar width"><i data-icon="chevron-left"></i></button>' +
       '</div>' +

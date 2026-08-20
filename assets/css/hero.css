@@ -11,7 +11,7 @@
   /* HD photo backdrop, clearly visible: a light veil over the whole image
      plus a soft dark pocket ONLY behind the centered text for readability */
   background:
-    radial-gradient(ellipse 62% 56% at 50% 44%,
+    radial-gradient(ellipse 58% 62% at 28% 46%,
       rgba(18, 14, 42, 0.8) 0%,
       rgba(18, 14, 42, 0.45) 55%,
       rgba(18, 14, 42, 0.08) 78%),
@@ -19,7 +19,7 @@
       rgba(36, 32, 68, 0.5) 0%,
       rgba(36, 32, 68, 0.28) 45%,
       rgba(36, 32, 68, 0.62) 100%),
-    url('../images/photos/photo-1519389950473-47ba0277781c-2000x1125.webp') center / cover no-repeat,
+    url('../images/photos/photo-1517430816045-df4b7de11d1d-2000x1125.webp') center / cover no-repeat,
     var(--gradient-hero);
   color: #E2E8F0;
   overflow: hidden;
@@ -61,7 +61,7 @@
         rgba(18, 14, 42, 0.5) 60%,
         rgba(18, 14, 42, 0.14) 82%),
       linear-gradient(180deg, rgba(36, 32, 68, 0.5), rgba(36, 32, 68, 0.32) 50%, rgba(36, 32, 68, 0.62)),
-      url('../images/photos/photo-1519389950473-47ba0277781c-1200x1400.webp') center / cover no-repeat,
+      url('../images/photos/photo-1517430816045-df4b7de11d1d-1200x1400.webp') center / cover no-repeat,
       var(--gradient-hero);
   }
 }
@@ -102,24 +102,122 @@
 .hero .container {
   position: relative;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
   align-items: center;
-  text-align: center;
-  max-width: 900px;
+  gap: var(--sp-7);
 }
-.hero h1 {
-  max-width: 820px;
+
+/* ------------------------------------------------------------------
+   AI prompt card — "Describe your app idea" (hero right side)
+   ------------------------------------------------------------------ */
+.ai-prompt-card {
+  max-width: 520px;
+  margin-left: auto;
+  animation: fadeInUp 0.9s var(--ease) 0.35s both;
 }
-.hero .hero-desc {
-  margin-inline: auto;
-  max-width: 620px;
+.ai-prompt-label {
+  display: block;
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+  text-shadow: 0 1px 12px rgba(36, 32, 68, 0.6);
 }
-.hero .hero-cta {
-  justify-content: center;
+.ai-prompt-box {
+  background: #FFFFFF;
+  border: 1.5px solid #1B1730;
+  border-radius: 18px;
+  padding: 18px 18px 14px;
+  box-shadow:
+    0 24px 60px rgba(10, 8, 30, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  transition: box-shadow var(--t-med), transform var(--t-med);
 }
-.hero .hero-meta {
-  justify-content: center;
+.ai-prompt-box:focus-within {
+  transform: translateY(-2px);
+  box-shadow:
+    0 30px 70px rgba(10, 8, 30, 0.55),
+    0 0 0 4px rgba(85, 149, 228, 0.35);
+}
+.ai-prompt-box textarea {
+  width: 100%;
+  min-height: 116px;
+  border: none;
+  outline: none;
+  resize: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: #242044;
+}
+.ai-prompt-box textarea::placeholder {
+  color: #8A87A0;
+}
+.ai-prompt-foot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  padding-top: 6px;
+}
+.ai-count {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #A5A2B8;
+}
+.ai-count b {
+  color: #6E6B85;
+  font-weight: 700;
+}
+.ai-send {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #16121F;
+  color: #fff;
+  cursor: pointer;
+  transition: transform var(--t-fast), background var(--t-fast), box-shadow var(--t-fast);
+}
+.ai-send svg,
+.ai-send i {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+}
+.ai-send:hover {
+  transform: scale(1.1);
+  background: var(--gradient-button);
+  box-shadow: 0 6px 18px rgba(71, 193, 209, 0.5);
+}
+.ai-send:active { transform: scale(0.96); }
+.ai-prompt-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  font-size: var(--fs-xs);
+  color: #CCC7E3;
+  text-shadow: 0 1px 10px rgba(36, 32, 68, 0.6);
+}
+.ai-prompt-hint i,
+.ai-prompt-hint svg {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  color: #47C1D1;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+  .ai-prompt-card {
+    margin: var(--sp-5) auto 0;
+    text-align: left;
+  }
 }
 
 .hero-pill {
