@@ -177,9 +177,9 @@
         /* the primary view carries the real category photo; other views stay
            as UI screenshots so the shot strip shows different app screens */
         if (variant === 0 && window.TemplateCards.categoryPhoto(tpl.category)) {
-          html += '<img class="pic-photo" src="https://images.unsplash.com/' +
+          html += '<img class="pic-photo" src="assets/images/photos/' +
             window.TemplateCards.categoryPhoto(tpl.category) +
-            '?auto=format&fit=crop&w=1400&h=744&q=80" alt="" loading="lazy" onerror="this.remove()">';
+            '-1400x744.webp" alt="" loading="lazy" onerror="this.remove()">';
         }
         return html;
       }

@@ -36,8 +36,8 @@
     }
     const photo = CATEGORY_PHOTOS[tpl.category];
     if (photo) {
-      html += '<img class="pic-photo" src="https://images.unsplash.com/' + photo +
-        '?auto=format&fit=crop&w=800&h=500&q=80" alt="" loading="lazy" onerror="this.remove()">';
+      html += '<img class="pic-photo" src="assets/images/photos/' + photo +
+        '-800x500.webp" alt="" loading="lazy" onerror="this.remove()">';
     }
     return html;
   }

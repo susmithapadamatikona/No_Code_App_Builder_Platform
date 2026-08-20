@@ -19,7 +19,7 @@
       rgba(36, 32, 68, 0.5) 0%,
       rgba(36, 32, 68, 0.28) 45%,
       rgba(36, 32, 68, 0.62) 100%),
-    url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=2000&h=1125&q=85') center / cover no-repeat,
+    url('../images/photos/photo-1519389950473-47ba0277781c-2000x1125.webp') center / cover no-repeat,
     var(--gradient-hero);
   color: #E2E8F0;
   overflow: hidden;
@@ -61,7 +61,7 @@
         rgba(18, 14, 42, 0.5) 60%,
         rgba(18, 14, 42, 0.14) 82%),
       linear-gradient(180deg, rgba(36, 32, 68, 0.5), rgba(36, 32, 68, 0.32) 50%, rgba(36, 32, 68, 0.62)),
-      url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&h=1400&q=85') center / cover no-repeat,
+      url('../images/photos/photo-1519389950473-47ba0277781c-1200x1400.webp') center / cover no-repeat,
       var(--gradient-hero);
   }
 }

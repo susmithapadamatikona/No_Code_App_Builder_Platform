@@ -186,7 +186,7 @@ select.form-control {
   position: relative;
   background:
     linear-gradient(135deg, rgba(36, 32, 68, 0.93), rgba(75, 45, 157, 0.88) 55%, rgba(121, 40, 171, 0.82)),
-    url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&h=1400&q=80') center / cover no-repeat,
+    url('../images/photos/photo-1522202176988-66273c2fd55f-1200x1400.webp') center / cover no-repeat,
     var(--gradient-hero);
   color: #E2E8F0;
   padding: var(--sp-6) var(--sp-6);

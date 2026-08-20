@@ -229,7 +229,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   /* photo background under a strong brand overlay; --ph-photo can be
      overridden per page via an inline style for a themed image */
-  --ph-photo: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&h=640&q=80');
+  --ph-photo: url('../images/photos/photo-1451187580459-43490279c0fa-1920x640.webp');
   background:
     linear-gradient(135deg, rgba(36, 32, 68, 0.95), rgba(75, 45, 157, 0.9) 50%, rgba(121, 40, 171, 0.88)),
     var(--ph-photo) center / cover no-repeat,
